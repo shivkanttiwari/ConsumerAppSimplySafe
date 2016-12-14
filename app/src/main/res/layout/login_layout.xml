@@ -38,7 +38,7 @@
             <!--android:textSize="16sp" />-->
 
         <!--  Email Label -->
-        <android.support.design.widget.TextInputLayout
+        <!--<android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -52,11 +52,34 @@
                 android:textColorHint="@color/white"
                 android:inputType="textEmailAddress"
                 android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>-->
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="#FFFFFF"
+            android:theme="@style/TextLabel"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/login_emailid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="10"
+
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textColorHighlight="@color/white"
+
+                android:hint="Mobile number" />
         </android.support.design.widget.TextInputLayout>
+
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
+            android:visibility="gone"
             android:background="@color/white_greyish" />
 
         <EditText
@@ -74,6 +97,7 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="16sp" />
+
 
 
 
