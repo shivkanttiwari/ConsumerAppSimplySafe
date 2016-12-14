@@ -20,22 +20,39 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/login_emailid"
-             android:singleLine="true"
-            android:layout_width="fill_parent"
+        <!--<EditText-->
+            <!--android:id="@+id/login_emailid"-->
+             <!--android:singleLine="true"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:drawableLeft="@drawable/email"-->
+            <!--android:drawablePadding="8dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:hint="@string/email"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textColorHint="@color/white"-->
+            <!--android:textSize="16sp" />-->
+
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/email"
-            android:drawablePadding="8dp"
-            android:gravity="center_vertical"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="16sp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/login_emailid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@android:color/transparent"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:inputType="textEmailAddress"
+                android:hint="Email" />
+        </android.support.design.widget.TextInputLayout>
 
         <View
             android:layout_width="fill_parent"
@@ -57,6 +74,9 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="16sp" />
+
+
+
 
         <LinearLayout
             android:layout_width="fill_parent"
