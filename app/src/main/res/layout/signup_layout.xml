@@ -45,14 +45,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@android:color/transparent"
+
             android:drawableLeft="@drawable/user"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
             android:hint="@string/fullName"
             android:inputType="textCapWords"
             android:padding="10dp"
-            android:singleLine="true"
+
 
             android:textSize="16sp"
 
@@ -81,7 +81,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
+
         android:drawableLeft="@drawable/email"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
@@ -111,7 +111,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
+
         android:drawableLeft="@drawable/phone"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
@@ -136,6 +136,7 @@
         android:layout_marginTop="8dp"
         android:textColorHint="#FFFFFF"
         android:theme="@style/TextLabel"
+        android:visibility="gone"
         android:layout_marginBottom="8dp">
 
     <EditText
@@ -143,7 +144,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
+
         android:drawableLeft="@drawable/location"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
@@ -173,7 +174,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
+
         android:drawableLeft="@drawable/password"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
@@ -203,7 +204,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
+
         android:drawableLeft="@drawable/confirm_password"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"

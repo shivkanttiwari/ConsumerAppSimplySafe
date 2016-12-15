@@ -1,6 +1,5 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
@@ -162,10 +160,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.login_button1:
-			//checkValidation();
-			getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+			checkValidation();
+			//getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
 
-			getActivity().finish();
+			//getActivity().finish();
 			break;
 
 		case R.id.forget_password_link:
