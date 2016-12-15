@@ -1,5 +1,6 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
@@ -160,7 +162,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.login_button1:
-			checkValidation();
+			//checkValidation();
+			getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+
+			getActivity().finish();
 			break;
 
 		case R.id.forget_password_link:
@@ -206,13 +211,18 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
 		}
 		// Check if email id is valid or not
-		else if (getEmailId.length()<=12)
+		else if (getEmailId.length()<12)
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Please provide valid mobile number.");
 		// Else do login and do your stuff
 		else
-			Toast.makeText(getActivity(), "Do Login.", Toast.LENGTH_SHORT)
+		{
+			Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
 					.show();
+
+
+		}
+
 
 	}
 }

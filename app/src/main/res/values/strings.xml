@@ -22,5 +22,6 @@
     <string name="registered_emailid">Please enter your Registered Mobile Number below:</string>
     <string name="submit">SUBMIT</string>
     <string name="back">BACK</string>
-
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 </resources>
