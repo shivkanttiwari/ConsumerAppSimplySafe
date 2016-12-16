@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
 
-            android:drawableLeft="@drawable/user"
+            android:drawableLeft="@drawable/usersignup"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
             android:hint="@string/fullName"

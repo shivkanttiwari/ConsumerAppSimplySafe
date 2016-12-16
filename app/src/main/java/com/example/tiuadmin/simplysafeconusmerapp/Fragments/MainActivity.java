@@ -2,6 +2,7 @@ package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
 					}
 				});
 
+	}
+
+	@Override
+	protected void attachBaseContext(Context newBase) {
+		super.attachBaseContext(newBase);
+		MultiDex.install(this);
 	}
 
 	// Replace Login Fragment with animation
