@@ -13,6 +13,7 @@
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
+            android:id="@+id/relativelayoutAlbumAdapter"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -21,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
+
                 android:scaleType="fitXY" />
 
             <TextView

@@ -4,18 +4,23 @@
         <item
             android:id="@+id/home"
             android:title="Home"
-            android:icon="@drawable/ic_home"/>
+            android:icon="@drawable/home"/>
         <item
-            android:id="@+id/settings"
-            android:title="Settings"
-            android:icon="@drawable/ic_setting"/>
+            android:id="@+id/Rewards"
+            android:title="Rewards"
+            android:icon="@drawable/rewards"/>
         <item
-            android:id="@+id/trash"
-            android:title="Trash"
-            android:icon="@drawable/ic_trash"/>
+            android:id="@+id/aboutus"
+            android:title="Abount Us"
+            android:icon="@drawable/aboutus"/>
+
+        <item
+            android:id="@+id/contactus"
+            android:title="Contact Us"
+            android:icon="@drawable/contactud"/>
         <item
             android:id="@+id/logout"
             android:title="Logout"
-            android:icon="@drawable/ic_exit"/>
+            android:icon="@drawable/logout"/>
     </group>
 </menu>

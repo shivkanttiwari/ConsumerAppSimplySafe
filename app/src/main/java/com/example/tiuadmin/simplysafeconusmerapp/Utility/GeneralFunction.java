@@ -1,6 +1,9 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Utility;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +48,36 @@ public class GeneralFunction {
 
             toast.show();// Finally show toast
         }
+    public AlertDialog AskOption(Activity context)
+    {
+        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(context)
+                //set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to Delete this merchant?")
+                .setIcon(R.drawable.cross_delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //your deleting code
+                        dialog.dismiss();
+                    }
+
+                })
+
+
+
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        return myQuittingDialogBox;
+
+    }
 
     }
 

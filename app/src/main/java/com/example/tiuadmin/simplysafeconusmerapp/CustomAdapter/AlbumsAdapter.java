@@ -1,6 +1,10 @@
 package com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,13 +12,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Album;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 
 import java.util.List;
 
@@ -23,24 +30,28 @@ import java.util.List;
  */
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHolder> {
 
-    private Context mContext;
+    private Activity mContext;
     private List<Album> albumList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
         public ImageView thumbnail, overflow;
+        public CardView cardview;
+        public RelativeLayout relativelayoutAlbumAdapter;
 
         public MyViewHolder(View view) {
             super(view);
+            cardview=(CardView)view.findViewById(R.id.card_view);
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
+            relativelayoutAlbumAdapter=(RelativeLayout)view.findViewById(R.id.relativelayoutAlbumAdapter);
         }
     }
 
 
-    public AlbumsAdapter(Context mContext, List<Album> albumList) {
+    public AlbumsAdapter(Activity mContext, List<Album> albumList) {
         this.mContext = mContext;
         this.albumList = albumList;
     }
@@ -50,11 +61,13 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.album_card, parent, false);
 
+
+
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Album album = albumList.get(position);
         holder.title.setText(album.getName());
         holder.count.setText(album.getNumOfSongs() + " songs");
@@ -66,6 +79,26 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 showPopupMenu(holder.overflow);
+            }
+        });
+
+        holder.relativelayoutAlbumAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent merchantIntent=new Intent(mContext, MerchanteWebviewActivity.class);
+
+                if(position==0)
+                {
+                    merchantIntent.putExtra("MerchantURL", "https://www.flipkart.com/");
+                }
+                else
+                {
+
+
+                    merchantIntent.putExtra("MerchantURL", "http://www.amazon.in/");
+                }
+                mContext.startActivity(merchantIntent);
             }
         });
     }
@@ -94,10 +127,35 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                    AlertDialog dialog= new GeneralFunction().AskOption(mContext);
+                    dialog.show();
+                    Button nbutton = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+                   // nbutton.setBackgroundColor(Color.MAGENTA);
+                    nbutton.setTextColor(R.color.black);
+                    Button pbutton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                   // pbutton.setBackgroundColor(Color.YELLOW);
+                    pbutton.setTextColor(R.color.black);
+//                    AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+//                    alertDialog.setTitle("Title");
+//                    alertDialog.setMessage("Are you ok?");
+//                    alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            // here you can add ok click events
+//                        }
+//                    });
+//                    alertDialog.setIcon(R.drawable.cross_delete);
+//
+//                    alertDialog.show();
+//                    Button nbutton = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+//                    nbutton.setBackgroundColor(Color.MAGENTA);
+//                    Button pbutton = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+//                    pbutton.setBackgroundColor(Color.YELLOW);
                     return true;
                 case R.id.action_play_next:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+
+
                     return true;
                 default:
             }
