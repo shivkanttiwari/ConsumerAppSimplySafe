@@ -19,19 +19,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.Models.Album;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 
 import java.util.List;
 
-/**
- * Created by Ravi Tamada on 18/05/16.
- */
-public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHolder> {
+
+public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyViewHolder> {
 
     private Activity mContext;
-    private List<Album> albumList;
+    private List<Merchant> albumList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
@@ -51,7 +49,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     }
 
 
-    public AlbumsAdapter(Activity mContext, List<Album> albumList) {
+    public MerchantAdapter(Activity mContext, List<Merchant> albumList) {
         this.mContext = mContext;
         this.albumList = albumList;
     }
@@ -68,7 +66,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        Album album = albumList.get(position);
+        Merchant album = albumList.get(position);
         holder.title.setText(album.getName());
         holder.count.setText(album.getNumOfSongs() + " songs");
 

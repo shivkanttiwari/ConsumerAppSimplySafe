@@ -19,9 +19,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.AlbumsAdapter;
+import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.Models.Album;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
 import java.util.ArrayList;
@@ -32,8 +32,8 @@ public class DrawerActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     private RecyclerView recyclerView;
-    private AlbumsAdapter adapter;
-    private List<Album> albumList;
+    private MerchantAdapter adapter;
+    private List<Merchant> albumList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class DrawerActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         albumList = new ArrayList<>();
-        adapter = new AlbumsAdapter(this, albumList);
+        adapter = new MerchantAdapter(this, albumList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -170,34 +170,34 @@ public class DrawerActivity extends AppCompatActivity {
                 R.drawable.album11
         };
 
-        Album a = new Album("FlipKart", 13, covers[0]);
+        Merchant a = new Merchant("FlipKart", 13, covers[0]);
         albumList.add(a);
 
-        a = new Album("Amazon", 8, covers[1]);
+        a = new Merchant("Amazon", 8, covers[1]);
         albumList.add(a);
 
-        a = new Album("ebay 5", 11, covers[2]);
+        a = new Merchant("ebay 5", 11, covers[2]);
         albumList.add(a);
 
-        a = new Album("Snapdeal", 12, covers[3]);
+        a = new Merchant("Snapdeal", 12, covers[3]);
         albumList.add(a);
 
-        a = new Album("BookMyShow", 14, covers[4]);
+        a = new Merchant("BookMyShow", 14, covers[4]);
         albumList.add(a);
 
-        a = new Album("OLA", 1, covers[5]);
+        a = new Merchant("OLA", 1, covers[5]);
         albumList.add(a);
 
-        a = new Album("Loud", 11, covers[6]);
+        a = new Merchant("Loud", 11, covers[6]);
         albumList.add(a);
 
-        a = new Album("Legend", 14, covers[7]);
+        a = new Merchant("Legend", 14, covers[7]);
         albumList.add(a);
 
-        a = new Album("Hello", 11, covers[8]);
+        a = new Merchant("Hello", 11, covers[8]);
         albumList.add(a);
 
-        a = new Album("Greatest Hits", 17, covers[9]);
+        a = new Merchant("Greatest Hits", 17, covers[9]);
         albumList.add(a);
 
         adapter.notifyDataSetChanged();

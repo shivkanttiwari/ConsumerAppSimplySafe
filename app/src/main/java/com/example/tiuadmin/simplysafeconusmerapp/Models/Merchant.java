@@ -1,17 +1,15 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Models;
 
-/**
- * Created by Lincoln on 18/05/16.
- */
-public class Album {
+
+public class Merchant {
     private String name;
     private int numOfSongs;
     private int thumbnail;
 
-    public Album() {
+    public Merchant() {
     }
 
-    public Album(String name, int numOfSongs, int thumbnail) {
+    public Merchant(String name, int numOfSongs, int thumbnail) {
         this.name = name;
         this.numOfSongs = numOfSongs;
         this.thumbnail = thumbnail;
