@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Merchant.SimpleTabsActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
@@ -84,9 +84,10 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyView
             @Override
             public void onClick(View v) {
 
-                Intent merchantIntent=new Intent(mContext, MerchanteWebviewActivity.class);
+                Intent merchantIntent=new Intent(mContext, SimpleTabsActivity.class);
+                mContext.startActivity(merchantIntent);
 
-                if(position==0)
+            /*    if(position==0)
                 {
                     merchantIntent.putExtra("MerchantURL", "https://www.flipkart.com/");
                 }
@@ -96,7 +97,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyView
 
                     merchantIntent.putExtra("MerchantURL", "http://www.amazon.in/");
                 }
-                mContext.startActivity(merchantIntent);
+                mContext.startActivity(merchantIntent);*/
             }
         });
     }

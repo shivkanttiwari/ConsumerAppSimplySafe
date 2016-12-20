@@ -25,6 +25,12 @@
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
         <activity android:name=".Activity.MerchanteWebviewActivity"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
+
+        <activity android:name=".Merchant.SimpleTabsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+
+
+            android:parentActivityName=".Activity.DrawerActivity"></activity>
     </application>
 
 </manifest>
