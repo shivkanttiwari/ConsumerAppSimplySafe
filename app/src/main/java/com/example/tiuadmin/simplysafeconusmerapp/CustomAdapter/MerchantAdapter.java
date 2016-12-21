@@ -24,6 +24,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyViewHolder> {
@@ -69,6 +70,12 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyView
         Merchant album = albumList.get(position);
         holder.title.setText(album.getName());
         holder.count.setText(album.getNumOfSongs() + " songs");
+
+
+
+        int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+        holder.thumbnail.setBackgroundColor(randomAndroidColor);
 
         // loading album cover using Glide library
         Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
