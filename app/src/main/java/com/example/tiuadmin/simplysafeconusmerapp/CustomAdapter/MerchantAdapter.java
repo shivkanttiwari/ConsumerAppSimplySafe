@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Merchant.SimpleTabsActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
@@ -91,7 +92,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyView
             @Override
             public void onClick(View v) {
 
-                Intent merchantIntent=new Intent(mContext, SimpleTabsActivity.class);
+                Intent merchantIntent=new Intent(mContext, MerchantActivity.class);
                 mContext.startActivity(merchantIntent);
 
             /*    if(position==0)
