@@ -30,10 +30,13 @@
             android:name=".Merchant.SimpleTabsActivity"
             android:parentActivityName=".Activity.DrawerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Merchant.MerchantActivity"
-
-            android:parentActivityName=".Activity.DrawerActivity"
-             ></activity>
+        <activity
+            android:name=".Merchant.MerchantActivity"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity
+            android:name=".Activity.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
