@@ -11,10 +11,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantViewAdapter;
+import com.example.tiuadmin.simplysafeconusmerapp.JSON.JSONPARSER;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +90,7 @@ public class MerchantActivity extends AppCompatActivity {
 
                 //setting custom layout to dialog
                 dialog.setContentView(R.layout.addcustomerdialog);
+                dialog.setTitle("Add Merchant");
 
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                 lp.copyFrom(dialog.getWindow().getAttributes());
@@ -88,21 +99,23 @@ public class MerchantActivity extends AppCompatActivity {
 
                 dialog.getWindow().setAttributes(lp);
 
-               /* //adding text dynamically
-                TextView txt = (TextView) dialog.findViewById(R.id.textView);
-                txt.setText("How ");
+                //adding text dynamically
+               // TextView txt = (TextView) dialog.findViewById(R.id.textView);
+               // txt.setText("How ");
 
-                ImageView image = (ImageView)dialog.findViewById(R.id.image);
-                image.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_dialog_info));
+               // ImageView image = (ImageView)dialog.findViewById(R.id.image);
+               // image.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_dialog_info));
 
                 //adding button click event
-                Button dismissButton = (Button) dialog.findViewById(R.id.button);
+                Button dismissButton = (Button) dialog.findViewById(R.id.btn_addmerchant);
                 dismissButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        sendRequest();
                         dialog.dismiss();
                     }
-                });*/
+                });
                 dialog.show();
             }
         });
@@ -110,6 +123,8 @@ public class MerchantActivity extends AppCompatActivity {
 
 
     }
+
+
     MerchantViewAdapter.OnItemClickListener onItemClickListener = new MerchantViewAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View v, int position) {
@@ -131,5 +146,32 @@ public class MerchantActivity extends AppCompatActivity {
             getActionBar().setDisplayShowTitleEnabled(true);
             getActionBar().setElevation(7);
         }
+    }
+
+    private void sendRequest(){
+
+        StringRequest stringRequest = new StringRequest(Utils.JSON_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        showJSON(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MerchantActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void showJSON(String json){
+        JSONPARSER pj = new JSONPARSER(json);
+        pj.parseJSON();
+       // CustomList cl = new CustomList(this, ParseJSON.ids,ParseJSON.names,ParseJSON.emails);
+      //  listView.setAdapter(cl);
     }
 }

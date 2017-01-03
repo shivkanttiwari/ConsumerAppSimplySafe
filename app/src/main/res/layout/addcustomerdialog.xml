@@ -19,7 +19,7 @@
         android:id="@+id/editText" />
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/forgot_button"
+        android:id="@+id/btn_addmerchant"
         android:layout_width="146dp"
         android:layout_height="50dp"
 
