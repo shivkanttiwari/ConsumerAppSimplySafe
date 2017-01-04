@@ -37,17 +37,23 @@ public class MerchantActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    private RecyclerView mRecyclerView;
+
     private StaggeredGridLayoutManager mStaggeredLayoutManager;
 
     private boolean isListView;
     private Menu menu;
+    ArrayList<String> merchantArraay;
+    RecyclerView mRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant);
+        merchantArraay=new ArrayList<>();
+        merchantArraay.add("Merchant 1");
+        merchantArraay.add("Merchant 2");
+        merchantArraay.add("Merchant 3");
 
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.list);
+         mRecyclerView = (RecyclerView) findViewById(R.id.list);
 
        // mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setHasFixedSize(false);
@@ -71,7 +77,7 @@ public class MerchantActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
 
         mRecyclerView.setHasFixedSize(true); //Data size is fixed - improves performance
-        mAdapter = new MerchantViewAdapter(getApplicationContext());
+        mAdapter = new MerchantViewAdapter(MerchantActivity.this,merchantArraay);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(onItemClickListener);
@@ -112,8 +118,14 @@ public class MerchantActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+
+                        merchantArraay.add(0,"New Merchant");
+                        mAdapter.notifyDataSetChanged();
                         sendRequest();
                         dialog.dismiss();
+                       // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
+                       // mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.smoothScrollToPosition(0);
                     }
                 });
                 dialog.show();

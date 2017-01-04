@@ -1,6 +1,6 @@
 package com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.graphics.Palette;
@@ -17,6 +17,8 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.Place;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.PlaceData;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 /**
  * Created by shivkanttiwari on 02/01/17.
  */
@@ -24,11 +26,17 @@ import com.squareup.picasso.Picasso;
 public class MerchantViewAdapter extends
         RecyclerView.Adapter<MerchantViewAdapter.ViewHolder> {
 
-    Context mContext;
+    Activity mContext;
     OnItemClickListener mItemClickListener;
 
-    public MerchantViewAdapter(Context context) {
+    ArrayList<String>merchantArray;
+
+    int[] merchantIcons = {R.drawable.borabora, R.drawable.canada,R.drawable.dubai, R.drawable.hongkong,R.drawable.iceland, R.drawable.india,R.drawable.kenya, R.drawable.london,
+            R.drawable.switzerland, R.drawable.sydney,};
+
+    public MerchantViewAdapter(Activity context, ArrayList<String>merchantArrray) {
         this.mContext = context;
+        this.merchantArray=merchantArrray;
     }
 
     @Override
@@ -41,22 +49,38 @@ public class MerchantViewAdapter extends
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Place place = new PlaceData().placeList().get(position);
 
-        holder.placeName.setText(place.name);
-        Picasso.with(mContext).load(place.getImageResourceId(mContext)).into(holder.placeImage);
+        holder.placeName.setText(merchantArray.get(position));
 
-        Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), place.getImageResourceId(mContext));
+       if(position>2)
+        {
+            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.placeImage);
 
-        Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
-            public void onGenerated(Palette palette) {
-                int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
-                holder.placeNameHolder.setBackgroundColor(mutedLight);
-            }
-        });
+            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
+
+            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+                    holder.placeNameHolder.setBackgroundColor(mutedLight);
+                }
+            });
+        }
+        else {
+            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.placeImage);
+
+            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
+
+            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+                    holder.placeNameHolder.setBackgroundColor(mutedLight);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return new PlaceData().placeList().size();
+        return merchantArray.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

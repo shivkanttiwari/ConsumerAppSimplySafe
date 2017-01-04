@@ -33,17 +33,39 @@
         android:layout_height="45dp"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
+
         android:transitionName="tNameHolder">
 
         <TextView
           android:id="@+id/placeName"
-          android:layout_width="match_parent"
+          android:layout_width="0dp"
+            android:layout_weight="1"
           android:layout_height="wrap_content"
           android:layout_gravity="center_vertical"
           android:gravity="left"
           android:paddingLeft="10dp"
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:textColor="@android:color/white" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.06"
+
+            card_view:srcCompat="@drawable/shopping_cart"
+            android:id="@+id/imageView"
+             />
+
+        <TextView
+            android:text="Shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_weight="0.16" />
 
       </LinearLayout>
 
