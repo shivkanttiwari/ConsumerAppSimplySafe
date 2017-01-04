@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
+import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import com.example.tiuadmin.simplysafeconusmerapp.app.AppController;
 
 import org.json.JSONObject;
@@ -47,6 +49,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private TextView msgResponse;
 	private ProgressDialog pDialog;
 	private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
+
 	public SignUp_Fragment() {
 
 	}
@@ -55,6 +58,10 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.signup_layout, container, false);
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+		StrictMode.setThreadPolicy(policy);
+
 		initViews();
 		setListeners();
 		return view;
@@ -97,17 +104,17 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.signUpBtn:
+			case R.id.signUpBtn:
 
-			// Call checkValidation method
-			checkValidation();
-			break;
+				// Call checkValidation method
+				checkValidation();
+				break;
 
-		case R.id.already_user:
+			case R.id.already_user:
 
-			// Replace login fragment
-			new MainActivity().replaceLoginFragment();
-			break;
+				// Replace login fragment
+				new MainActivity().replaceLoginFragment();
+				break;
 		}
 
 	}
@@ -115,7 +122,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	// Check Validation Method
 	private void checkValidation() {
 
-		makeJsonObjReq();
+
 		// Get all edittext texts
 		String getFullName = fullName.getText().toString();
 		String getEmailId = emailId.getText().toString();
@@ -132,7 +139,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		if (getFullName.equals("") || getFullName.length() == 0
 				|| getEmailId.equals("") || getEmailId.length() == 0
 				|| getMobileNumber.equals("") || getMobileNumber.length() == 0
-				|| getLocation.equals("") || getLocation.length() == 0
+
 				|| getPassword.equals("") || getPassword.length() == 0
 				|| getConfirmPassword.equals("")
 				|| getConfirmPassword.length() == 0)
@@ -140,27 +147,29 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"All fields are required.");
 
-		// Check if email id valid or not
+			// Check if email id valid or not
 		else if (!m.find())
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Your Email Id is Invalid.");
 
-		// Check if both password should be equal
+			// Check if both password should be equal
 		else if (!getConfirmPassword.equals(getPassword))
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Both password doesn't match.");
 
-		// Make sure user should check Terms and Conditions checkbox
+			// Make sure user should check Terms and Conditions checkbox
 		else if (!terms_conditions.isChecked())
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Please select Terms and Conditions.");
 
-		// Else do signup or do your stuff
+			// Else do signup or do your stuff
 		else
-			Toast.makeText(getActivity(), "Do SignUp.", Toast.LENGTH_SHORT)
-					.show();
+			//Toast.makeText(getActivity(), "Do SignUp.", Toast.LENGTH_SHORT)
+					//.show();
+		makeJsonObjReq(getFullName,getEmailId,getMobileNumber,getConfirmPassword);
 
 	}
+
 	private void showProgressDialog() {
 		if (!pDialog.isShowing())
 			pDialog.show();
@@ -170,12 +179,49 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		if (pDialog.isShowing())
 			pDialog.hide();
 	}
+
 	/**
 	 * Making json object request
-	 * */
-	private void makeJsonObjReq() {
+	 */
+	private void makeJsonObjReq(String name,String email,String phone,String password) {
 		showProgressDialog();
-		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+		String res = null;
+		String responseCode = null;
+		String returnResponse = null;
+		try {
+
+			String url = "http://52.66.101.233/Customer-Backend/public/api/user/signup";
+			JSONObject signUpJsonRequestObject = new JSONObject();
+			signUpJsonRequestObject.put("name", name);
+			signUpJsonRequestObject.put("email", email);
+			signUpJsonRequestObject.put("phone", phone);
+			signUpJsonRequestObject.put("sspin", password);
+
+
+
+			WebService web = new WebService();
+			res = web.postWithHeader(url, signUpJsonRequestObject.toString());
+			Log.d(res, res);
+
+
+			if (res != null) {
+				JSONObject json = new JSONObject(res);
+				if (json != null) {
+
+					String status=json.getString("status");
+					String message=json.getString("message");
+					if(status.equalsIgnoreCase("true"))
+					Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
+
+					new MainActivity().replaceLoginFragment();
+
+				}
+			}
+			hideProgressDialog();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		/*JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
 				Const.URL_JSON_OBJECT, null,
 				new Response.Listener<JSONObject>() {
 
@@ -196,9 +242,9 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 
 
-			/**
-			 * Passing some request headers
-			 * */
+			*//**
+		 * Passing some request headers
+		 * *//*
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();
@@ -225,5 +271,6 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 		// Cancelling request
 		// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
+	}*/
 	}
 }

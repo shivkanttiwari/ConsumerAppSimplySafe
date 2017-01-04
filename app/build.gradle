@@ -37,7 +37,7 @@ dependencies {
     compile 'com.daimajia.slider:library:1.1.5@aar'
 
     // RecyclerView
-    
+
 
     // CardView
     compile 'com.android.support:cardview-v7:23.3.+'
