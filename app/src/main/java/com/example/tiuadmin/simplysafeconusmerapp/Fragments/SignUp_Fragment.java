@@ -221,8 +221,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		};
 
 		// Adding request to request queue
-		AppController.getInstance().addToRequestQueue(jsonObjReq,
-				tag_json_obj);
+		AppController.getInstance().addToRequestQueue(jsonObjReq);
 
 		// Cancelling request
 		// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
