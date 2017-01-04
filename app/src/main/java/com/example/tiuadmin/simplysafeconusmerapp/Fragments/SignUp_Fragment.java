@@ -1,9 +1,11 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,10 +16,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
+import com.example.tiuadmin.simplysafeconusmerapp.app.AppController;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +42,11 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private static TextView login;
 	private static Button signUpButton;
 	private static CheckBox terms_conditions;
+	private String TAG = SignUp_Fragment.class.getSimpleName();
 
+	private TextView msgResponse;
+	private ProgressDialog pDialog;
+	private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
 	public SignUp_Fragment() {
 
 	}
@@ -44,6 +62,10 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 	// Initialize all views
 	private void initViews() {
+
+		pDialog = new ProgressDialog(getActivity());
+		pDialog.setMessage("Loading...");
+		pDialog.setCancelable(false);
 		fullName = (EditText) view.findViewById(R.id.fullName);
 		emailId = (EditText) view.findViewById(R.id.userEmailId);
 		mobileNumber = (EditText) view.findViewById(R.id.mobileNumber);
@@ -93,6 +115,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	// Check Validation Method
 	private void checkValidation() {
 
+		makeJsonObjReq();
 		// Get all edittext texts
 		String getFullName = fullName.getText().toString();
 		String getEmailId = emailId.getText().toString();
@@ -137,5 +160,71 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 			Toast.makeText(getActivity(), "Do SignUp.", Toast.LENGTH_SHORT)
 					.show();
 
+	}
+	private void showProgressDialog() {
+		if (!pDialog.isShowing())
+			pDialog.show();
+	}
+
+	private void hideProgressDialog() {
+		if (pDialog.isShowing())
+			pDialog.hide();
+	}
+	/**
+	 * Making json object request
+	 * */
+	private void makeJsonObjReq() {
+		showProgressDialog();
+		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+				Const.URL_JSON_OBJECT, null,
+				new Response.Listener<JSONObject>() {
+
+					@Override
+					public void onResponse(JSONObject response) {
+						Log.d(TAG, response.toString());
+						msgResponse.setText(response.toString());
+						hideProgressDialog();
+					}
+				}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				VolleyLog.d(TAG, "Error: " + error.getMessage());
+				hideProgressDialog();
+			}
+		}) {
+
+
+
+			/**
+			 * Passing some request headers
+			 * */
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				HashMap<String, String> headers = new HashMap<String, String>();
+				headers.put("Content-Type", "application/json");
+				headers.put("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjFmNjRlY2M5ZmMyMDA1ZjA3NGE0OGQ4NmEyZWYyOGJmNWIwOTk0OWViZGRkMWU5NjE3MGU4MjU0N2Y0OGI2Y2NhMzhjOGU5ODlmNDljMGIyIn0.eyJhdWQiOiIxIiwianRpIjoiMWY2NGVjYzlmYzIwMDVmMDc0YTQ4ZDg2YTJlZjI4YmY1YjA5OTQ5ZWJkZGQxZTk2MTcwZTgyNTQ3ZjQ4YjZjY2EzOGM4ZTk4OWY0OWMwYjIiLCJpYXQiOjE0ODI4MzU3MzQsIm5iZiI6MTQ4MjgzNTczNCwiZXhwIjoxNzk4MzY4NTM0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.NOLkQNT5P515HdnRbGxwnvPMpfReYZGDbBgqhq5RxAi7I1qyvXOvn-BX08MEUkwZjIz0KKev9Er54jX007uUhfYWOfVH6Ehwhro_F4WrjYVVLmKBGlh--PlyYQnFKbos2vWjzz9DWclZqtxz906gd5f_P10wDN1O6r0VfgMAMGjkJZwrnIy97zmXb9VSzfLDrFeSjUi4gF3vtQVXUWICjqlWgGZ0TgLiEYEh5ivsFNrfLri1YDhsX09vP8GuztdiML5JCN3MEyuIL_dWIsQnkYrnIV3LSULCoTftqBAyWbVYY9KGw28bf1fWx04fG-GQJ-HcZT4ZZtBYW4-3jt-Nb57nxbk76k4utbN0AcFjwJwdc5g4zQHGG7686WI0to2o1oc1aRxjzqOGK6fDfkQT1caABpKBb63kM1bLd__-7CAIIIuXSdKY59kPanOo3dZE5N2p1EMN6swToE8QlALEU6NwXk3otfI88RC6vnQlNOszqBzzdU_uF92hNa3hDo11jCh0Nfr4bjefIgIyl8rrwR5mDBNq78OO447xOH8XnlkwSWLLVkVqDr46fAwKRsph-N1mA6M8wkn-rVR6mTXJTUv6oeVVF7VP4hJ03IC71R5WG6fZNAS2UUspRai21mktopOeUNQvkSsWO51jhD5hrfETbuxRZRtxyCWFFwK68WE");
+				return headers;
+			}
+
+			@Override
+			protected Map<String, String> getParams() {
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("name", "shivkant");
+				params.put("email", "shivkant.tiwari123@gmail.com");
+				params.put("phone", "9096572182");
+				params.put("sspin", "123456");
+
+				return params;
+			}
+
+		};
+
+		// Adding request to request queue
+		AppController.getInstance().addToRequestQueue(jsonObjReq,
+				tag_json_obj);
+
+		// Cancelling request
+		// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
 	}
 }
