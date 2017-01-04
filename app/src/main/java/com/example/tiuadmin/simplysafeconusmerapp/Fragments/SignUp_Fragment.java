@@ -122,7 +122,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	// Check Validation Method
 	private void checkValidation() {
 
-
+		new MainActivity().replaceRgistrationOTPVerificaitonFragment();
 		// Get all edittext texts
 		String getFullName = fullName.getText().toString();
 		String getEmailId = emailId.getText().toString();
@@ -213,7 +213,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 					if(status.equalsIgnoreCase("true"))
 					Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
 
-					new MainActivity().replaceLoginFragment();
+					new MainActivity().replaceRgistrationOTPVerificaitonFragment();
 
 				}
 			}

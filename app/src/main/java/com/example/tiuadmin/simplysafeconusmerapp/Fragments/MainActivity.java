@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
 						Utils.Login_Fragment).commit();
 	}
 
+	// Replace Login Fragment with animation
+	protected void replaceRgistrationOTPVerificaitonFragment() {
+		fragmentManager
+				.beginTransaction()
+				.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
+				.replace(R.id.frameContainer, new VerifyOTP_Fragment(),
+						Utils.VerifyOTP_Fragment).commit();
+	}
 	@Override
 	public void onBackPressed() {
 
