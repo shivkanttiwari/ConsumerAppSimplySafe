@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
+import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+
+import org.json.JSONObject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,6 +119,47 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
         else
             Toast.makeText(getActivity(), "Get Forgot Password.",
                     Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Making json object request
+     */
+    private void makeForgetPasswordRequest(String phone,String password) {
+        new GeneralFunction().showProgressDialog(getActivity());
+        String res = null;
+        String responseCode = null;
+        String returnResponse = null;
+        try {
+
+            String url = "http://52.66.101.233/Customer-Backend/public/api/user/otp/verify";
+            JSONObject jsonrequest = new JSONObject();
+            jsonrequest.put("otp", phone);
+            jsonrequest.put("phone", password);
+
+
+
+            WebService web = new WebService();
+            res = web.postWithHeader(url, jsonrequest.toString());
+            Log.d(res, res);
+
+
+            if (res != null) {
+                JSONObject json = new JSONObject(res);
+                if (json != null) {
+
+                    String status = json.getString("status");
+                    String message = json.getString("message");
+                    if (status.equalsIgnoreCase("true"))
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
+                    new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
+                }
+            }
+            new GeneralFunction().hideProgressDialog();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

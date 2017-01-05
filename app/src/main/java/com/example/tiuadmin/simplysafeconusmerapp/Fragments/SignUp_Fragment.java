@@ -17,23 +17,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
-import com.example.tiuadmin.simplysafeconusmerapp.app.AppController;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -166,7 +156,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		else
 			//Toast.makeText(getActivity(), "Do SignUp.", Toast.LENGTH_SHORT)
 					//.show();
-		makeJsonObjReq(getFullName,getEmailId,getMobileNumber,getConfirmPassword);
+			makeSignUpRequest(getFullName,getEmailId,getMobileNumber,getConfirmPassword);
 
 	}
 
@@ -183,7 +173,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	/**
 	 * Making json object request
 	 */
-	private void makeJsonObjReq(String name,String email,String phone,String password) {
+	private void makeSignUpRequest(String name,String email,String phone,String password) {
 		showProgressDialog();
 		String res = null;
 		String responseCode = null;

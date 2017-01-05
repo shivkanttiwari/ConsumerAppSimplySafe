@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
+import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+
+import org.json.JSONObject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +27,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 		OnClickListener {
 	private static View view;
 
-	private static EditText emailId;
+	private static EditText mobilenumber;
 	private static TextView submit, back;
 
 
@@ -44,7 +48,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 
 	// Initialize the views
 	private void initViews() {
-		emailId = (EditText) view.findViewById(R.id.registered_emailid);
+		mobilenumber = (EditText) view.findViewById(R.id.registered_mobilenumber);
 		submit = (TextView) view.findViewById(R.id.forgot_button);
 		back = (TextView) view.findViewById(R.id.backToLoginBtn);
 
@@ -88,16 +92,16 @@ public class ForgotPassword_Fragment extends Fragment implements
 	}
 
 	private void submitButtonTask() {
-		String getEmailId = emailId.getText().toString();
+		String getMobileNumber = mobilenumber.getText().toString();
 
 		// Pattern for email id validation
 		Pattern p = Pattern.compile(Utils.regEx);
 
 		// Match the pattern
-		Matcher m = p.matcher(getEmailId);
+		Matcher m = p.matcher(getMobileNumber);
 
 		// First check if email id is not null else show error toast
-		if (getEmailId.equals("") || getEmailId.length() == 0)
+		if (getMobileNumber.equals("") || getMobileNumber.length() == 0)
 
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Please enter your Email Id.");
@@ -111,5 +115,48 @@ public class ForgotPassword_Fragment extends Fragment implements
 		else
 			Toast.makeText(getActivity(), "Get Forgot Password.",
 					Toast.LENGTH_SHORT).show();
+		makeForgetPasswordRequest(getMobileNumber);
 	}
+
+	/**
+	 * Making json object request
+	 */
+	private void makeForgetPasswordRequest(String phone) {
+		new GeneralFunction().showProgressDialog(getActivity());
+		String res = null;
+		String responseCode = null;
+		String returnResponse = null;
+		try {
+
+			String url = "http://52.66.101.233/Customer-Backend/public/api/user/forgotpassword";
+			JSONObject jsonrequest = new JSONObject();
+			jsonrequest.put("phone", phone);
+
+
+
+
+			WebService web = new WebService();
+			res = web.postWithHeader(url, jsonrequest.toString());
+			Log.d(res, res);
+
+
+			if (res != null) {
+				JSONObject json = new JSONObject(res);
+				if (json != null) {
+
+					String status = json.getString("status");
+					String message = json.getString("message");
+					if (status.equalsIgnoreCase("true"))
+						Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
+					new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
+				}
+			}
+			new GeneralFunction().hideProgressDialog();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

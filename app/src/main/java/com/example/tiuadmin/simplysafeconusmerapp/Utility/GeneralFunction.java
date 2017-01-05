@@ -2,6 +2,7 @@ package com.example.tiuadmin.simplysafeconusmerapp.Utility;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.Gravity;
@@ -18,7 +19,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
  */
 
 public class GeneralFunction {
-
+    private ProgressDialog pDialog;
 
         // Custom Toast Method
         public void Show_Toast(Context context, View view, String error) {
@@ -77,6 +78,19 @@ public class GeneralFunction {
                 .create();
         return myQuittingDialogBox;
 
+    }
+
+    public void showProgressDialog(Activity context) {
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage("Loading...");
+        pDialog.setCancelable(false);
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (pDialog.isShowing())
+            pDialog.hide();
     }
 
     }
