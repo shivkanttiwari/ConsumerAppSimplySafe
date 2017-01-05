@@ -29,7 +29,7 @@
 
                 android:orientation="vertical">
 
-                <com.example.admin.businessjodo.utils.CircleImageView
+                <com.example.tiuadmin.simplysafeconusmerapp.Utility.CircleImageView
                     android:id="@+id/user_pro_img_imageView"
                     android:layout_width="150dp"
                     android:layout_height="150dp"

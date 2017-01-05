@@ -38,7 +38,7 @@ public class DrawerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
-        ActionNavigationDraswerUser();
+
       //  initCollapsingToolbar();
 
 
@@ -51,31 +51,12 @@ public class DrawerActivity extends AppCompatActivity {
 
     }
 
-    public void ActionNavigationDraswerUser()
-    {
-        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-
-        View headerLayout =
-                navigationView.inflateHeaderView(R.layout.nav_header);
-        navigationDrawerTextview = (TextView) headerLayout.findViewById(R.id.tv_email);
-
-
-
-        navigationDrawerImageview = (ImageView) headerLayout.findViewById(R.id.navigationdrawerimageuser);
-
-        navigationDrawerImageview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-startActivity(new Intent(DrawerActivity.this, UserProfileActivity.class));
-
-            }
-        });
-    }
     public void initNavigationDrawer() {
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
+         navigationView = (NavigationView)findViewById(R.id.navigation_view);
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -111,6 +92,18 @@ startActivity(new Intent(DrawerActivity.this, UserProfileActivity.class));
         View header = navigationView.getHeaderView(0);
         TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
         tv_email.setText("shivkant.tiwari123@gmail.com");
+
+        navigationDrawerImageview = (ImageView) header.findViewById(R.id.navigationdrawerimageuser);
+
+        navigationDrawerImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                drawerLayout.closeDrawers();
+                startActivity(new Intent(DrawerActivity.this, UserProfileActivity.class));
+
+            }
+        });
         drawerLayout = (DrawerLayout)findViewById(drawer);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){

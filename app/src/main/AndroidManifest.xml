@@ -37,7 +37,8 @@
         <activity
             android:name=".Activity.UtilityActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
-        <activity android:name=".User.UserProfileActivity"></activity>
+        <activity android:name=".User.UserProfileActivity"
+            android:parentActivityName=".Activity.DrawerActivity"></activity>
     </application>
 
 </manifest>

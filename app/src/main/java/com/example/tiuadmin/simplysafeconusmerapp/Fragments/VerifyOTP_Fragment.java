@@ -82,7 +82,7 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
 
                 // Replace Login Fragment on Back Presses
                 new MainActivity().replaceLoginFragment();
-                
+
                 break;
 
             case R.id.otpverficaitonsubmitBtn:
