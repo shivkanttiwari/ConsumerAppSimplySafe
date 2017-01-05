@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/user_pro_save_button"
+
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:id="@+id/user_pro_LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+
+                android:orientation="vertical">
+
+                <com.example.admin.businessjodo.utils.CircleImageView
+                    android:id="@+id/user_pro_img_imageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/user"
+                    app:civ_border_color="#EEEEEE"
+                    app:civ_border_width="4dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_color="#8BC34A"
+                    app:civ_shadow_radius="10" />
+
+
+
+
+
+                <ImageView
+                    android:id="@+id/user_pro_edit_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/edit_profilepic"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true" />
+
+
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:theme="@style/TextLabel"
+                    android:textColorHint="#FFFFFF"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_pro_email_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textColor="@color/white"
+                        android:hint="Email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textNoSuggestions" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:theme="@style/TextLabel"
+                    android:textColorHint="#FFFFFF"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_pro_mobno_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textColor="@color/white"
+                        android:hint="Mobile Number"
+                        android:imeOptions="actionNext"
+                        android:inputType="textNoSuggestions" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel"
+                    android:textColorHint="#FFFFFF"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/reg_company_editText_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textColor="@color/white"
+                        android:hint="Enter company name"
+                        android:imeOptions="actionDone"
+                        />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:theme="@style/TextLabel"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#FFFFFF"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/commodity_selection_edittext_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textColor="@color/white"
+                        android:hint="Please Select commodity"
+                        android:focusable="false"
+                        android:imeOptions="actionDone"
+                        />
+
+
+                </android.support.design.widget.TextInputLayout>
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select City"
+                    android:theme="@style/TextLabel"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/autoCompleteTextView_updateprofile" />
+
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#FFFFFF"
+                    android:theme="@style/TextLabel"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/select_user_subtype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Please select your subtype"
+                        android:textColor="#FFFFFF"
+                        android:focusable="false"
+                        android:imeOptions="actionDone"
+                        />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:theme="@style/TextLabel"
+                    android:textColorHint="#FFFFFF"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_pro_fname_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="First Name"
+                        android:textColor="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="textNoSuggestions" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_pro_lname_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Last Name"
+                        android:imeOptions="actionDone"
+                        android:inputType="textNoSuggestions" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Gender"
+                    android:visibility="gone"
+
+                    android:layout_marginLeft="3dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android:id="@+id/user_pro_gender_Spinner"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"></Spinner>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="State"
+                    android:visibility="gone"
+                    android:layout_marginLeft="3dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android:id="@+id/user_pro_location_spinner"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"></Spinner>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="City"
+                    android:visibility="gone"
+                    android:layout_marginLeft="3dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <Spinner
+                    android:id="@+id/user_pro_city_spinner"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"></Spinner>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select Commodity"
+                        android:id="@+id/button"
+
+                        android:layout_gravity="left"
+                        android:layout_below="@+id/user_pro_img_imageView"
+                        android:layout_alignParentStart="true" />
+
+                    <CheckBox
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/imgbtnisCommoditySelected"
+
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/user_pro_img_imageView"
+                        android:layout_toEndOf="@+id/button" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/user_pro_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="Save"
+
+        android:visibility="gone" />
+
+</RelativeLayout>

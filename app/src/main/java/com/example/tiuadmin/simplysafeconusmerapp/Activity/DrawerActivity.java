@@ -2,8 +2,6 @@ package com.example.tiuadmin.simplysafeconusmerapp.Activity;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -11,27 +9,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Rewards.BlankFragment;
+import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
 
-import java.util.List;
+import static com.example.tiuadmin.simplysafeconusmerapp.R.id.drawer;
 
 public class DrawerActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+    NavigationView navigationView;
 
-
+    TextView navigationDrawerTextview;
+    ImageView navigationDrawerImageview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +51,28 @@ public class DrawerActivity extends AppCompatActivity {
 
     }
 
+    public void ActionNavigationDraswerUser()
+    {
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+
+        View headerLayout =
+                navigationView.inflateHeaderView(R.layout.nav_header);
+        navigationDrawerTextview = (TextView) headerLayout.findViewById(R.id.tv_email);
+
+
+
+        navigationDrawerImageview = (ImageView) headerLayout.findViewById(R.id.navigationdrawerimageuser);
+
+        navigationDrawerImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+startActivity(new Intent(DrawerActivity.this, UserProfileActivity.class));
+
+            }
+        });
+    }
     public void initNavigationDrawer() {
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
@@ -91,7 +111,7 @@ public class DrawerActivity extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
         TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
         tv_email.setText("shivkant.tiwari123@gmail.com");
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+        drawerLayout = (DrawerLayout)findViewById(drawer);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){
 

@@ -3,12 +3,12 @@
     package="com.example.tiuadmin.simplysafeconusmerapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".app.AppController"
         android:allowBackup="true"
         android:icon="@drawable/usersignup"
         android:label="@string/app_name"
-
         android:theme="@style/AppTheme">
         <activity
             android:name=".Fragments.MainActivity"
@@ -34,8 +34,10 @@
         <activity
             android:name=".Merchant.MerchantActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
-        <activity android:name=".Activity.UtilityActivity"
-            android:parentActivityName=".Activity.DrawerActivity"></activity>
+        <activity
+            android:name=".Activity.UtilityActivity"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity android:name=".User.UserProfileActivity"></activity>
     </application>
 
 </manifest>
