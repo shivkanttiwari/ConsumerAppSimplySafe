@@ -19,7 +19,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
  */
 
 public class GeneralFunction {
-    private ProgressDialog pDialog;
+    public static ProgressDialog pDialog;
 
         // Custom Toast Method
         public void Show_Toast(Context context, View view, String error) {

@@ -1,6 +1,5 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -22,8 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -70,6 +69,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		//		.findViewById(R.id.show_hide_password);
 		loginLayout = (LinearLayout) view.findViewById(R.id.login_layout);
 
+		//mobileNumber.setText("9971119874");
 
 
 		// Load ShakeAnimation
@@ -89,7 +89,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		}
 
 
-		mobileNumber.setText("+91");
+		mobileNumber.setText("+919971119874");
+		password.setText("mohitmohit");
 		Selection.setSelection(mobileNumber.getText(), mobileNumber.getText().length());
 		mobileNumber.addTextChangedListener(new TextWatcher() {
 
@@ -166,10 +167,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.login_button1:
-			//checkValidation();
-			getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+			checkValidation();
+			//getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
 
-			getActivity().finish();
+			//getActivity().finish();
 			break;
 
 		case R.id.forget_password_link:
@@ -200,7 +201,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		// Get email id and password
 		String getMobilenumber = mobileNumber.getText().toString();
 		String getPassword = password.getText().toString();
-
+		getMobilenumber=getMobilenumber.substring(3,getMobilenumber.length());
 		// Check patter for email id
 		Pattern p = Pattern.compile(Utils.regEx);
 
@@ -215,7 +216,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
 		}
 		// Check if email id is valid or not
-		else if (getMobilenumber.length()<12)
+		else if (getMobilenumber.length()<10)
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Please provide valid mobile number.");
 		// Else do login and do your stuff
@@ -256,13 +257,11 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 				JSONObject json = new JSONObject(res);
 				if (json != null) {
 
-					String status = json.getString("status");
-					String message = json.getString("message");
-					if (status.equalsIgnoreCase("true"))
-						Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+					String logintoken = json.getString("access_token");
 
-					new MainActivity().replaceRgistrationOTPVerificaitonFragment();
-
+					Const.LOGIN_TOKEN=logintoken;
+					Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
+					Log.d("token",Const.TOKEN_WITH_BEARER);
 				}
 			}
 			new GeneralFunction().hideProgressDialog();
