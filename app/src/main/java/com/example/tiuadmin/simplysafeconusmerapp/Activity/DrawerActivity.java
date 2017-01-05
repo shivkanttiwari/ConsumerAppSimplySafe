@@ -38,7 +38,7 @@ public class DrawerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
-
+        ActionNavigationDraswerUser();
       //  initCollapsingToolbar();
 
 
