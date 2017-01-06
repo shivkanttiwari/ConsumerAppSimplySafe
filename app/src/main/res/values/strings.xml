@@ -39,5 +39,6 @@
     <string name="enter_required">Enter Required information</string>
 
     <string name="otp_hint">Enter 4 digit OTP here</string>
+    <string name="otp_newpassword">Enter new password</string>
 
 </resources>
