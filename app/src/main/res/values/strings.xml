@@ -36,6 +36,7 @@
 
     <string name="add_merchant">Add Merchant</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="enter_required">Enter Required information</string>
 
     <string name="otp_hint">Enter 4 digit OTP here</string>
 

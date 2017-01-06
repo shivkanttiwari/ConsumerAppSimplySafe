@@ -14,14 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +26,7 @@ import java.util.regex.Pattern;
 public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener {
     private static View view;
 
-    private static EditText emailId;
+    private static EditText phonenumber,otp;
     private static TextView submit, back;
 
     public VerifyOTP_Fragment() {
@@ -51,10 +48,12 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
     }
     // Initialize the views
     private void initViews() {
-        emailId = (EditText) view.findViewById(R.id.registration_otp);
+        phonenumber = (EditText) view.findViewById(R.id.registration_otp_phonenumber);
+        otp = (EditText) view.findViewById(R.id.registration_otp);
         submit = (TextView) view.findViewById(R.id.otpverficaitonsubmitBtn);
         back = (TextView) view.findViewById(R.id.otpbackToLoginBtn);
 
+        otp.setText(Const.ForgetPassword_TOKEN);
         // Setting text selector over textviews
         XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
         try {
@@ -96,16 +95,17 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
     }
 
     private void submitButtonTask() {
-        String getEmailId = emailId.getText().toString();
+        String getphonenumber = phonenumber.getText().toString().trim();
+        String getotp = otp.getText().toString().trim();
 
-        // Pattern for email id validation
+        /*// Pattern for email id validation
         Pattern p = Pattern.compile(Utils.regEx);
 
         // Match the pattern
-        Matcher m = p.matcher(getEmailId);
+        Matcher m = p.matcher(getotp);
 
         // First check if email id is not null else show error toast
-        if (getEmailId.equals("") || getEmailId.length() == 0)
+        if (getotp.equals("") || getotp.length() == 0)
 
             new GeneralFunction().Show_Toast(getActivity(), view,
                     "Please enter 4 digit OTP.");
@@ -116,15 +116,26 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
                     "Invalid OTP.");
 
             // Else submit email id and fetch passwod or do your stuff
-        else
-            Toast.makeText(getActivity(), "Get Forgot Password.",
-                    Toast.LENGTH_SHORT).show();
+        else  if (getphonenumber.equals("") || getphonenumber.length() == 0)
+
+            new GeneralFunction().Show_Toast(getActivity(), view,
+                    "Please enter valid mobile number");
+
+            // Check if email id is valid or not
+        else if (!m.find())
+            new GeneralFunction().Show_Toast(getActivity(), view,
+                    "Invalid Mobile number");*/
+       // else
+        {
+            makeForgetPasswordRequest(getphonenumber, getotp);
+        }
+
     }
 
     /**
      * Making json object request
      */
-    private void makeForgetPasswordRequest(String phone,String password) {
+    private void makeForgetPasswordRequest(String phone,String otp) {
         new GeneralFunction().showProgressDialog(getActivity());
         String res = null;
         String responseCode = null;
@@ -133,8 +144,8 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
 
             String url = "http://52.66.101.233/Customer-Backend/public/api/user/otp/verify";
             JSONObject jsonrequest = new JSONObject();
-            jsonrequest.put("otp", phone);
-            jsonrequest.put("phone", password);
+            jsonrequest.put("otp", otp);
+            jsonrequest.put("phone", phone);
 
 
 
@@ -150,9 +161,13 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
                     String status = json.getString("status");
                     String message = json.getString("message");
                     if (status.equalsIgnoreCase("true"))
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                    {
 
-                    new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+                        new MainActivity().replaceLoginFragment();
+                    }
+                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
+
 
                 }
             }
