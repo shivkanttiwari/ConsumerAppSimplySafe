@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -112,7 +113,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	// Check Validation Method
 	private void checkValidation() {
 
-		new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
 		// Get all edittext texts
 		String getFullName = fullName.getText().toString();
 		String getEmailId = emailId.getText().toString();
@@ -201,9 +202,18 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 					String status=json.getString("status");
 					String message=json.getString("message");
 					if(status.equalsIgnoreCase("true"))
+					{
+						JSONObject userdata=json.getJSONObject("data");
+
+						Const.SIGNUP_TOKEN=userdata.getString("otp");
+						new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+					}
 					Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
 
-					new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
+
+
+
 
 				}
 			}

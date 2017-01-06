@@ -7,4 +7,7 @@ public class Const {
 	public static final String URL_IMAGE = "http://api.androidhive.info/volley/volley-image.jpg";
 	public static String LOGIN_TOKEN ="";
 	public static String TOKEN_WITH_BEARER = "Bearer "+LOGIN_TOKEN;
+
+	public static String SIGNUP_TOKEN ="";
+	public static String ForgetPassword_TOKEN ="";
 }

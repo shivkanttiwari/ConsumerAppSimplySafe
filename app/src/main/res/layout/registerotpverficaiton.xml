@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
 
     android:padding="20dp" >
@@ -11,9 +12,34 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="@string/enter_otp"
+        android:text="@string/enter_required"
         android:textColor="@color/white_greyish"
         android:textSize="17sp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColorHint="#FFFFFF"
+        android:theme="@style/TextLabel"
+        android:layout_marginBottom="8dp">
+        <EditText
+            android:id="@+id/registration_otp_phonenumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/phone"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="@string/mobileNumber"
+            android:inputType="phone"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

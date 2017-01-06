@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -147,9 +148,14 @@ public class ForgotPassword_Fragment extends Fragment implements
 					String status = json.getString("status");
 					String message = json.getString("message");
 					if (status.equalsIgnoreCase("true"))
+					{
+						Const.ForgetPassword_TOKEN=json.getString("forgot_password_otp");
+						new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
+					}
 						Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 
-					new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
 
 				}
 			}
