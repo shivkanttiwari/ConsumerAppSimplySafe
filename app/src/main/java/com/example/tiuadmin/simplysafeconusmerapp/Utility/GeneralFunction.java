@@ -90,7 +90,7 @@ public class GeneralFunction {
 
     public void hideProgressDialog() {
         if (pDialog.isShowing())
-            pDialog.hide();
+            pDialog.dismiss();
     }
 
     }

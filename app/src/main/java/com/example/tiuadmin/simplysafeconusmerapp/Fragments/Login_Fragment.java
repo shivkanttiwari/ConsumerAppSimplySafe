@@ -91,8 +91,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		}
 
 
-		mobileNumber.setText("+919971119874");
-		password.setText("mohitmohit");
+		//mobileNumber.setText("+919971119874");
+		//password.setText("mohitmohit");
 		Selection.setSelection(mobileNumber.getText(), mobileNumber.getText().length());
 		mobileNumber.addTextChangedListener(new TextWatcher() {
 

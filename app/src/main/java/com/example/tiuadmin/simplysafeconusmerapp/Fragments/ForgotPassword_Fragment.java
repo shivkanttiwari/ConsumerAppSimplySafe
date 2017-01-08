@@ -145,15 +145,15 @@ public class ForgotPassword_Fragment extends Fragment implements
 				JSONObject json = new JSONObject(res);
 				if (json != null) {
 
-					String status = json.getString("status");
-					String message = json.getString("message");
-					if (status.equalsIgnoreCase("true"))
+					//String status = json.getString("status");
+					//String message = json.getString("message");
+					//if (status.equalsIgnoreCase("true"))
 					{
 						Const.ForgetPassword_TOKEN=json.getString("forgot_password_otp");
 						new MainActivity().replaceRgistrationOTPVerificaitonFragment();
 
 					}
-						Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+						//Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 
 
 
@@ -162,6 +162,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 			new GeneralFunction().hideProgressDialog();
 		} catch (Exception e) {
 			e.printStackTrace();
+			new GeneralFunction().hideProgressDialog();
 		}
 	}
 

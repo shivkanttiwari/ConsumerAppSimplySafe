@@ -121,7 +121,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
         String getnewpassword = newpassword.getText().toString().trim();
 
 
-        
+
 
         /*// Pattern for email id validation
         Pattern p = Pattern.compile(Utils.regEx);
