@@ -83,7 +83,7 @@ public class MerchantActivity extends AppCompatActivity {
         mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
 
-        mAdapter.setOnItemClickListener(onItemClickListener);
+      //  mAdapter.setOnItemClickListener(onItemClickListener);
 
         isListView = true;
 
@@ -118,21 +118,31 @@ public class MerchantActivity extends AppCompatActivity {
                 //adding button click event
 
                 final EditText edMerchantMobilenumber=(EditText)dialog.findViewById(R.id.edMerchantMobilenumber);
+
+                edMerchantMobilenumber.setText("8087448286");
                 Button addMerchant = (Button) dialog.findViewById(R.id.btn_addmerchant);
                 addMerchant.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
+                        String ConsumerMobilenumber=edMerchantMobilenumber.getText().toString().trim();
+                        if(ConsumerMobilenumber.length()>0)
+                        {
+                            makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
 
 
-                    //    merchantArraay.add(0,"New Merchant");
-                        mAdapter.notifyDataSetChanged();
-                        sendRequest();
-                        dialog.dismiss();
-                       // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
-                       // mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.smoothScrollToPosition(0);
+                            //    merchantArraay.add(0,"New Merchant");
+                            mAdapter.notifyDataSetChanged();
+                            sendRequest();
+                            dialog.dismiss();
+                            // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
+                            // mRecyclerView.setLayoutManager(layoutManager);
+                            mRecyclerView.smoothScrollToPosition(0);
+                        }
+                        else {
+                            Toast.makeText(MerchantActivity.this,"Please provide valid mobile number",Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
                 dialog.show();
@@ -144,13 +154,7 @@ public class MerchantActivity extends AppCompatActivity {
     }
 
 
-    MerchantViewAdapter.OnItemClickListener onItemClickListener = new MerchantViewAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(View v, int position) {
 
-            Toast.makeText(getApplicationContext(),"merchant selected",Toast.LENGTH_SHORT).show();
-        }
-    };
 
     public void arrayList(){
         for (int i = 0; i< 20; i++){
@@ -177,7 +181,7 @@ public class MerchantActivity extends AppCompatActivity {
 
 
             WebService web = new WebService();
-            res = web.getWithHeader(url);
+            res = web.getWithoutHeader(url);
             Log.d(res, res);
 
 
@@ -185,13 +189,18 @@ public class MerchantActivity extends AppCompatActivity {
                 JSONObject json = new JSONObject(res);
                 if (json != null) {
 
+                    String merhantStatus=json.getString("status");
+                    JSONObject jsonuserdata=new JSONObject();
 
-                    String merchantID=json.getString("id");
-                    String merchantName=json.getString("name");
-                    String merchantMobilenumber=json.getString("phone");
-                    String merchantPOSURL=json.getString("pos_url");
-                    String merchantType=json.getString("type");
-                    Const.MERCHANT_DATA.add(new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType));
+                    jsonuserdata=json.getJSONObject("res");
+
+                    String merchantID=jsonuserdata.getString("id");
+                    String merchantName=jsonuserdata.getString("name");
+                    String merchantMobilenumber=jsonuserdata.getString("phone");
+                    String merchantPOSURL=jsonuserdata.getString("pos_url");
+                    String merchantType=jsonuserdata.getString("type");
+
+                    Const.MERCHANT_DATA.add(new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus));
 
 
 

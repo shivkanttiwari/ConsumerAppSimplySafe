@@ -40,12 +40,23 @@ public class Merchant {
     private String POSURL;
     private String MerchantType;
 
-    public Merchant(String id, String name, String mobilenumber, String POSURL,String MerchantType) {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    private String status;
+
+    public Merchant(String id, String name, String mobilenumber, String POSURL,String MerchantType,String status) {
         this.id = id;
         this.name = name;
         this.mobilenumber = mobilenumber;
         this.POSURL = POSURL;
         this.MerchantType=MerchantType;
+        this.status=status;
     }
 
 

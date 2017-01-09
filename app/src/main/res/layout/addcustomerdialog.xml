@@ -44,7 +44,7 @@
         android:id="@+id/textView" />
 
     <TextView
-        android:text="Do you have merchant Barcode/Qr Code? Scan ."
+        android:text="Do you have merchant Qr Code? Scan ."
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

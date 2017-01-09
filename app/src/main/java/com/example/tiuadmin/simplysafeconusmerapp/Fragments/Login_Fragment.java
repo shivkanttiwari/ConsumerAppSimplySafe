@@ -128,8 +128,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		loginButton.setOnClickListener(this);
 		forgotPassword.setOnClickListener(this);
 		signUp.setOnClickListener(this);
-		//mobileNumber.setText("9096572182");
-	//	password.setText("mohitmohit");
+		mobileNumber.setText("9096572182");
+		password.setText("1234567");
 
 //		// Set check listener over checkbox for showing and hiding password
 //		show_hide_password
@@ -261,8 +261,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
 					String logintoken = json.getString("access_token");
 
-					Const.LOGIN_TOKEN=logintoken.trim();
-					Const.TOKEN_WITH_BEARER+=logintoken;
+					Const.LOGIN_TOKEN=logintoken;
+					Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
 					Log.d("token",Const.TOKEN_WITH_BEARER);
 					getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
 					Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
@@ -279,8 +279,6 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
 		} catch (Exception e) {
 			new GeneralFunction().hideProgressDialog();
-			Toast.makeText(getActivity(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
-					.show();
 			e.printStackTrace();
 		}
 	}
