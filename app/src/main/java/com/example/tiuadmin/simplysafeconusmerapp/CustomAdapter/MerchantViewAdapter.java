@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Place;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.PlaceData;
@@ -29,12 +30,12 @@ public class MerchantViewAdapter extends
     Activity mContext;
     OnItemClickListener mItemClickListener;
 
-    ArrayList<String>merchantArray;
+    ArrayList<Merchant>merchantArray;
 
     int[] merchantIcons = {R.drawable.borabora, R.drawable.canada,R.drawable.dubai, R.drawable.hongkong,R.drawable.iceland, R.drawable.india,R.drawable.kenya, R.drawable.london,
             R.drawable.switzerland, R.drawable.sydney,};
 
-    public MerchantViewAdapter(Activity context, ArrayList<String>merchantArrray) {
+    public MerchantViewAdapter(Activity context, ArrayList<Merchant>merchantArrray) {
         this.mContext = context;
         this.merchantArray=merchantArrray;
     }
@@ -49,7 +50,7 @@ public class MerchantViewAdapter extends
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Place place = new PlaceData().placeList().get(position);
 
-        holder.placeName.setText(merchantArray.get(position));
+        holder.placeName.setText(merchantArray.get(position).getName());
 
        if(position>2)
         {

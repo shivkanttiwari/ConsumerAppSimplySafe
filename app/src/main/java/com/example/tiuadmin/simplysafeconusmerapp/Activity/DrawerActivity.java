@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,11 @@ import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Rewards.BlankFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+
+import org.json.JSONObject;
 
 import static com.example.tiuadmin.simplysafeconusmerapp.R.id.drawer;
 
@@ -38,7 +44,7 @@ public class DrawerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
-
+        makeLoginRequest();
       //  initCollapsingToolbar();
 
 
@@ -157,7 +163,62 @@ public class DrawerActivity extends AppCompatActivity {
 //        });
 //    }
 
+    /**
+     * Making json object request
+     */
+    private void makeLoginRequest() {
+        new GeneralFunction().showProgressDialog(this);
+        String res = null;
+        String responseCode = null;
+        String returnResponse = null;
+        try {
 
+            String url = "http://52.66.101.233/Customer-Backend/public/api/user";
+          /*  JSONObject jsonrequest = new JSONObject();
+            jsonrequest.put("phone", phone);
+            jsonrequest.put("sspin", password);
+*/
+
+
+            WebService web = new WebService();
+            res = web.getWithHeader(url);
+            Log.d(res, res);
+
+
+            if (res != null && res.length()>0) {
+                JSONObject json = new JSONObject(res);
+                if (json != null) {
+
+
+                    Const.USER_NAME=json.getString("name");
+                    Const.USER_MOBILENUMBER=json.getString("phone");
+
+
+
+                   /* String logintoken = json.getString("access_token");
+
+                    Const.LOGIN_TOKEN=logintoken;
+                    Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
+                    Log.d("token",Const.TOKEN_WITH_BEARER);
+                    startActivity(new Intent(DrawerActivity.this, DrawerActivity.class));
+
+                   finish();*/
+                    new GeneralFunction().hideProgressDialog();
+                }
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                        .show();
+                new GeneralFunction().hideProgressDialog();
+            }
+
+        } catch (Exception e) {
+            new GeneralFunction().hideProgressDialog();
+            Toast.makeText(getApplicationContext(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
+                    .show();
+            e.printStackTrace();
+        }
+    }
 
     boolean doubleBackToExitPressedOnce = false;
 

@@ -103,7 +103,8 @@ public class WebService {
     public String getWithHeader(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Authorization", Const.TOKEN_WITH_BEARER)
+                .addHeader("Authorization", "Bearer "+Const.LOGIN_TOKEN.trim())
+
                 .build();
         Response response = client.newCall(request).execute();
         return response.body().string();

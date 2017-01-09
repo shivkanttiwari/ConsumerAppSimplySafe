@@ -150,7 +150,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 					//if (status.equalsIgnoreCase("true"))
 					{
 						Const.ForgetPassword_TOKEN=json.getString("forgot_password_otp");
-						new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+						new MainActivity().replaceForgetPasswordOTPVerificaitonFragment();
 
 					}
 						//Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();

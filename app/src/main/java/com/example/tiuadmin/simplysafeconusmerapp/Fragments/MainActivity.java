@@ -73,6 +73,25 @@ public class MainActivity extends AppCompatActivity {
 				.replace(R.id.frameContainer, new VerifyOTP_Fragment(),
 						Utils.VerifyOTP_Fragment).commit();
 	}
+
+	// Replace Login Fragment with animation
+	protected void replaceForgetPasswordOTPVerificaitonFragment() {
+		fragmentManager
+				.beginTransaction()
+				.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
+				.replace(R.id.frameContainer, new VerifyOTPForgetPassword(),
+						Utils.VerifyOTPForgetPassword).commit();
+	}
+
+
+		// Replace Login Fragment with animation
+	protected void replaceChangePasswordFragment() {
+		fragmentManager
+				.beginTransaction()
+				.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
+				.replace(R.id.frameContainer, new ChangePasswordFragment(),
+						Utils.VerifyOTPForgetPassword ).commit();
+	}
 	@Override
 	public void onBackPressed() {
 

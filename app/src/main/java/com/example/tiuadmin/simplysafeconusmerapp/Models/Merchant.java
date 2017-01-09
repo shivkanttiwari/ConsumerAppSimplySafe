@@ -2,17 +2,12 @@ package com.example.tiuadmin.simplysafeconusmerapp.Models;
 
 
 public class Merchant {
-    private String name;
-    private int numOfSongs;
-    private int thumbnail;
-
-    public Merchant() {
+    public String getId() {
+        return id;
     }
 
-    public Merchant(String name, int numOfSongs, int thumbnail) {
-        this.name = name;
-        this.numOfSongs = numOfSongs;
-        this.thumbnail = thumbnail;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -23,19 +18,41 @@ public class Merchant {
         this.name = name;
     }
 
-    public int getNumOfSongs() {
-        return numOfSongs;
+    public String getMobilenumber() {
+        return mobilenumber;
     }
 
-    public void setNumOfSongs(int numOfSongs) {
-        this.numOfSongs = numOfSongs;
+    public void setMobilenumber(String mobilenumber) {
+        this.mobilenumber = mobilenumber;
     }
 
-    public int getThumbnail() {
-        return thumbnail;
+    public String getPOSURL() {
+        return POSURL;
     }
 
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setPOSURL(String POSURL) {
+        this.POSURL = POSURL;
     }
+
+    private String id;
+    private String name;
+    private String mobilenumber;
+    private String POSURL;
+    private String MerchantType;
+
+    public Merchant(String id, String name, String mobilenumber, String POSURL,String MerchantType) {
+        this.id = id;
+        this.name = name;
+        this.mobilenumber = mobilenumber;
+        this.POSURL = POSURL;
+        this.MerchantType=MerchantType;
+    }
+
+
+
+
+
+
+
+
 }

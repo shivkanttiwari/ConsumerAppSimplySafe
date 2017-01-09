@@ -1,5 +1,9 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Utility;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
+
+import java.util.ArrayList;
+
 public class Const {
 	public static final String URL_JSON_OBJECT = "http://52.66.101.233/Customer-Backend/public/api/user/signup";
 	public static final String URL_JSON_ARRAY = "http://api.androidhive.info/volley/person_array.json";
@@ -10,4 +14,9 @@ public class Const {
 
 	public static String SIGNUP_TOKEN ="";
 	public static String ForgetPassword_TOKEN ="";
+
+	public static String USER_NAME = "";
+	public static String USER_MOBILENUMBER = "";
+
+	public static ArrayList<Merchant> MERCHANT_DATA = new ArrayList<>();
 }

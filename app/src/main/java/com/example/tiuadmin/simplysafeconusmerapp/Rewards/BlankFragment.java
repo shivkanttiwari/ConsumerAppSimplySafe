@@ -13,8 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantAdapter;
-import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
+import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MainMenuDashboardAdapter;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
 import java.util.ArrayList;
@@ -39,8 +39,8 @@ public class BlankFragment extends Fragment {
     private String mParam2;
 
     private RecyclerView recyclerView;
-    private MerchantAdapter adapter;
-    private List<Merchant> albumList;
+    private MainMenuDashboardAdapter adapter;
+    private List<MainMenuDashboard> albumList;
 
     private OnFragmentInteractionListener mListener;
 
@@ -84,7 +84,7 @@ public class BlankFragment extends Fragment {
         recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view);
 
         albumList = new ArrayList<>();
-        adapter = new MerchantAdapter(getActivity(), albumList);
+        adapter = new MainMenuDashboardAdapter(getActivity(), albumList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -116,19 +116,19 @@ public class BlankFragment extends Fragment {
                 R.drawable.album11
         };
 
-        Merchant a = new Merchant("Merchant", 13, covers[0]);
+       MainMenuDashboard a = new MainMenuDashboard("0","Merchant",covers[0]);
         albumList.add(a);
 
-        a = new Merchant("Utilities", 8, covers[1]);
+        a = new MainMenuDashboard("1","Utilities",covers[1]);
         albumList.add(a);
 
-        a = new Merchant("Rewards", 11, covers[2]);
+        a = new MainMenuDashboard("2","Rewards",covers[2]);
         albumList.add(a);
 
-        a = new Merchant("Setting", 12, covers[3]);
+        a = new MainMenuDashboard("3","Setting",covers[3]);
         albumList.add(a);
 
-        a = new Merchant("Coupans", 14, covers[4]);
+        a = new MainMenuDashboard("4","Coupans",covers[4]);
         albumList.add(a);
 //
 //        a = new Merchant("OLA", 1, covers[5]);

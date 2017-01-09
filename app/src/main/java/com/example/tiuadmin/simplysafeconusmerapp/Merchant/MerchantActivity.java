@@ -8,12 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -23,8 +23,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantViewAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.JSON.JSONPARSER;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
+import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,16 +48,13 @@ public class MerchantActivity extends AppCompatActivity {
 
     private boolean isListView;
     private Menu menu;
-    ArrayList<String> merchantArraay;
+   // ArrayList<String> merchantArraay;
     RecyclerView mRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant);
-        merchantArraay=new ArrayList<>();
-        merchantArraay.add("Merchant 1");
-        merchantArraay.add("Merchant 2");
-        merchantArraay.add("Merchant 3");
+
 
          mRecyclerView = (RecyclerView) findViewById(R.id.list);
 
@@ -77,7 +80,7 @@ public class MerchantActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
 
         mRecyclerView.setHasFixedSize(true); //Data size is fixed - improves performance
-        mAdapter = new MerchantViewAdapter(MerchantActivity.this,merchantArraay);
+        mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(onItemClickListener);
@@ -113,13 +116,17 @@ public class MerchantActivity extends AppCompatActivity {
                // image.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_dialog_info));
 
                 //adding button click event
-                Button dismissButton = (Button) dialog.findViewById(R.id.btn_addmerchant);
-                dismissButton.setOnClickListener(new View.OnClickListener() {
+
+                final EditText edMerchantMobilenumber=(EditText)dialog.findViewById(R.id.edMerchantMobilenumber);
+                Button addMerchant = (Button) dialog.findViewById(R.id.btn_addmerchant);
+                addMerchant.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
+                        makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
 
-                        merchantArraay.add(0,"New Merchant");
+
+                    //    merchantArraay.add(0,"New Merchant");
                         mAdapter.notifyDataSetChanged();
                         sendRequest();
                         dialog.dismiss();
@@ -148,6 +155,70 @@ public class MerchantActivity extends AppCompatActivity {
     public void arrayList(){
         for (int i = 0; i< 20; i++){
             list.add("This is row of number "+ i);
+        }
+    }
+
+
+    /**
+     * Making json object request
+     */
+    private void makeAddMerchantRequest(String ConsumerMobilenumber) {
+        new GeneralFunction().showProgressDialog(this);
+        String res = null;
+        String responseCode = null;
+        String returnResponse = null;
+        try {
+
+            String url = "http://simplypos.in/api/merchant-api.php?action=marchantRequest&merchant="+ConsumerMobilenumber+"&customerName="+Const.USER_NAME+"&customerMobile="+Const.USER_MOBILENUMBER;
+          /*  JSONObject jsonrequest = new JSONObject();
+            jsonrequest.put("phone", phone);
+            jsonrequest.put("sspin", password);
+*/
+
+
+            WebService web = new WebService();
+            res = web.getWithHeader(url);
+            Log.d(res, res);
+
+
+            if (res != null && res.length()>0) {
+                JSONObject json = new JSONObject(res);
+                if (json != null) {
+
+
+                    String merchantID=json.getString("id");
+                    String merchantName=json.getString("name");
+                    String merchantMobilenumber=json.getString("phone");
+                    String merchantPOSURL=json.getString("pos_url");
+                    String merchantType=json.getString("type");
+                    Const.MERCHANT_DATA.add(new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType));
+
+
+
+
+
+                   /* String logintoken = json.getString("access_token");
+
+                    Const.LOGIN_TOKEN=logintoken;
+                    Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
+                    Log.d("token",Const.TOKEN_WITH_BEARER);
+                    startActivity(new Intent(DrawerActivity.this, DrawerActivity.class));
+
+                   finish();*/
+                    new GeneralFunction().hideProgressDialog();
+                }
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                        .show();
+                new GeneralFunction().hideProgressDialog();
+            }
+
+        } catch (Exception e) {
+            new GeneralFunction().hideProgressDialog();
+            Toast.makeText(getApplicationContext(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
+                    .show();
+            e.printStackTrace();
         }
     }
 

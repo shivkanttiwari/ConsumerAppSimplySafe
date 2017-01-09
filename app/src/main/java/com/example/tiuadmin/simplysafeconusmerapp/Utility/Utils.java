@@ -10,6 +10,8 @@ public class Utils {
 	public static final String SignUp_Fragment = "SignUp_Fragment";
 	public static final String ForgotPassword_Fragment = "ForgotPassword_Fragment";
 	public static final String VerifyOTP_Fragment = "VerifyOTP_Fragment";
+	public static final String VerifyOTPForgetPassword = "VerifyOTPForgetPassword";
+	public static final String ChangePasswordFragment = "ChangePasswordFragment";
 
 	public static final String JSON_URL = "http://simplifiedcoding.16mb.com/UserRegistration/json.php";
 	

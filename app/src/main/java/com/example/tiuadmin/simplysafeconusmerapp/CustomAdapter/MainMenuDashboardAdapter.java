@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.UtilityActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 
@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Random;
 
 
-public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyViewHolder> {
+public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashboardAdapter.MyViewHolder> {
 
     private Activity mContext;
-    private List<Merchant> albumList;
+    private List<MainMenuDashboard> albumList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
@@ -51,7 +51,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyView
     }
 
 
-    public MerchantAdapter(Activity mContext, List<Merchant> albumList) {
+    public MainMenuDashboardAdapter(Activity mContext, List<MainMenuDashboard> albumList) {
         this.mContext = mContext;
         this.albumList = albumList;
     }
@@ -68,9 +68,9 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        Merchant album = albumList.get(position);
+        MainMenuDashboard album = albumList.get(position);
         holder.title.setText(album.getName());
-        holder.count.setText(album.getNumOfSongs() + " songs");
+     //   holder.count.setText(album.getNumOfSongs() + " songs");
 
 
 
@@ -79,7 +79,7 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MyView
         holder.thumbnail.setBackgroundColor(randomAndroidColor);
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
+        Glide.with(mContext).load(album.getImage()).into(holder.thumbnail);
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override

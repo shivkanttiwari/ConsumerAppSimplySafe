@@ -91,8 +91,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		}
 
 
-		//mobileNumber.setText("+919971119874");
-		//password.setText("mohitmohit");
+
 		Selection.setSelection(mobileNumber.getText(), mobileNumber.getText().length());
 		mobileNumber.addTextChangedListener(new TextWatcher() {
 
@@ -129,6 +128,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		loginButton.setOnClickListener(this);
 		forgotPassword.setOnClickListener(this);
 		signUp.setOnClickListener(this);
+		//mobileNumber.setText("9096572182");
+	//	password.setText("mohitmohit");
 
 //		// Set check listener over checkbox for showing and hiding password
 //		show_hide_password
@@ -224,8 +225,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		// Else do login and do your stuff
 		else
 		{
-			Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
-					.show();
+
 
 			makeLoginRequest(getMobilenumber,getPassword);
 		}
@@ -255,22 +255,32 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			Log.d(res, res);
 
 
-			if (res != null) {
+			if (res != null && res.length()>0) {
 				JSONObject json = new JSONObject(res);
 				if (json != null) {
 
 					String logintoken = json.getString("access_token");
 
-					Const.LOGIN_TOKEN=logintoken;
-					Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
+					Const.LOGIN_TOKEN=logintoken.trim();
+					Const.TOKEN_WITH_BEARER+=logintoken;
 					Log.d("token",Const.TOKEN_WITH_BEARER);
 					getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
-
+					Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
+							.show();
 					getActivity().finish();
+					new GeneralFunction().hideProgressDialog();
 				}
 			}
-			new GeneralFunction().hideProgressDialog();
+			else {
+				Toast.makeText(getActivity(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
+						.show();
+				new GeneralFunction().hideProgressDialog();
+			}
+
 		} catch (Exception e) {
+			new GeneralFunction().hideProgressDialog();
+			Toast.makeText(getActivity(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
+					.show();
 			e.printStackTrace();
 		}
 	}

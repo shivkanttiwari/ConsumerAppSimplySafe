@@ -16,7 +16,7 @@
         android:textColorHint="#FFFFFF"
         android:hint="Enter merchant mobile no here."
 
-        android:id="@+id/editText" />
+        android:id="@+id/edMerchantMobilenumber" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_addmerchant"
