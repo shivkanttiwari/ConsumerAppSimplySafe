@@ -46,6 +46,7 @@
         <activity android:name=".User.UserProfileActivity"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
         <activity android:name=".Merchant.QRCodeScanActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".Merchant.MerchantActivity"></activity>
     </application>
 

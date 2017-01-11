@@ -3,6 +3,7 @@ package com.example.tiuadmin.simplysafeconusmerapp.Merchant;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -136,16 +137,19 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                     public void onClick(View v) {
 
                         //Toast.makeText(getApplicationContext(),"TOast",Toast.LENGTH_LONG).show();
-                        if (ContextCompat.checkSelfPermission(MerchantActivity.this, Manifest.permission.CAMERA)
+
+                        startActivity(new Intent(MerchantActivity.this,QRCodeScanActivity.class));
+                       /* if (ContextCompat.checkSelfPermission(MerchantActivity.this, Manifest.permission.CAMERA)
                                 != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(MerchantActivity.this,
                                     new String[]{Manifest.permission.CAMERA}, REQUEST_WRITE_PERMISSION);
                         } else {
+
                             setContentView(mScannerView);
 
                             mScannerView.setResultHandler(MerchantActivity.this); // Reg
                             mScannerView.startCamera();
-                        }
+                        }*/
                         // Start camera
                         dialog.dismiss();
                     }
