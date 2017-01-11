@@ -52,5 +52,5 @@
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:id="@+id/textView2" />
+        android:id="@+id/txtviewqrcode" />
 </LinearLayout>

@@ -1,8 +1,14 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Merchant;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +20,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -29,14 +36,19 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+import com.google.zxing.Result;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MerchantActivity extends AppCompatActivity {
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+public class MerchantActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
     private List<String> list = new ArrayList<String>();
+    private ZXingScannerView mScannerView;
+    private static final int REQUEST_WRITE_PERMISSION = 20;
     MerchantViewAdapter mAdapter;
 
 
@@ -91,7 +103,7 @@ public class MerchantActivity extends AppCompatActivity {
         FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab_add_merchant);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                mScannerView = new ZXingScannerView(MerchantActivity.this);
                 Toast.makeText(getApplicationContext(),"merchant add",Toast.LENGTH_SHORT).show();
 
 
@@ -117,6 +129,27 @@ public class MerchantActivity extends AppCompatActivity {
 
                 //adding button click event
 
+                TextView txtviewqrcode=(TextView)dialog.findViewById(R.id.txtviewqrcode);
+
+                txtviewqrcode.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        //Toast.makeText(getApplicationContext(),"TOast",Toast.LENGTH_LONG).show();
+                        if (ContextCompat.checkSelfPermission(MerchantActivity.this, Manifest.permission.CAMERA)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(MerchantActivity.this,
+                                    new String[]{Manifest.permission.CAMERA}, REQUEST_WRITE_PERMISSION);
+                        } else {
+                            setContentView(mScannerView);
+
+                            mScannerView.setResultHandler(MerchantActivity.this); // Reg
+                            mScannerView.startCamera();
+                        }
+                        // Start camera
+                        dialog.dismiss();
+                    }
+                });
                 final EditText edMerchantMobilenumber=(EditText)dialog.findViewById(R.id.edMerchantMobilenumber);
 
                 edMerchantMobilenumber.setText("8087448286");
@@ -153,7 +186,28 @@ public class MerchantActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mScannerView.stopCamera();           // Stop camera on pause
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_WRITE_PERMISSION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    setContentView(mScannerView);
 
+                    mScannerView.setResultHandler(this); // Reg
+                    mScannerView.startCamera();
+
+
+                } else {
+                    Toast.makeText(MerchantActivity.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+                }
+        }
+    }
 
 
     public void arrayList(){
@@ -265,5 +319,18 @@ public class MerchantActivity extends AppCompatActivity {
         pj.parseJSON();
        // CustomList cl = new CustomList(this, ParseJSON.ids,ParseJSON.names,ParseJSON.emails);
       //  listView.setAdapter(cl);
+    }
+
+    @Override
+    public void handleResult(Result result) {
+        Log.e("handler", result.getText()); // Prints scan results
+        Log.e("handler", result.getBarcodeFormat().toString()); // Prints the scan format (qrcode)
+
+        // show the scanner result into dialog box.
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan Result");
+        builder.setMessage(result.getText());
+        AlertDialog alert1 = builder.create();
+        alert1.show();
     }
 }
