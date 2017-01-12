@@ -1,6 +1,5 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Merchant;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -8,8 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +18,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,22 +58,26 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
 
     private StaggeredGridLayoutManager mStaggeredLayoutManager;
+    private LinearLayout llProgress;
 
     private boolean isListView;
     private Menu menu;
+    private ProgressBar progressBar;
    // ArrayList<String> merchantArraay;
-    RecyclerView mRecyclerView;
+   ListView mRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant);
 
+        progressBar=(ProgressBar)findViewById(R.id.progressBar);
+        llProgress = (LinearLayout) findViewById(R.id.llProgress);
 
-         mRecyclerView = (RecyclerView) findViewById(R.id.list);
+         mRecyclerView = (ListView) findViewById(R.id.list);
 
        // mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+       // mRecyclerView.setHasFixedSize(false);
+       // mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
        arrayList();
 //
         //mAdapter = new MerchantViewAdapter(list,this);
@@ -89,10 +93,10 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
         mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.list);
-        mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
+        //mRecyclerView = (RecyclerView) findViewById(R.id.list);
+        //mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
 
-        mRecyclerView.setHasFixedSize(true); //Data size is fixed - improves performance
+      //  mRecyclerView.setHasFixedSize(true); //Data size is fixed - improves performance
         mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -165,8 +169,11 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                         String ConsumerMobilenumber=edMerchantMobilenumber.getText().toString().trim();
                         if(ConsumerMobilenumber.length()>0)
                         {
-                            makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
 
+                            dialog.dismiss();
+                           // showProgress("Please wait...");
+                            makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
+                           // progressBar.setVisibility(View.GONE);
 
                             //    merchantArraay.add(0,"New Merchant");
                             mAdapter.notifyDataSetChanged();
@@ -336,5 +343,16 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();
         alert1.show();
+    }
+
+    private void showProgress(String message) {
+        ((TextView) llProgress.findViewById(R.id.tvMessage)).setText(message);
+        llProgress.setVisibility(View.VISIBLE);
+
+    }
+
+    private void hideProgress() {
+        ((TextView) llProgress.findViewById(R.id.tvMessage)).setText("");
+        llProgress.setVisibility(View.GONE);
     }
 }

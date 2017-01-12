@@ -1,14 +1,15 @@
 package com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.graphics.Palette;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,8 +18,6 @@ import android.widget.Toast;
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.Place;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.PlaceData;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,6 +26,118 @@ import java.util.ArrayList;
  * Created by shivkanttiwari on 02/01/17.
  */
 
+public class MerchantViewAdapter extends
+        BaseAdapter {
+
+
+    Activity mContext;
+
+
+    ArrayList<Merchant>merchantArray;
+    private static LayoutInflater inflater=null;
+
+    int[] merchantIcons = {R.drawable.borabora, R.drawable.canada,R.drawable.dubai, R.drawable.hongkong,R.drawable.iceland, R.drawable.india,R.drawable.kenya, R.drawable.london,
+            R.drawable.switzerland, R.drawable.sydney,};
+    public MerchantViewAdapter(Activity context, ArrayList<Merchant> merchantArrray) {
+        this.mContext = context;
+        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.merchantArray=merchantArrray;
+    }
+
+    @Override
+    public int getCount() {
+        return merchantArray.size();
+    }
+
+    @Override
+    public Merchant getItem(int position) {
+        return merchantArray.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        View vi=convertView;
+        final  ViewHolder holder;
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.row_places, null);
+            holder = new ViewHolder();
+            holder.mainholderlayout = (LinearLayout) convertView.findViewById(R.id.mainHolder);
+            holder.bottmPlaceholdeLayout = (LinearLayout) convertView.findViewById(R.id.placeNameHolder);
+            holder.merchantName  = (TextView) convertView.findViewById(R.id.placeName);
+            holder.MerchantIMage  = (ImageView) convertView.findViewById(R.id.placeImage);
+
+            convertView.setTag(holder);
+        }
+        else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.mainholderlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.bottmPlaceholdeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(mContext,"pos clicked",Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(mContext, MerchanteWebviewActivity.class);
+                i.putExtra("MerchantURL",merchantArray.get(position).getPOSURL());
+                mContext.startActivity(i);
+            }
+        });
+        if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pendings"))
+        {
+            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.MerchantIMage);
+
+            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
+
+            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+                    holder.bottmPlaceholdeLayout.setBackgroundColor(mutedLight);
+                }
+            });
+        }
+        else {
+            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.MerchantIMage);
+
+            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
+
+            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+                    holder.bottmPlaceholdeLayout.setBackgroundColor(mutedLight);
+                }
+            });
+        }
+        Merchant merchant = getItem(position);
+
+        holder.merchantName.setText(merchant.getName());
+
+        //holder.personImageView.setImageBitmap(person.getImage());
+
+        return convertView;
+
+    }
+
+    static class ViewHolder {
+        private LinearLayout mainholderlayout;
+        private LinearLayout bottmPlaceholdeLayout;
+        private TextView merchantName;
+        private ImageView MerchantIMage;
+    }
+}
+
+/*
 public class MerchantViewAdapter extends
         RecyclerView.Adapter<MerchantViewAdapter.ViewHolder> {
 
@@ -144,3 +255,4 @@ public class MerchantViewAdapter extends
     }
 
 }
+*/

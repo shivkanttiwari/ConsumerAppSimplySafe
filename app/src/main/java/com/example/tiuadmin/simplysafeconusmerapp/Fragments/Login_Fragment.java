@@ -201,10 +201,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
 	// Check Validation before login
 	private void checkValidation() {
+
 		// Get email id and password
 		String getMobilenumber = mobileNumber.getText().toString();
 		String getPassword = password.getText().toString();
 		getMobilenumber=getMobilenumber.substring(3,getMobilenumber.length());
+		makeLoginRequest(getMobilenumber,getPassword);
 		// Check patter for email id
 		Pattern p = Pattern.compile(Utils.regEx);
 
@@ -227,7 +229,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		{
 
 
-			makeLoginRequest(getMobilenumber,getPassword);
+
 		}
 
 
@@ -238,6 +240,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	 */
 	private void makeLoginRequest(String phone,String password) {
 		new GeneralFunction().showProgressDialog(getActivity());
+		phone="9096572182";
 		String res = null;
 		String responseCode = null;
 		String returnResponse = null;

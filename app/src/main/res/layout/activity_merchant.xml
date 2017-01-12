@@ -9,7 +9,7 @@
 
 
 
-    <android.support.v7.widget.RecyclerView
+    <ListView
 
         android:id="@+id/list"
         android:layout_width="match_parent"
@@ -24,5 +24,41 @@
         app:backgroundTint="@color/colorPrimaryDark"
         android:background="@color/colorPrimaryDark"
         app:srcCompat="@drawable/add" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/colorPrimaryDark"/>
+    <LinearLayout
+        android:id="@+id/llProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/base"
+        android:visibility="gone" >
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            style="@style/Base.Widget.AppCompat.ProgressBar"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/white" />
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:layout_margin="5dp" />
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
