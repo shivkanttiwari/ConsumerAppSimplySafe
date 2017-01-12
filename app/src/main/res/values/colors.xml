@@ -44,9 +44,8 @@
     <item name="darkred" type="color">#FFCC0000</item>
 
 
-    <item name="Gold" type="color">#FFFFD700</item>
-    <item name="Pink" type="color">#FFFFC0CB</item>
-    <item name="LightPink" type="color">#FFFFB6C1</item>
+
+
     <item name="Orange" type="color">#FFFFA500</item>
     <item name="LightSalmon" type="color">#FFFFA07A</item>
     <item name="DarkOrange" type="color">#FFFF8C00</item>
@@ -68,7 +67,7 @@
     <item name="Violet" type="color">#FFEE82EE</item>
     <item name="DarkSalmon" type="color">#FFE9967A</item>
 
-    <item name="BurlyWood" type="color">#FFDEB887</item>
+
     <item name="Plum" type="color">#FFDDA0DD</item>
 
     <item name="Crimson" type="color">#FFDC143C</item>
@@ -81,7 +80,7 @@
     <item name="Peru" type="color">#FFCD853F</item>
     <item name="IndianRed" type="color">#FFCD5C5C</item>
     <item name="MediumVioletRed" type="color">#FFC71585</item>
-    <item name="Silver" type="color">#FFC0C0C0</item>
+
     <item name="DarkKhaki" type="color">#FFBDB76B</item>
     <item name="RosyBrown" type="color">#FFBC8F8F</item>
     <item name="MediumOrchid" type="color">#FFBA55D3</item>
@@ -94,7 +93,7 @@
     <item name="Sienna" type="color">#FFA0522D</item>
     <item name="YellowGreen" type="color">#FF9ACD32</item>
     <item name="DarkOrchid" type="color">#FF9932CC</item>
-    <item name="PaleGreen" type="color">#FF98FB98</item>
+
     <item name="DarkViolet" type="color">#FF9400D3</item>
     <item name="MediumPurple" type="color">#FF9370DB</item>
     <item name="LightGreen" type="color">#FF90EE90</item>
@@ -109,9 +108,7 @@
     <item name="Olive" type="color">#FF808000</item>
     <item name="Purple" type="color">#FF800080</item>
     <item name="Maroon" type="color">#FF800000</item>
-    <item name="Aquamarine" type="color">#FF7FFFD4</item>
-    <item name="Chartreuse" type="color">#FF7FFF00</item>
-    <item name="LawnGreen" type="color">#FF7CFC00</item>
+
     <item name="MediumSlateBlue" type="color">#FF7B68EE</item>
     <item name="LightSlateGray" type="color">#FF778899</item>
     <item name="SlateGray" type="color">#FF708090</item>
@@ -136,11 +133,7 @@
     <item name="LightSeaGreen" type="color">#FF20B2AA</item>
     <item name="DodgerBlue" type="color">#FF1E90FF</item>
     <item name="MidnightBlue" type="color">#FF191970</item>
-    <item name="Aqua" type="color">#FF00FFFF</item>
-    <item name="Cyan" type="color">#FF00FFFF</item>
-    <item name="SpringGreen" type="color">#FF00FF7F</item>
-    <item name="Lime" type="color">#FF00FF00</item>
-    <item name="MediumSpringGreen" type="color">#FF00FA9A</item>
+
     <item name="DarkTurquoise" type="color">#FF00CED1</item>
     <item name="DeepSkyBlue" type="color">#FF00BFFF</item>
     <item name="DarkCyan" type="color">#FF008B8B</item>
@@ -165,9 +158,7 @@
         <item>@color/darkorange</item>
         <item>@color/darkred</item>
 
-        <item>@color/Gold</item>
-        <item>@color/Pink</item>
-        <item>@color/LightPink</item>
+
         <item>@color/Orange</item>
         <item>@color/LightSalmon</item>
         <item>@color/DarkOrange</item>
@@ -189,7 +180,7 @@
         <item>@color/Violet</item>
         <item>@color/DarkSalmon</item>
 
-        <item>@color/BurlyWood</item>
+
         <item>@color/Plum</item>
 
         <item>@color/Crimson</item>
@@ -202,7 +193,7 @@
         <item>@color/Peru</item>
         <item>@color/IndianRed</item>
         <item>@color/MediumVioletRed</item>
-        <item>@color/Silver</item>
+
         <item>@color/DarkKhaki</item>
         <item>@color/RosyBrown</item>
         <item>@color/MediumOrchid</item>
@@ -214,7 +205,7 @@
         <item>@color/Sienna</item>
         <item>@color/YellowGreen</item>
         <item>@color/DarkOrchid</item>
-        <item>@color/PaleGreen</item>
+
         <item>@color/DarkViolet</item>
         <item>@color/MediumPurple</item>
         <item>@color/LightGreen</item>
@@ -229,9 +220,7 @@
         <item>@color/Olive</item>
         <item>@color/Purple</item>
         <item>@color/Maroon</item>
-        <item>@color/Aquamarine</item>
-        <item>@color/Chartreuse</item>
-        <item>@color/LawnGreen</item>
+
         <item>@color/MediumSlateBlue</item>
         <item>@color/LightSlateGray</item>
         <item>@color/SlateGray</item>
@@ -256,11 +245,7 @@
         <item>@color/LightSeaGreen</item>
         <item>@color/DodgerBlue</item>
         <item>@color/MidnightBlue</item>
-        <item>@color/Aqua</item>
-        <item>@color/Cyan</item>
-        <item>@color/SpringGreen</item>
-        <item>@color/Lime</item>
-        <item>@color/MediumSpringGreen</item>
+
         <item>@color/DarkTurquoise</item>
         <item>@color/DeepSkyBlue</item>
         <item>@color/DarkCyan</item>

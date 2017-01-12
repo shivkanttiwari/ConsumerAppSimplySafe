@@ -170,18 +170,24 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                         {
 
                             dialog.dismiss();
-                           // showProgress("Please wait...");
-                            makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
-                           // progressBar.setVisibility(View.GONE);
 
-                            //    merchantArraay.add(0,"New Merchant");
+                            mRecyclerView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    dialog.dismiss();
+                                    makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
+                                    // progressBar.setVisibility(View.GONE);
 
-                            mAdapter.notifyDataSetChanged();
-                           // sendRequest();
-                            dialog.dismiss();
-                            // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
-                            // mRecyclerView.setLayoutManager(layoutManager);
-                            mRecyclerView.smoothScrollToPosition(0);
+
+                                    mAdapter.notifyDataSetChanged();
+                                    // sendRequest();
+
+                                    // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
+                                    // mRecyclerView.setLayoutManager(layoutManager);
+                                    mRecyclerView.smoothScrollToPosition(0);
+                                }
+                            });
+
                         }
                         else {
                             Toast.makeText(MerchantActivity.this,"Please provide valid mobile number",Toast.LENGTH_SHORT).show();
@@ -265,7 +271,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                     String merchantPOSURL=jsonuserdata.getString("pos_url");
                     String merchantType=jsonuserdata.getString("type");
 
-                    Const.MERCHANT_DATA.add(new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus));
+                    Const.MERCHANT_DATA.add(0,new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus));
 
                    // Collections.reverse(Const.MERCHANT_DATA);
 

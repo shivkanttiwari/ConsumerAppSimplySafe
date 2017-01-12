@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -17,9 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Fragments.DashboardFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.Fragments.DashboardFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
@@ -41,6 +42,9 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_main);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
