@@ -99,14 +99,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			public void onTextChanged(CharSequence s, int start, int before,
 									  int count) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 										  int after) {
 				// TODO Auto-generated method stub
-
 			}
 
 			@Override
