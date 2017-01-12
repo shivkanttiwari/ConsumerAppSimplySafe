@@ -48,6 +48,8 @@
         <activity android:name=".Merchant.QRCodeScanActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".Merchant.MerchantActivity"></activity>
+
+        <activity android:name=".utilsApp.radio.RadioWebViewActivity"></activity>
     </application>
 
 </manifest>

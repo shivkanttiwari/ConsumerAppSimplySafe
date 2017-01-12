@@ -1,7 +1,6 @@
 package com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +18,13 @@ import java.util.ArrayList;
 public class UtilityNameListAdapter extends BaseAdapter {
 
     Activity context;
-    ArrayList<String>utiltilyName;
+    ArrayList<String> utiltilyName;
 
-    public  UtilityNameListAdapter(Activity context, ArrayList<String>utilityName)
-    {
-        this.context=context;
-        this.utiltilyName=utilityName;
+    public UtilityNameListAdapter(Activity context, ArrayList<String> utilityName) {
+        this.context = context;
+        this.utiltilyName = utilityName;
     }
+
     @Override
     public int getCount() {
         return utiltilyName.size();
@@ -47,50 +46,8 @@ public class UtilityNameListAdapter extends BaseAdapter {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.utilitynamelistlayout, parent, false);
 
-        TextView txt_utilityName=(TextView)itemView.findViewById(R.id.txtutlitityname);
-
+        TextView txt_utilityName = (TextView) itemView.findViewById(R.id.txtutlitityname);
         txt_utilityName.setText(utiltilyName.get(position));
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (position)
-                {
-                    case 0:
-                        Intent i = new Intent();
-                        i.setClassName("com.android.calculator2", "com.android.calculator2.Calculator");
-                        context.startActivity(i);
-
-                        break;
-                    case 1:
-
-
-                        break;
-                    case 2:
-
-
-                        break;
-                    case 3:
-
-
-                        break;
-                    case 4:
-
-
-                        break;
-                    case 5:
-
-
-                        break;
-
-
-
-
-                }
-            }
-        });
-
-
 
         return itemView;
     }
