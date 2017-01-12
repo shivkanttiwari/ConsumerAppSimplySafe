@@ -13,19 +13,34 @@
       android:layout_width="match_parent"
       android:layout_height="200dp">
 
-      <ImageView
-        android:id="@+id/placeImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:transitionName="tImage" />
+
 
       <LinearLayout
         android:id="@+id/mainHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackground"
-        android:orientation="horizontal" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:id="@+id/txtstatusmerchant"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:layout_weight="1" />
+      </LinearLayout>
+      <ImageView
+          android:id="@+id/placeImage"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:scaleType="centerCrop"
+          android:src="@drawable/logo"
+          android:layout_gravity="center"
+          android:transitionName="tImage" />
 
       <LinearLayout
         android:id="@+id/placeNameHolder"

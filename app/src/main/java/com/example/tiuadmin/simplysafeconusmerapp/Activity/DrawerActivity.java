@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.Rewards.BlankFragment;
+import com.example.tiuadmin.simplysafeconusmerapp.Fragments.DashboardFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
@@ -44,7 +44,7 @@ public class DrawerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
-        makeLoginRequest();
+         makeLoginRequest();
       //  initCollapsingToolbar();
 
 
@@ -77,7 +77,7 @@ public class DrawerActivity extends AppCompatActivity {
                         break;
                     case R.id.contactus:
                         Toast.makeText(getApplicationContext(),"Settings",Toast.LENGTH_SHORT).show();
-                        fragment=new BlankFragment();
+                        fragment=new DashboardFragment();
                         getFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_place, fragment)
                                 .commit();

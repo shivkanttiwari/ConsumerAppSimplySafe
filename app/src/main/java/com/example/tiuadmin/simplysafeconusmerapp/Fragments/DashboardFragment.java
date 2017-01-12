@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.Rewards;
+package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
 import android.app.Fragment;
 import android.content.res.Resources;
@@ -23,12 +23,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BlankFragment.OnFragmentInteractionListener} interface
+ * {@link DashboardFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BlankFragment#newInstance} factory method to
+ * Use the {@link DashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BlankFragment extends Fragment {
+public class DashboardFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,7 +44,7 @@ public class BlankFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public BlankFragment() {
+    public DashboardFragment() {
         // Required empty public constructor
     }
 
@@ -54,11 +54,11 @@ public class BlankFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BlankFragment.
+     * @return A new instance of fragment DashboardFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String param1, String param2) {
-        BlankFragment fragment = new BlankFragment();
+    public static DashboardFragment newInstance(String param1, String param2) {
+        DashboardFragment fragment = new DashboardFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -108,7 +108,7 @@ public class BlankFragment extends Fragment {
                 R.drawable.rewards_dashboard,
                 R.drawable.settings,
                 R.drawable.coupnas,
-                R.drawable.olahome,
+                R.drawable.musical,
                 R.drawable.album7,
                 R.drawable.album8,
                 R.drawable.album9,
@@ -129,6 +129,9 @@ public class BlankFragment extends Fragment {
         albumList.add(a);
 
         a = new MainMenuDashboard("4","Coupans",covers[4]);
+        albumList.add(a);
+
+        a = new MainMenuDashboard("5","Music",covers[5]);
         albumList.add(a);
 //
 //        a = new Merchant("OLA", 1, covers[5]);

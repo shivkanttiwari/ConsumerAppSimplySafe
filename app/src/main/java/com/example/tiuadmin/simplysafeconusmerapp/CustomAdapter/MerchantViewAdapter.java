@@ -9,7 +9,7 @@ import android.support.v7.graphics.Palette;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,13 +21,14 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by shivkanttiwari on 02/01/17.
  */
 
 public class MerchantViewAdapter extends
-        BaseAdapter {
+        ArrayAdapter<Merchant> {
 
 
     Activity mContext;
@@ -39,6 +40,7 @@ public class MerchantViewAdapter extends
     int[] merchantIcons = {R.drawable.borabora, R.drawable.canada,R.drawable.dubai, R.drawable.hongkong,R.drawable.iceland, R.drawable.india,R.drawable.kenya, R.drawable.london,
             R.drawable.switzerland, R.drawable.sydney,};
     public MerchantViewAdapter(Activity context, ArrayList<Merchant> merchantArrray) {
+        super(context, R.layout.row_places, merchantArrray);
         this.mContext = context;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.merchantArray=merchantArrray;
@@ -51,7 +53,8 @@ public class MerchantViewAdapter extends
 
     @Override
     public Merchant getItem(int position) {
-        return merchantArray.get(position);
+        //return merchantArray.get(position);
+        return super.getItem(getCount() - position - 1);
     }
 
     @Override
@@ -64,18 +67,34 @@ public class MerchantViewAdapter extends
         View vi=convertView;
         final  ViewHolder holder;
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.row_places, null);
+            convertView =   inflater.inflate(R.layout.row_places, parent, false);
             holder = new ViewHolder();
             holder.mainholderlayout = (LinearLayout) convertView.findViewById(R.id.mainHolder);
             holder.bottmPlaceholdeLayout = (LinearLayout) convertView.findViewById(R.id.placeNameHolder);
             holder.merchantName  = (TextView) convertView.findViewById(R.id.placeName);
             holder.MerchantIMage  = (ImageView) convertView.findViewById(R.id.placeImage);
+            holder.txtstatusmerchant  = (TextView) convertView.findViewById(R.id.txtstatusmerchant);
 
+
+            int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
+            int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+            holder.mainholderlayout.setBackgroundColor(randomAndroidColor);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+
+        if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pending"))
+        {
+            holder.txtstatusmerchant.setText("Status:"+merchantArray.get(position).getStatus());
+        }
+        else
+        {
+            holder.txtstatusmerchant.setVisibility(View.GONE);
+        }
+
 
         holder.mainholderlayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,12 +107,23 @@ public class MerchantViewAdapter extends
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(mContext,"pos clicked",Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(mContext, MerchanteWebviewActivity.class);
-                i.putExtra("MerchantURL",merchantArray.get(position).getPOSURL());
-                mContext.startActivity(i);
+
+                if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pending"))
+                {
+                    Toast.makeText(mContext, "Account not verified.Please contact respected merchant to activiate.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+
+                    Toast.makeText(mContext, "pos clicked", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(mContext, MerchanteWebviewActivity.class);
+                    i.putExtra("MerchantURL", merchantArray.get(position).getPOSURL());
+                    mContext.startActivity(i);
+                }
             }
         });
+
+
         if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pendings"))
         {
             Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.MerchantIMage);
@@ -119,8 +149,47 @@ public class MerchantViewAdapter extends
                 }
             });
         }
+
+
+        int MerchantType=Integer.parseInt(merchantArray.get(position).getMerchantType());
+
+
+        switch (MerchantType)
+        {
+
+
+            case 1:
+                Picasso.with(mContext).load(R.drawable.cutlery).into(holder.MerchantIMage);
+                break;
+
+            case 2:
+                Picasso.with(mContext).load(R.drawable.building).into(holder.MerchantIMage);
+                break;
+
+            case 3:
+                Picasso.with(mContext).load(R.drawable.cart).into(holder.MerchantIMage);
+                break;
+
+            case 4:
+                Picasso.with(mContext).load(R.drawable.toaster).into(holder.MerchantIMage);
+                break;
+
+            case 5:
+                Picasso.with(mContext).load(R.drawable.kirana).into(holder.MerchantIMage);
+                break;
+
+            case 6:
+                Picasso.with(mContext).load(R.drawable.cinema).into(holder.MerchantIMage);
+                break;
+
+
+
+        }
         Merchant merchant = getItem(position);
 
+
+
+        // loading album cover using Glide library
         holder.merchantName.setText(merchant.getName());
 
         //holder.personImageView.setImageBitmap(person.getImage());
@@ -134,6 +203,7 @@ public class MerchantViewAdapter extends
         private LinearLayout bottmPlaceholdeLayout;
         private TextView merchantName;
         private ImageView MerchantIMage;
+        private TextView txtstatusmerchant;
     }
 }
 

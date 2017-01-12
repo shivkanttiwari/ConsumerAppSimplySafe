@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -42,6 +40,7 @@ import com.google.zxing.Result;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -176,8 +175,9 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                            // progressBar.setVisibility(View.GONE);
 
                             //    merchantArraay.add(0,"New Merchant");
+
                             mAdapter.notifyDataSetChanged();
-                            sendRequest();
+                           // sendRequest();
                             dialog.dismiss();
                             // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
                             // mRecyclerView.setLayoutManager(layoutManager);
@@ -267,7 +267,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
                     Const.MERCHANT_DATA.add(new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus));
 
-
+                   // Collections.reverse(Const.MERCHANT_DATA);
 
 
 

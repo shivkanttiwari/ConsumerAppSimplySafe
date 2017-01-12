@@ -38,6 +38,15 @@ public class Merchant {
     private String name;
     private String mobilenumber;
     private String POSURL;
+
+    public String getMerchantType() {
+        return MerchantType;
+    }
+
+    public void setMerchantType(String merchantType) {
+        MerchantType = merchantType;
+    }
+
     private String MerchantType;
 
     public String getStatus() {
