@@ -28,6 +28,16 @@ public class QRCodeScanActivity extends AppCompatActivity implements ZXingScanne
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
 
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, REQUEST_WRITE_PERMISSION);
+        } else {
+            setContentView(mScannerView);
+
+            mScannerView.setResultHandler(this); // Reg
+            mScannerView.startCamera();
+        }
     }
 
     public void QrScanner(View view){

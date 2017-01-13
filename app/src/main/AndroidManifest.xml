@@ -49,7 +49,8 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".Merchant.MerchantActivity"></activity>
 
-        <activity android:name=".utilsApp.radio.RadioWebViewActivity"></activity>
+        <activity android:name=".utilsApp.radio.RadioWebViewActivity"
+            android:parentActivityName=".Activity.UtilityActivity"></activity>
     </application>
 
 </manifest>

@@ -53,8 +53,8 @@ public class MerchantViewAdapter extends
 
     @Override
     public Merchant getItem(int position) {
-        //return merchantArray.get(position);
-        return super.getItem(getCount() - position - 1);
+        return merchantArray.get(position);
+       // return super.getItem(getCount() - position - 1);
     }
 
     @Override

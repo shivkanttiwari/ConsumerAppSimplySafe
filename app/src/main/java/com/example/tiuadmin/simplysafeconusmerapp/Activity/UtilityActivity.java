@@ -47,7 +47,9 @@ public class UtilityActivity extends AppCompatActivity {
 
                         break;
                     case 1:
-
+                        Intent i = new Intent();
+                        i.setClassName("com.android.calculator2", "com.android.calculator2.Calculator");
+                        startActivity(i);
 
                         break;
                     case 2:
