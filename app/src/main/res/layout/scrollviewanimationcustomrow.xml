@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.flavienlaurent.discrollview.lib.DiscrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:discrollve="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/android_animated_discroll_view_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.flavienlaurent.discrollview.lib.DiscrollViewContent
+        android:id="@+id/discroll_view_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--  ListRow Left sied Thumbnail image -->
+
+
+
+    <!-- Rightend Arrow -->
+    <ImageView android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:src="@drawable/icn_morp"
+        android:layout_alignParentRight="true"
+        discrollve:discrollve_scaleX="true"
+        discrollve:discrollve_scaleY="true"
+        />
+
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:padding="3dip"
+        android:background="@drawable/album1"
+
+        android:layout_below="@+id/imageView3"
+        discrollve:discrollve_scaleX="true"
+        discrollve:discrollve_scaleY="true"
+       >
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+
+            android:src="@drawable/album2"/>
+
+    </LinearLayout>
+
+    </com.flavienlaurent.discrollview.lib.DiscrollViewContent>
+
+</com.flavienlaurent.discrollview.lib.DiscrollView>

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +42,6 @@ import com.google.zxing.Result;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -112,8 +113,11 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
 
                 final Dialog dialog = new Dialog(MerchantActivity.this);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation_2;
 
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 //setting custom layout to dialog
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 dialog.setContentView(R.layout.addcustomerdialog);
                 dialog.setTitle("Add Merchant");
 
@@ -171,7 +175,17 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
                             dialog.dismiss();
 
-                            mRecyclerView.post(new Runnable() {
+                            makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
+                            // progressBar.setVisibility(View.GONE);
+
+
+                            mAdapter.notifyDataSetChanged();
+                            // sendRequest();
+
+                            // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
+                            // mRecyclerView.setLayoutManager(layoutManager);
+                            mRecyclerView.smoothScrollToPosition(0);
+                           /* mRecyclerView.post(new Runnable() {
                                 @Override
                                 public void run() {
                                     dialog.dismiss();
@@ -186,7 +200,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                                     // mRecyclerView.setLayoutManager(layoutManager);
                                     mRecyclerView.smoothScrollToPosition(0);
                                 }
-                            });
+                            });*/
 
                         }
                         else {
@@ -202,6 +216,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
 
     }
+
 
     @Override
     public void onPause() {
@@ -249,7 +264,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);
 */
-
+            //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
 
             WebService web = new WebService();
             res = web.getWithoutHeader(url);
@@ -271,7 +286,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                     String merchantPOSURL=jsonuserdata.getString("pos_url");
                     String merchantType=jsonuserdata.getString("type");
 
-                    Const.MERCHANT_DATA.add(0,new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus));
+                    Const.MERCHANT_DATA.add(new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus));
 
                    // Collections.reverse(Const.MERCHANT_DATA);
 
@@ -296,7 +311,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
         } catch (Exception e) {
             new GeneralFunction().hideProgressDialog();
-            Toast.makeText(getApplicationContext(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
+            Toast.makeText(getApplicationContext(), "Please provide valid mobile number.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
         }

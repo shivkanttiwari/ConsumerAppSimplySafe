@@ -4,11 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true"/>
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.AppController"
@@ -43,14 +44,17 @@
         <activity
             android:name=".Activity.UtilityActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
-        <activity android:name=".User.UserProfileActivity"
-            android:parentActivityName=".Activity.DrawerActivity"></activity>
-        <activity android:name=".Merchant.QRCodeScanActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Merchant.MerchantActivity"></activity>
-
-        <activity android:name=".utilsApp.radio.RadioWebViewActivity"
-            android:parentActivityName=".Activity.UtilityActivity"></activity>
+        <activity
+            android:name=".User.UserProfileActivity"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity
+            android:name=".Merchant.QRCodeScanActivity"
+            android:parentActivityName=".Merchant.MerchantActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".utilsApp.radio.RadioWebViewActivity"
+            android:parentActivityName=".Activity.UtilityActivity" />
+        <activity android:name=".Activity.ScrollviewAnimate"></activity>
     </application>
 
 </manifest>

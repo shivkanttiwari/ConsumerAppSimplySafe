@@ -13,8 +13,6 @@ import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RadioWebViewAct
 
 import java.util.ArrayList;
 
-import cz.martykan.forecastie.activities.SplashActivity;
-
 public class UtilityActivity extends AppCompatActivity {
 
     ListView lvUtiltiyName;
@@ -55,7 +53,7 @@ public class UtilityActivity extends AppCompatActivity {
 
                         break;
                     case 2:
-                        startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
+                      //  startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
 
                         break;
                     case 3:
