@@ -225,9 +225,6 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		// Else do login and do your stuff
 		else
 		{
-
-
-
 		}
 
 
@@ -265,6 +262,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 					Const.LOGIN_TOKEN=logintoken;
 					Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
 					Log.d("token",Const.TOKEN_WITH_BEARER);
+					//getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
 					getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
 					Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
 							.show();
