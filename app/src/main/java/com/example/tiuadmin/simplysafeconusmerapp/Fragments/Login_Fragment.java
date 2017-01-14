@@ -127,7 +127,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		forgotPassword.setOnClickListener(this);
 		signUp.setOnClickListener(this);
 		mobileNumber.setText("9096572182");
-		password.setText("1234567");
+	//	password.setText("1234567");
 
 //		// Set check listener over checkbox for showing and hiding password
 //		show_hide_password
@@ -204,7 +204,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		String getMobilenumber = mobileNumber.getText().toString();
 		String getPassword = password.getText().toString();
 		getMobilenumber=getMobilenumber.substring(3,getMobilenumber.length());
-		makeLoginRequest(getMobilenumber,getPassword);
+
 		// Check patter for email id
 		Pattern p = Pattern.compile(Utils.regEx);
 
@@ -225,6 +225,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		// Else do login and do your stuff
 		else
 		{
+			makeLoginRequest(getMobilenumber,getPassword);
 		}
 
 
@@ -235,7 +236,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	 */
 	private void makeLoginRequest(String phone,String password) {
 		new GeneralFunction().showProgressDialog(getActivity());
-		phone="9096572182";
+		//phone="9096572182";
 		String res = null;
 		String responseCode = null;
 		String returnResponse = null;
@@ -277,6 +278,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			}
 
 		} catch (Exception e) {
+			Toast.makeText(getActivity(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
+					.show();
 			new GeneralFunction().hideProgressDialog();
 			e.printStackTrace();
 		}

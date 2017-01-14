@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantViewAdapter;
+import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.JSON.JSONPARSER;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
@@ -37,8 +37,10 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+import com.google.gson.JsonArray;
 import com.google.zxing.Result;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -78,7 +80,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
        // mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
        // mRecyclerView.setHasFixedSize(false);
        // mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-       arrayList();
+        makeGetMerchantConsumerDatabaseRequest();
 //
         //mAdapter = new MerchantViewAdapter(list,this);
        // mRecyclerView.setAdapter(mAdapter);
@@ -285,9 +287,19 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                     String merchantMobilenumber=jsonuserdata.getString("phone");
                     String merchantPOSURL=jsonuserdata.getString("pos_url");
                     String merchantType=jsonuserdata.getString("type");
+                    String merchantEmail=jsonuserdata.getString("email");
+                    String merchantaddress=jsonuserdata.getString("address");
+                    String merchantPosName=jsonuserdata.getString("pos_name");
+                    String merchantMessage=jsonuserdata.getString("message");
 
-                    Const.MERCHANT_DATA.add(new Merchant(merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus));
+                    String merchantPostCreated=jsonuserdata.getString("pos_create_at");
+                    String merchantPOSExpires=jsonuserdata.getString("pos_demo_expiry_at");
+                    String merchantPaymentStatus=jsonuserdata.getString("payment_status");
 
+
+
+                    makeAddMerchantConsumerDatabaseRequest(new Merchant("","",merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus
+                            ,merchantEmail,merchantaddress,merchantPosName,merchantMessage,merchantPostCreated,merchantPOSExpires,merchantPaymentStatus));
                    // Collections.reverse(Const.MERCHANT_DATA);
 
 
@@ -300,7 +312,197 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                     startActivity(new Intent(DrawerActivity.this, DrawerActivity.class));
 
                    finish();*/
+
+                }
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                        .show();
+                new GeneralFunction().hideProgressDialog();
+            }
+
+        } catch (Exception e) {
+            new GeneralFunction().hideProgressDialog();
+            Toast.makeText(getApplicationContext(), "Please provide valid mobile number.", Toast.LENGTH_SHORT)
+                    .show();
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Making json object request
+     */
+    private void makeAddMerchantConsumerDatabaseRequest(Merchant merchantDetail) {
+
+        String res = null;
+        String responseCode = null;
+        String returnResponse = null;
+        try {
+
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant";
+           JSONObject jsonrequest = new JSONObject();
+            jsonrequest.put("status", merchantDetail);
+
+
+            JSONObject jsonres = new JSONObject();
+            jsonres.put("id", merchantDetail.getMerchant_id());
+            jsonres.put("name", merchantDetail.getName());
+            jsonres.put("email", merchantDetail.getEmail());
+            jsonres.put("phone", merchantDetail.getMobilenumber());
+            jsonres.put("address", merchantDetail.getAddress());
+            jsonres.put("type", merchantDetail.getMerchantType());
+            jsonres.put("pos_name", merchantDetail.getPos_name());
+            jsonres.put("message", merchantDetail.getMessage());
+            jsonres.put("pos_url", merchantDetail.getPOSURL());
+            jsonres.put("pos_create_at", merchantDetail.getPos_create_at());
+            jsonres.put("pos_demo_expiry_at", merchantDetail.getPos_demo_expiry_at());
+            jsonres.put("payment _status", merchantDetail.getPayment_status());
+
+
+            jsonrequest.put("res", jsonres);
+
+            //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
+
+            WebService web = new WebService();
+            res = web.postWithHeader(url,jsonrequest.toString());
+            Log.d(res, res);
+
+
+            if (res != null && res.length()>0) {
+                JSONObject json = new JSONObject(res);
+                if (json != null) {
+
+                    String status=json.getString("status");
+                    String message=json.getString("message");
+                    if(status.equalsIgnoreCase("true"))
+                    {
+                        JSONObject merchantJsonData=json.getJSONObject("data");
+
+
+                        String recordID=merchantJsonData.getString("id");
+                        String customer_id=merchantJsonData.getString("customer_id");
+                        String merchant_id=merchantJsonData.getString("merchant_id");
+                        String merchant_name=merchantJsonData.getString("merchant_name");
+                        String merchant_email=merchantJsonData.getString("merchant_email");
+                        String merchant_phone=merchantJsonData.getString("merchant_phone");
+                        String merchant_address=merchantJsonData.getString("merchant_address");
+                        String merchant_type=merchantJsonData.getString("merchant_type");
+                        String merchant_pos_name=merchantJsonData.getString("merchant_pos_name");
+                        String merchant_message=merchantJsonData.getString("merchant_message");
+                        String merchant_pos_url=merchantJsonData.getString("merchant_pos_url");
+                        String merchant_pos_create_at=merchantJsonData.getString("merchant_pos_create_at");
+                        String merchant_pos_demo_expiry_at=merchantJsonData.getString("merchant_pos_demo_expiry_at");
+                        String merchant_payment_status=merchantJsonData.getString("merchant_payment_status");
+                        String merchant_status=merchantJsonData.getString("merchant_status");
+
+
+
+
+
+
+                        Const.MERCHANT_DATA.add(new Merchant(recordID,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merchant_status
+                                ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
+
+
+
+                    }
+                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+
+
+
                     new GeneralFunction().hideProgressDialog();
+
+
+                }
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                        .show();
+                new GeneralFunction().hideProgressDialog();
+            }
+
+        } catch (Exception e) {
+                new GeneralFunction().hideProgressDialog();
+            Toast.makeText(getApplicationContext(), "Please provide valid mobile number.", Toast.LENGTH_SHORT)
+                    .show();
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Making json object request
+     */
+    private void makeGetMerchantConsumerDatabaseRequest() {
+        new GeneralFunction().showProgressDialog(this);
+        String res = null;
+        String responseCode = null;
+        String returnResponse = null;
+        try {
+
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/list";
+
+            //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
+
+            WebService web = new WebService();
+            res = web.getWithHeader(url);
+            Log.d(res, res);
+
+
+            if (res != null && res.length()>0) {
+                JSONObject json = new JSONObject(res);
+                if (json != null) {
+
+                    String status=json.getString("status");
+                    String message=json.getString("message");
+                    if(status.equalsIgnoreCase("true"))
+                    {
+                        JSONArray merchantJsonArrayData=json.getJSONArray("data");
+
+                        for(int i=0;i<merchantJsonArrayData.length();i++)
+                        {
+
+                            JSONObject merchantJsonData = merchantJsonArrayData.getJSONObject(i);
+
+                            String recordID=merchantJsonData.getString("id");
+                            String customer_id=merchantJsonData.getString("customer_id");
+                            String merchant_id=merchantJsonData.getString("merchant_id");
+                            String merchant_name=merchantJsonData.getString("merchant_name");
+                            String merchant_email=merchantJsonData.getString("merchant_email");
+                            String merchant_phone=merchantJsonData.getString("merchant_phone");
+                            String merchant_address=merchantJsonData.getString("merchant_address");
+                            String merchant_type=merchantJsonData.getString("merchant_type");
+                            String merchant_pos_name=merchantJsonData.getString("merchant_pos_name");
+                            String merchant_message=merchantJsonData.getString("merchant_message");
+                            String merchant_pos_url=merchantJsonData.getString("merchant_pos_url");
+                            String merchant_pos_create_at=merchantJsonData.getString("merchant_pos_create_at");
+                            String merchant_pos_demo_expiry_at=merchantJsonData.getString("merchant_pos_demo_expiry_at");
+                            String merchant_payment_status=merchantJsonData.getString("merchant_payment_status");
+                            String merchant_status=merchantJsonData.getString("merchant_status");
+
+                            Const.MERCHANT_DATA.add(new Merchant(recordID,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merchant_status
+                                    ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
+
+
+                        }
+
+
+
+
+
+
+                        new GeneralFunction().hideProgressDialog();
+
+
+                    }
+                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+
+
+
+                    new GeneralFunction().hideProgressDialog();
+
+
                 }
             }
             else {
