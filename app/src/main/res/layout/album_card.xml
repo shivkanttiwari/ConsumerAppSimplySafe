@@ -22,19 +22,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/aboutus"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/aboutus" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/thumbnail"
-                android:text="shivkant"
                 android:gravity="center"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
-
+                android:text="shivkant"
                 android:textColor="@color/album_title"
                 android:textSize="@dimen/album_title" />
 
@@ -46,8 +45,8 @@
                 android:paddingBottom="@dimen/songs_count_padding_bottom"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
-                android:visibility="gone"
-                android:textSize="@dimen/songs_count" />
+                android:textSize="@dimen/songs_count"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/overflow"
@@ -57,8 +56,8 @@
                 android:layout_below="@id/thumbnail"
                 android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
                 android:scaleType="centerCrop"
-                android:visibility="gone"
-                android:src="@drawable/ic_dots" />
+                android:src="@drawable/ic_dots"
+                android:visibility="gone" />
 
         </RelativeLayout>
 

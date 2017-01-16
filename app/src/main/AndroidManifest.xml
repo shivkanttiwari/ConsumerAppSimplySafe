@@ -54,7 +54,10 @@
         <activity
             android:name=".utilsApp.radio.RadioWebViewActivity"
             android:parentActivityName=".Activity.UtilityActivity" />
-        <activity android:name=".Activity.ScrollviewAnimate"></activity>
+        <activity android:name=".Activity.ScrollviewAnimate" />
+        <activity
+            android:name=".utilsApp.radio.entertainment.EntertainmentActivity"
+            android:parentActivityName=".Activity.DrawerActivity"></activity>
     </application>
 
 </manifest>

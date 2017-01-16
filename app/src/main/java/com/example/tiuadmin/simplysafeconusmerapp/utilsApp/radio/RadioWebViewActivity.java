@@ -9,6 +9,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 public class RadioWebViewActivity extends AppCompatActivity {
 
     WebView webView;
+    public static String loadUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,6 @@ public class RadioWebViewActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView1);
         webView.getSettings().setJavaScriptEnabled(true);
 
-        String url = "http://gaana.com/radiomirchi";
-        webView.loadUrl(url);
+        webView.loadUrl(loadUrl);
     }
 }

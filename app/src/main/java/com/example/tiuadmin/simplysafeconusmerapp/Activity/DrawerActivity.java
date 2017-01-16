@@ -91,7 +91,6 @@ public class DrawerActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.logout:
-
                         startActivity(new Intent(DrawerActivity.this, MainActivity.class));
                         finish();
 
