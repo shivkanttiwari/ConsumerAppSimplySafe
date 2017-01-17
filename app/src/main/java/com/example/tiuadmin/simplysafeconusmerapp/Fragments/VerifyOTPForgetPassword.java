@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class VerifyOTPForgetPassword extends Fragment implements View.OnClickListener {
     private static View view;
 
-    private static EditText phonenumber,otp;
+    private static EditText phonenumber,ed_otp;
     private static TextView submit, back;
     String getphonenumber ;//= phonenumber.getText().toString().trim();
     String getotp ;//= otp.getText().toString().trim();
@@ -57,11 +57,12 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
     // Initialize the views
     private void initViews() {
         phonenumber = (EditText) view.findViewById(R.id.registration_otp_phonenumber);
-        otp = (EditText) view.findViewById(R.id.registration_otp);
+        ed_otp = (EditText) view.findViewById(R.id.registration_otp);
         submit = (TextView) view.findViewById(R.id.otpverficaitonsubmitBtn);
         back = (TextView) view.findViewById(R.id.otpbackToLoginBtn);
 
-        otp.setText(Const.ForgetPassword_TOKEN);
+        phonenumber.setText(Const.USER_MOBILENUMBER);
+       // ed_otp.setText(Const.ForgetPassword_TOKEN);
         // Setting text selector over textviews
         XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
         try {
@@ -74,6 +75,12 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
         } catch (Exception e) {
         }
 
+    }
+
+    public void setOTP(String otp)
+    {
+        otp=otp.substring(0,6);
+        ed_otp.setText(otp);
     }
 
     // Set Listeners over buttons
@@ -104,7 +111,7 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
 
     private void submitButtonTask() {
          getphonenumber = phonenumber.getText().toString().trim();
-         getotp = otp.getText().toString().trim();
+         getotp = ed_otp.getText().toString().trim();
 
         /*// Pattern for email id validation
         Pattern p = Pattern.compile(Utils.regEx);

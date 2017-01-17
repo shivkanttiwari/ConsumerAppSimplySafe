@@ -23,11 +23,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-    <permission
-        android:name="net.simplifiedcoding.androidgcm.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
 
-    <uses-permission android:name="net.simplifiedcoding.androidgcm.permission.C2D_MESSAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -82,6 +78,12 @@
         <activity
             android:name=".utilsApp.radio.entertainment.EntertainmentActivity"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
+
+        <receiver android:name=".Utility.IncomingSMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

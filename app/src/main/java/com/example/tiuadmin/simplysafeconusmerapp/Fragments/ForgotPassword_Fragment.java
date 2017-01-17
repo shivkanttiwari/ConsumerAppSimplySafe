@@ -71,6 +71,8 @@ public class ForgotPassword_Fragment extends Fragment implements
 
 	}
 
+
+
 	// Set Listeners over buttons
 	private void setListeners() {
 		back.setOnClickListener(this);
