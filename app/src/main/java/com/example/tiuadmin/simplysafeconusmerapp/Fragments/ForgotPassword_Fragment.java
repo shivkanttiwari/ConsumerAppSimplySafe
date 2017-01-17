@@ -1,18 +1,21 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
@@ -21,6 +24,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +34,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 
 	private static EditText mobilenumber;
 	private static TextView submit, back;
-
+	String getMobileNumber;
 
 
 	public ForgotPassword_Fragment() {
@@ -93,7 +97,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 	}
 
 	private void submitButtonTask() {
-		String getMobileNumber = mobilenumber.getText().toString();
+		 getMobileNumber = mobilenumber.getText().toString();
 
 		// Pattern for email id validation
 		Pattern p = Pattern.compile(Utils.regEx);
@@ -107,23 +111,18 @@ public class ForgotPassword_Fragment extends Fragment implements
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Please enter your Email Id.");
 
-		// Check if email id is valid or not
-		else if (!m.find())
-			new GeneralFunction().Show_Toast(getActivity(), view,
-					"Your Email Id is Invalid.");
 
 		// Else submit email id and fetch passwod or do your stuff
 		else
-			Toast.makeText(getActivity(), "Get Forgot Password.",
-					Toast.LENGTH_SHORT).show();
-		makeForgetPasswordRequest(getMobileNumber);
+
+		new AsyncTaskForgetPassword().execute();
 	}
 
 	/**
 	 * Making json object request
 	 */
 	private void makeForgetPasswordRequest(String phone) {
-		new GeneralFunction().showProgressDialog(getActivity());
+
 		String res = null;
 		String responseCode = null;
 		String returnResponse = null;
@@ -144,13 +143,13 @@ public class ForgotPassword_Fragment extends Fragment implements
 			if (res != null) {
 				JSONObject json = new JSONObject(res);
 				if (json != null) {
-
-					//String status = json.getString("status");
+					Const.ForgetPassword_TOKEN="";
+					//String status = json.getString("statConst.ForgetPassword_TOKENus");
 					//String message = json.getString("message");
 					//if (status.equalsIgnoreCase("true"))
 					{
 						Const.ForgetPassword_TOKEN=json.getString("forgot_password_otp");
-						new MainActivity().replaceForgetPasswordOTPVerificaitonFragment();
+
 
 					}
 						//Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
@@ -159,11 +158,64 @@ public class ForgotPassword_Fragment extends Fragment implements
 
 				}
 			}
-			new GeneralFunction().hideProgressDialog();
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			new GeneralFunction().hideProgressDialog();
+
 		}
 	}
 
+	//******************webservice********
+	private ProgressDialog progressDialog2 = null;
+	String username;
+	ArrayList<Merchant> setget = new ArrayList<>();
+	String fname, lname, strGender;
+
+	// To use the AsyncTask, it must be subclassed
+	private class AsyncTaskForgetPassword extends AsyncTask<Void, Integer, Void> {
+		// Before running code in separate thread
+		@Override
+		protected void onPreExecute() {
+			// Create a new progress dialog
+			progressDialog2 = new ProgressDialog(getActivity());
+			progressDialog2.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+			progressDialog2.getWindow().setGravity(Gravity.CENTER);
+			// Set the progress dialog to display a horizontal progress bar
+			progressDialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			// Set the dialog title to 'Loading...'
+			// Set the dialog message to 'Loading application View, please
+			// wait...'
+			progressDialog2.setMessage("Pleaes Wait...");
+			// This dialog can't be canceled by pressing the back key
+			progressDialog2.setCancelable(false);
+			// This dialog isn't indeterminate
+			progressDialog2.setIndeterminate(false);
+			// Display the progress dialog
+			progressDialog2.show();
+		}
+
+		// The code to be executed in a background thread.
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				makeForgetPasswordRequest(getMobileNumber);
+			} catch (Exception e) {
+				progressDialog2.dismiss();
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		// after executing the code in the thread
+		@Override
+		protected void onPostExecute(Void result) {
+			progressDialog2.dismiss();
+
+			if(Const.ForgetPassword_TOKEN.length()>0)
+			{
+				new MainActivity().replaceForgetPasswordOTPVerificaitonFragment();
+			}
+
+		}
+	}
 }

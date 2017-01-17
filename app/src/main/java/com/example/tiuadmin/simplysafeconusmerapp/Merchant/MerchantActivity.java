@@ -2,15 +2,19 @@ package com.example.tiuadmin.simplysafeconusmerapp.Merchant;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +32,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantViewAdapter;
-import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.JSON.JSONPARSER;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
@@ -37,7 +39,6 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
-import com.google.gson.JsonArray;
 import com.google.zxing.Result;
 
 import org.json.JSONArray;
@@ -47,6 +48,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import static com.example.tiuadmin.simplysafeconusmerapp.R.id.edMerchantMobilenumber;
+
 
 public class MerchantActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
     private List<String> list = new ArrayList<String>();
@@ -60,11 +64,11 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
 
     private StaggeredGridLayoutManager mStaggeredLayoutManager;
-    private LinearLayout llProgress;
+   // private LinearLayout llProgress;
 
     private boolean isListView;
     private Menu menu;
-    private ProgressBar progressBar;
+    EditText edMerchantMobilenumber;
    // ArrayList<String> merchantArraay;
    ListView mRecyclerView;
     @Override
@@ -72,8 +76,8 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant);
 
-        progressBar=(ProgressBar)findViewById(R.id.progressBar);
-        llProgress = (LinearLayout) findViewById(R.id.llProgress);
+
+       // llProgress = (LinearLayout) findViewById(R.id.llProgress);
 
          mRecyclerView = (ListView) findViewById(R.id.list);
 
@@ -163,7 +167,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                         dialog.dismiss();
                     }
                 });
-                final EditText edMerchantMobilenumber=(EditText)dialog.findViewById(R.id.edMerchantMobilenumber);
+                  edMerchantMobilenumber=(EditText)dialog.findViewById(R.id.edMerchantMobilenumber);
 
                 edMerchantMobilenumber.setText("8087448286");
                 Button addMerchant = (Button) dialog.findViewById(R.id.btn_addmerchant);
@@ -176,17 +180,18 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                         {
 
                             dialog.dismiss();
+                            new AsyncTaskAddMerchant().execute();
 
-                            makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
+                                //  makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
                             // progressBar.setVisibility(View.GONE);
 
 
-                            mAdapter.notifyDataSetChanged();
+                            //mAdapter.notifyDataSetChanged();
                             // sendRequest();
 
                             // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
                             // mRecyclerView.setLayoutManager(layoutManager);
-                            mRecyclerView.smoothScrollToPosition(0);
+                           // mRecyclerView.smoothScrollToPosition(0);
                            /* mRecyclerView.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -223,7 +228,8 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     @Override
     public void onPause() {
         super.onPause();
-        mScannerView.stopCamera();           // Stop camera on pause
+
+        //mScannerView.stopCamera();           // Stop camera on pause
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -250,12 +256,66 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         }
     }
 
+    //******************webservice********
+    private ProgressDialog progressDialog2 = null;
+    String username;
+    ArrayList<Merchant> setget = new ArrayList<>();
 
+
+    // To use the AsyncTask, it must be subclassed
+    private class AsyncTaskAddMerchant extends AsyncTask<Void, Integer, Void> {
+        // Before running code in separate thread
+        @Override
+        protected void onPreExecute() {
+            // Create a new progress dialog
+            progressDialog2 = new ProgressDialog(MerchantActivity.this);
+            progressDialog2.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+            progressDialog2.getWindow().setGravity(Gravity.CENTER);
+            // Set the progress dialog to display a horizontal progress bar
+            progressDialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            // Set the dialog title to 'Loading...'
+            // Set the dialog message to 'Loading application View, please
+            // wait...'
+            progressDialog2.setMessage("Pleaes Wait...");
+            // This dialog can't be canceled by pressing the back key
+            progressDialog2.setCancelable(false);
+            // This dialog isn't indeterminate
+            progressDialog2.setIndeterminate(false);
+            // Display the progress dialog
+            progressDialog2.show();
+        }
+
+        // The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
+            } catch (Exception e) {
+                progressDialog2.dismiss();
+
+
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        // after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialog2.dismiss();
+            mAdapter.notifyDataSetChanged();
+            // sendRequest();
+
+            // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
+            // mRecyclerView.setLayoutManager(layoutManager);
+            mRecyclerView.smoothScrollToPosition(0);
+        }
+    }
     /**
      * Making json object request
      */
     private void makeAddMerchantRequest(String ConsumerMobilenumber) {
-        new GeneralFunction().showProgressDialog(this);
+       // llProgress.setVisibility(View.VISIBLE);
         String res = null;
         String responseCode = null;
         String returnResponse = null;
@@ -318,11 +378,11 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
             else {
                 Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
                         .show();
-                new GeneralFunction().hideProgressDialog();
+
             }
 
         } catch (Exception e) {
-            new GeneralFunction().hideProgressDialog();
+
             Toast.makeText(getApplicationContext(), "Please provide valid mobile number.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
@@ -405,13 +465,12 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
                                 ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
 
 
-
                     }
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
 
 
 
-                    new GeneralFunction().hideProgressDialog();
+
 
 
                 }
@@ -419,11 +478,11 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
             else {
                 Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
                         .show();
-                new GeneralFunction().hideProgressDialog();
+
             }
 
         } catch (Exception e) {
-                new GeneralFunction().hideProgressDialog();
+
             Toast.makeText(getApplicationContext(), "Please provide valid mobile number.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
@@ -435,7 +494,8 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
      * Making json object request
      */
     private void makeGetMerchantConsumerDatabaseRequest() {
-        new GeneralFunction().showProgressDialog(this);
+
+        Const.MERCHANT_DATA.clear();
         String res = null;
         String responseCode = null;
         String returnResponse = null;
@@ -500,7 +560,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
 
 
-                    new GeneralFunction().hideProgressDialog();
+
 
 
                 }
@@ -508,15 +568,23 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
             else {
                 Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
                         .show();
-                new GeneralFunction().hideProgressDialog();
+
             }
 
         } catch (Exception e) {
-            new GeneralFunction().hideProgressDialog();
+
             Toast.makeText(getApplicationContext(), "Please provide valid mobile number.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
     }
 
     private void setUpActionBar() {
@@ -568,7 +636,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         alert1.show();
     }
 
-    private void showProgress(String message) {
+    /*private void showProgress(String message) {
         ((TextView) llProgress.findViewById(R.id.tvMessage)).setText(message);
         llProgress.setVisibility(View.VISIBLE);
 
@@ -577,5 +645,5 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     private void hideProgress() {
         ((TextView) llProgress.findViewById(R.id.tvMessage)).setText("");
         llProgress.setVisibility(View.GONE);
-    }
+    }*/
 }

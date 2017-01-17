@@ -1,11 +1,14 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +16,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +33,9 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
 
     private static EditText phonenumber,otp;
     private static TextView submit, back;
+    String getphonenumber ;//= phonenumber.getText().toString().trim();
+    String getotp ;//= otp.getText().toString().trim();
+    String status;// = json.getString("status");
 
     public VerifyOTPForgetPassword() {
         // Required empty public constructor
@@ -95,8 +103,8 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
     }
 
     private void submitButtonTask() {
-        String getphonenumber = phonenumber.getText().toString().trim();
-        String getotp = otp.getText().toString().trim();
+         getphonenumber = phonenumber.getText().toString().trim();
+         getotp = otp.getText().toString().trim();
 
         /*// Pattern for email id validation
         Pattern p = Pattern.compile(Utils.regEx);
@@ -127,7 +135,7 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
                     "Invalid Mobile number");*/
         // else
         {
-            makeForgetPasswordRequest(getphonenumber, getotp);
+            new AsyncTaskChangePasswordForgetPassword().execute();
         }
 
     }
@@ -136,7 +144,7 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
      * Making json object request
      */
     private void makeForgetPasswordRequest(String phone,String otp) {
-        new GeneralFunction().showProgressDialog(getActivity());
+
         String res = null;
         String responseCode = null;
         String returnResponse = null;
@@ -158,23 +166,71 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
                 JSONObject json = new JSONObject(res);
                 if (json != null) {
 
-                    String status = json.getString("status");
+                     status = json.getString("status");
                     String message = json.getString("message");
-                    if (status.equalsIgnoreCase("true"))
-                    {
 
-                        new MainActivity().replaceChangePasswordFragment();
-                    }
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 
 
 
                 }
             }
-            new GeneralFunction().hideProgressDialog();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    //******************webservice********
+    private ProgressDialog progressDialog2 = null;
+    String username;
+    ArrayList<Merchant> setget = new ArrayList<>();
+    String fname, lname, strGender;
+
+    // To use the AsyncTask, it must be subclassed
+    private class AsyncTaskChangePasswordForgetPassword extends AsyncTask<Void, Integer, Void> {
+        // Before running code in separate thread
+        @Override
+        protected void onPreExecute() {
+            // Create a new progress dialog
+            progressDialog2 = new ProgressDialog(getActivity());
+            progressDialog2.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+            progressDialog2.getWindow().setGravity(Gravity.CENTER);
+            // Set the progress dialog to display a horizontal progress bar
+            progressDialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            // Set the dialog title to 'Loading...'
+            // Set the dialog message to 'Loading application View, please
+            // wait...'
+            progressDialog2.setMessage("Pleaes Wait...");
+            // This dialog can't be canceled by pressing the back key
+            progressDialog2.setCancelable(false);
+            // This dialog isn't indeterminate
+            progressDialog2.setIndeterminate(false);
+            // Display the progress dialog
+            progressDialog2.show();
+        }
+
+        // The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                makeForgetPasswordRequest(getphonenumber, getotp);
+            } catch (Exception e) {
+                progressDialog2.dismiss();
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        // after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialog2.dismiss();
+            if (status.equalsIgnoreCase("true"))
+            {
+
+                new MainActivity().replaceChangePasswordFragment();
+            }
+        }
+    }
 }

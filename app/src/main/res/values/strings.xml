@@ -40,5 +40,6 @@
 
     <string name="otp_hint">Enter 4 digit OTP here</string>
     <string name="otp_newpassword">Enter new password</string>
+    <string name="address">Please enter address</string>
 
 </resources>
