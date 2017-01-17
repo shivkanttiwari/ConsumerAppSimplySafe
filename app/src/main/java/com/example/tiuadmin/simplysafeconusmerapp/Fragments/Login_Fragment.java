@@ -257,8 +257,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
      */
     private void makeLoginRequest(String phone, String password) {
        // new GeneralFunction().showProgressDialog(getActivity());
-        phone="9096572182";
-        password="1234567";
+
+
         String res = null;
         String responseCode = null;
         String returnResponse = null;
