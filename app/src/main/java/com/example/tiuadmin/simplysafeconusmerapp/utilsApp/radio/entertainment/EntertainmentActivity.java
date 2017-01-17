@@ -9,12 +9,11 @@ import android.widget.ListView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.UtilityNameListAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RadioWebViewActivity;
-
-import java.util.ArrayList;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.UtilsConstants;
 
 public class EntertainmentActivity extends AppCompatActivity {
     ListView lv;
+    String[] strList = {"Cricket", "Channels"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +23,7 @@ public class EntertainmentActivity extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.listView1);
 
-        ArrayList<String> utiltyName = new ArrayList<>();
-
-        utiltyName.add("Hot Star");
-        utiltyName.add("Cricbuzz");
-//        utiltyName.add("Weather");
-//        utiltyName.add("Games");
-//        utiltyName.add("Entertainment");
-//        utiltyName.add("Knowledge");
-
-        UtilityNameListAdapter adapter = new UtilityNameListAdapter(this, utiltyName);
+        UtilityNameListAdapter adapter = new UtilityNameListAdapter(this, strList);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -41,31 +31,15 @@ public class EntertainmentActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
                     case 0: {
-                        RadioWebViewActivity.loadUrl = "http://www.hotstar.com/";
-                        startActivity(new Intent(EntertainmentActivity.this, RadioWebViewActivity.class));
+                        WebViewListsActivity.loadList = UtilsConstants.CRICKET;
+                        startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
                     }
                     break;
                     case 1: {
-                        RadioWebViewActivity.loadUrl = "http://www.m.cricbuzz.com//";
-                        startActivity(new Intent(EntertainmentActivity.this, RadioWebViewActivity.class));
-                    }
-
-
-                    break;
-                    case 2:
-                        //  startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
-
-                        break;
-                    case 3:
-
-
-                        break;
-                    case 4: {
-                        //startActivity(new Intent(UtilityActivity.this, EntertainmentActivity.class));
+                        WebViewListsActivity.loadList = UtilsConstants.CHANNELS;
+                        startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
                     }
                     break;
-                    case 5:
-                        break;
                 }
             }
         });

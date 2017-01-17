@@ -223,7 +223,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                     "Please provide valid mobile number.");
             // Else do login and do your stuff
         else {
-            makeLoginRequest(getMobilenumber, getPassword);
+            getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+            //makeLoginRequest(getMobilenumber, getPassword);
         }
 
 

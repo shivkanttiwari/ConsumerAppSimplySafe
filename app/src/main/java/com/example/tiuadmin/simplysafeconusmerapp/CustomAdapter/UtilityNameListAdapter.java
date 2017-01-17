@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
-import java.util.ArrayList;
-
 /**
  * Created by tiuadmin on 04/01/17.
  */
@@ -18,16 +16,16 @@ import java.util.ArrayList;
 public class UtilityNameListAdapter extends BaseAdapter {
 
     Activity context;
-    ArrayList<String> utiltilyName;
+    String[] utiltilyName;
 
-    public UtilityNameListAdapter(Activity context, ArrayList<String> utilityName) {
+    public UtilityNameListAdapter(Activity context, String[] utilityName) {
         this.context = context;
         this.utiltilyName = utilityName;
     }
 
     @Override
     public int getCount() {
-        return utiltilyName.size();
+        return utiltilyName.length;
     }
 
     @Override
@@ -47,7 +45,7 @@ public class UtilityNameListAdapter extends BaseAdapter {
                 .inflate(R.layout.utilitynamelistlayout, parent, false);
 
         TextView txt_utilityName = (TextView) itemView.findViewById(R.id.txtutlitityname);
-        txt_utilityName.setText(utiltilyName.get(position));
+        txt_utilityName.setText(utiltilyName[position]);
 
         return itemView;
     }

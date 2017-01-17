@@ -21,27 +21,19 @@ import java.util.List;
 
 public class UtilityActivity extends AppCompatActivity {
 
-    ListView lvUtiltiyName;
+    ListView lv;
+    String[] strList = {"Radio", "Calculator", "Weather", "Games", "Entertainment", "Knowledge"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_utility);
-        lvUtiltiyName = (ListView) findViewById(R.id.listView1);
+        lv = (ListView) findViewById(R.id.listView1);
 
-        ArrayList<String> utiltyName = new ArrayList<>();
+        UtilityNameListAdapter adapter = new UtilityNameListAdapter(this, strList);
+        lv.setAdapter(adapter);
 
-        utiltyName.add("Radio");
-        utiltyName.add("Calculator");
-        utiltyName.add("Weather");
-        utiltyName.add("Games");
-        utiltyName.add("Entertainment");
-        utiltyName.add("Knowledge");
-
-        UtilityNameListAdapter adapter = new UtilityNameListAdapter(this, utiltyName);
-        lvUtiltiyName.setAdapter(adapter);
-
-        lvUtiltiyName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch (position) {
@@ -57,7 +49,7 @@ public class UtilityActivity extends AppCompatActivity {
                     break;
 
                     case 2:
-                        //  startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
+                          //startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
                         break;
                     case 3:
 
@@ -67,7 +59,6 @@ public class UtilityActivity extends AppCompatActivity {
                     }
                     break;
                     case 5:
-
 
                         break;
                 }
