@@ -24,6 +24,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
@@ -37,18 +38,19 @@ public class DrawerActivity extends AppCompatActivity {
 
     TextView navigationDrawerTextview;
     ImageView navigationDrawerImageview;
-
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_main);
+        prefManager=new PrefManager(this);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
         StrictMode.setThreadPolicy(policy);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
-        makeLoginRequest();
+        makeUserDetailRequest();
       //  initCollapsingToolbar();
 
 
@@ -60,6 +62,7 @@ public class DrawerActivity extends AppCompatActivity {
 //        }
 
     }
+
 
 
     public void initNavigationDrawer() {
@@ -91,6 +94,8 @@ public class DrawerActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.logout:
+
+                        prefManager.setToken("");
                         startActivity(new Intent(DrawerActivity.this, MainActivity.class));
                         finish();
 
@@ -169,7 +174,7 @@ public class DrawerActivity extends AppCompatActivity {
     /**
      * Making json object request
      */
-    private void makeLoginRequest() {
+    private void makeUserDetailRequest() {
         new GeneralFunction().showProgressDialog(this);
         String res = null;
         String responseCode = null;

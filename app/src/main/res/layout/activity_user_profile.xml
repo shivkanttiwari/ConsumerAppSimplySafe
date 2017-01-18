@@ -12,7 +12,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/user_pro_save_button"
+        android:layout_above="@+id/btn_Save"
 
         android:id="@+id/scrollView">
 
@@ -38,6 +38,7 @@
                     android:src="@drawable/profileuser"
                     app:civ_border_color="#EEEEEE"
                     app:civ_border_width="4dp"
+
                     app:civ_shadow="true"
                     app:civ_shadow_color="#8BC34A"
                     app:civ_shadow_radius="10" />
@@ -75,13 +76,32 @@
                     android:layout_height="wrap_content">
 
                     <EditText
+                        android:id="@+id/user_pro_fullname_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textColor="@color/white"
+                        android:hint="@string/fullName"
+                        android:imeOptions="actionNext"
+                        android:focusable="false"
+                        android:inputType="textNoSuggestions" />
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:theme="@style/TextLabel"
+                    android:textColorHint="#FFFFFF"
+                    android:layout_height="wrap_content">
+
+                    <EditText
                         android:id="@+id/user_pro_email_editText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:textColor="@color/white"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:imeOptions="actionNext"
+                        android:focusable="false"
                         android:inputType="textNoSuggestions" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -98,7 +118,8 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:textColor="@color/white"
-                        android:hint="Mobile Number"
+                        android:hint="@string/mobileNumber"
+                        android:focusable="false"
                         android:imeOptions="actionNext"
                         android:inputType="textNoSuggestions" />
 
@@ -107,202 +128,40 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
-                    android:textColorHint="#FFFFFF"
-                    android:layout_marginTop="10dp">
-
-                    <EditText
-                        android:id="@+id/reg_company_editText_update"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:textColor="@color/white"
-                        android:hint="Enter company name"
-                        android:imeOptions="actionDone"
-                        />
-
-
-                </android.support.design.widget.TextInputLayout>
-
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:theme="@style/TextLabel"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="#FFFFFF"
-                    android:layout_marginTop="10dp">
-
-                    <EditText
-                        android:id="@+id/commodity_selection_edittext_update"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:textColor="@color/white"
-                        android:hint="Please Select commodity"
-                        android:focusable="false"
-                        android:imeOptions="actionDone"
-                        />
-
-
-                </android.support.design.widget.TextInputLayout>
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Select City"
-                    android:theme="@style/TextLabel"
-                    android:textColorHint="#FFFFFF"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/autoCompleteTextView_updateprofile" />
-
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="#FFFFFF"
-                    android:theme="@style/TextLabel"
-                    android:visibility="gone"
-                    android:layout_marginTop="10dp">
-
-                    <EditText
-                        android:id="@+id/select_user_subtype"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Please select your subtype"
-                        android:textColor="#FFFFFF"
-                        android:focusable="false"
-                        android:imeOptions="actionDone"
-                        />
-
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:theme="@style/TextLabel"
                     android:textColorHint="#FFFFFF"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/user_pro_fname_editText"
+                        android:id="@+id/user_pro_address_editText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="First Name"
                         android:textColor="@color/white"
+                        android:hint="@string/address"
+                        android:focusable="false"
                         android:imeOptions="actionNext"
                         android:inputType="textNoSuggestions" />
 
                 </android.support.design.widget.TextInputLayout>
 
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/user_pro_lname_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Last Name"
-                        android:imeOptions="actionDone"
-                        android:inputType="textNoSuggestions" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Gender"
-                    android:visibility="gone"
-
-                    android:layout_marginLeft="3dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <Spinner
-                    android:id="@+id/user_pro_gender_Spinner"
-                    android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content"></Spinner>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="State"
-                    android:visibility="gone"
-                    android:layout_marginLeft="3dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <Spinner
-                    android:id="@+id/user_pro_location_spinner"
-                    android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content"></Spinner>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="City"
-                    android:visibility="gone"
-                    android:layout_marginLeft="3dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <Spinner
-                    android:id="@+id/user_pro_city_spinner"
-                    android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content"></Spinner>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select Commodity"
-                        android:id="@+id/button"
-
-                        android:layout_gravity="left"
-                        android:layout_below="@+id/user_pro_img_imageView"
-                        android:layout_alignParentStart="true" />
-
-                    <CheckBox
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:id="@+id/imgbtnisCommoditySelected"
-
-                        android:layout_marginTop="10dp"
-                        android:layout_below="@+id/user_pro_img_imageView"
-                        android:layout_toEndOf="@+id/button" />
-
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/user_pro_save_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/white"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:text="Save"
 
-        android:visibility="gone" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btn_Save"
+        android:textColor="@color/black"
+        android:visibility="gone"
+
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

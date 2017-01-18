@@ -1,8 +1,10 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,7 @@ import android.text.Editable;
 import android.text.Selection;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,14 +26,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,7 +50,9 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     private static LinearLayout loginLayout;
     private static Animation shakeAnimation;
     private static FragmentManager fragmentManager;
-
+    PrefManager prefManager;
+    String getMobilenumber;// = mobileNumber.getText().toString();
+    String getPassword ;//= password.getText().toString();
     public Login_Fragment() {
 
     }
@@ -53,8 +61,22 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.login_layout, container, false);
-        initViews();
-        setListeners();
+        prefManager=new PrefManager(getActivity());
+
+        String token=prefManager.getToken();
+        if(prefManager.getToken()==null || prefManager.getToken().length()<=0)
+        {
+            initViews();
+            setListeners();
+
+        }
+        else {
+
+            Const.LOGIN_TOKEN=prefManager.getToken();
+            getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+            getActivity().finish();
+        }
+
         return view;
     }
 
@@ -200,8 +222,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     private void checkValidation() {
 
         // Get email id and password
-        String getMobilenumber = mobileNumber.getText().toString();
-        String getPassword = password.getText().toString();
+         getMobilenumber = mobileNumber.getText().toString();
+         getPassword = password.getText().toString();
         getMobilenumber = getMobilenumber.substring(3, getMobilenumber.length());
 
         // Check patter for email id
@@ -223,8 +245,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                     "Please provide valid mobile number.");
             // Else do login and do your stuff
         else {
-            getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
             //makeLoginRequest(getMobilenumber, getPassword);
+            new AsyncTaskWS().execute();
         }
 
 
@@ -234,9 +256,9 @@ public class Login_Fragment extends Fragment implements OnClickListener {
      * Making json object request
      */
     private void makeLoginRequest(String phone, String password) {
-        new GeneralFunction().showProgressDialog(getActivity());
-        phone="9096572182";
-        password="1234567";
+       // new GeneralFunction().showProgressDialog(getActivity());
+
+
         String res = null;
         String responseCode = null;
         String returnResponse = null;
@@ -260,22 +282,73 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                     Const.LOGIN_TOKEN = logintoken;
                     Const.TOKEN_WITH_BEARER += Const.LOGIN_TOKEN;
                     Log.d("token", Const.TOKEN_WITH_BEARER);
+                    prefManager.setToken(logintoken);
+
                     //getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
                     getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
                     Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
                             .show();
                     getActivity().finish();
-                    new GeneralFunction().hideProgressDialog();
+                   // new GeneralFunction().hideProgressDialog();
                 }
             } else {
                 Toast.makeText(getActivity(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT).show();
-                new GeneralFunction().hideProgressDialog();
+               // new GeneralFunction().hideProgressDialog();
             }
 
         } catch (Exception e) {
             Toast.makeText(getActivity(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT).show();
-            new GeneralFunction().hideProgressDialog();
+            //new GeneralFunction().hideProgressDialog();
             e.printStackTrace();
+        }
+    }
+
+    //******************webservice********
+    private ProgressDialog progressDialog2 = null;
+    String username;
+    ArrayList<Merchant> setget = new ArrayList<>();
+    String fname, lname, strGender;
+
+    // To use the AsyncTask, it must be subclassed
+    private class AsyncTaskWS extends AsyncTask<Void, Integer, Void> {
+        // Before running code in separate thread
+        @Override
+        protected void onPreExecute() {
+            // Create a new progress dialog
+            progressDialog2 = new ProgressDialog(getActivity());
+            progressDialog2.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+            progressDialog2.getWindow().setGravity(Gravity.CENTER);
+            // Set the progress dialog to display a horizontal progress bar
+            progressDialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            // Set the dialog title to 'Loading...'
+            // Set the dialog message to 'Loading application View, please
+            // wait...'
+            progressDialog2.setMessage("Pleaes Wait...");
+            // This dialog can't be canceled by pressing the back key
+            progressDialog2.setCancelable(false);
+            // This dialog isn't indeterminate
+            progressDialog2.setIndeterminate(false);
+            // Display the progress dialog
+            progressDialog2.show();
+        }
+
+        // The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                makeLoginRequest(getMobilenumber, getPassword);
+            } catch (Exception e) {
+                progressDialog2.dismiss();
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        // after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialog2.dismiss();
+
         }
     }
 }

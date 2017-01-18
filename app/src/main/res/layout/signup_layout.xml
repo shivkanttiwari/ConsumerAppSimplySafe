@@ -179,7 +179,7 @@
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/passowrd"
-
+android:maxLength="4"
         android:inputType="textPassword"
         android:padding="10dp"
         android:singleLine="true"
@@ -210,6 +210,7 @@
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/confirmPassword"
+        android:maxLength="4"
         android:inputType="textPassword"
         android:padding="10dp"
         android:singleLine="true"

@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:textColor="@color/white"
+                android:maxLength="4"
                 android:drawablePadding="10dp"
                 android:drawableLeft="@drawable/password"
                 android:hint="Password"/>

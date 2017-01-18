@@ -85,7 +85,7 @@ public class WebService {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .addHeader("Authorization", Const.TOKEN_WITH_BEARER)
+                .addHeader("Authorization", "Bearer "+Const.LOGIN_TOKEN.trim())
                 .addHeader("Content-Type", "application/json")
                 .build();
         Response response = client.newCall(request).execute();

@@ -17,6 +17,7 @@ public class Const {
 
 	public static String USER_NAME = "";
 	public static String USER_MOBILENUMBER = "";
+	public static String USER_EMAIL = "";
 
 	public static ArrayList<Merchant> MERCHANT_DATA = new ArrayList<>();
 }

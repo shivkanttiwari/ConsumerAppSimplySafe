@@ -3,10 +3,12 @@ package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
@@ -25,6 +28,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,7 +44,14 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private TextView msgResponse;
 	private ProgressDialog pDialog;
 	private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
-
+public  static String phoneNumberCommonforUserRegistraiotn="";
+	// Get all edittext texts
+	String getFullName;// = fullName.getText().toString();
+	String getEmailId ;//= emailId.getText().toString();
+	String getMobileNumber;// = mobileNumber.getText().toString();
+	String getLocation ;//= location.getText().toString();
+	String getPassword ;//= password.getText().toString();
+	String getConfirmPassword ;//= confirmPassword.getText().toString();
 	public SignUp_Fragment() {
 
 	}
@@ -55,6 +66,8 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 		initViews();
 		setListeners();
+
+
 		return view;
 	}
 
@@ -115,12 +128,12 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 
 		// Get all edittext texts
-		String getFullName = fullName.getText().toString();
-		String getEmailId = emailId.getText().toString();
-		String getMobileNumber = mobileNumber.getText().toString();
-		String getLocation = location.getText().toString();
-		String getPassword = password.getText().toString();
-		String getConfirmPassword = confirmPassword.getText().toString();
+		 getFullName = fullName.getText().toString();
+		 getEmailId = emailId.getText().toString();
+		 getMobileNumber = mobileNumber.getText().toString();
+		 getLocation = location.getText().toString();
+		 getPassword = password.getText().toString();
+		 getConfirmPassword = confirmPassword.getText().toString();
 
 		// Pattern match for email id
 		Pattern p = Pattern.compile(Utils.regEx);
@@ -157,7 +170,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		else
 			//Toast.makeText(getActivity(), "Do SignUp.", Toast.LENGTH_SHORT)
 					//.show();
-			makeSignUpRequest(getFullName,getEmailId,getMobileNumber,getConfirmPassword);
+			new AsyncTaskSignUP().execute();
 
 	}
 
@@ -175,7 +188,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	 * Making json object request
 	 */
 	private void makeSignUpRequest(String name,String email,String phone,String password) {
-		showProgressDialog();
+		Const.SIGNUP_TOKEN="";
 		String res = null;
 		String responseCode = null;
 		String returnResponse = null;
@@ -188,7 +201,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 			signUpJsonRequestObject.put("phone", phone);
 			signUpJsonRequestObject.put("sspin", password);
 
-
+			phoneNumberCommonforUserRegistraiotn=phone;
 
 			WebService web = new WebService();
 			res = web.postWithHeader(url, signUpJsonRequestObject.toString());
@@ -206,7 +219,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 						JSONObject userdata=json.getJSONObject("data");
 
 						Const.SIGNUP_TOKEN=userdata.getString("otp");
-						new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
 					}
 					Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
 
@@ -217,7 +230,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 				}
 			}
-			hideProgressDialog();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -272,5 +285,56 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		// Cancelling request
 		// ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
 	}*/
+	}
+
+	//******************webservice********
+	private ProgressDialog progressDialog2 = null;
+	String username;
+	ArrayList<Merchant> setget = new ArrayList<>();
+	String fname, lname, strGender;
+
+	// To use the AsyncTask, it must be subclassed
+	private class AsyncTaskSignUP extends AsyncTask<Void, Integer, Void> {
+		// Before running code in separate thread
+		@Override
+		protected void onPreExecute() {
+			// Create a new progress dialog
+			progressDialog2 = new ProgressDialog(getActivity());
+			progressDialog2.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+			progressDialog2.getWindow().setGravity(Gravity.CENTER);
+			// Set the progress dialog to display a horizontal progress bar
+			progressDialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			// Set the dialog title to 'Loading...'
+			// Set the dialog message to 'Loading application View, please
+			// wait...'
+			progressDialog2.setMessage("Pleaes Wait...");
+			// This dialog can't be canceled by pressing the back key
+			progressDialog2.setCancelable(false);
+			// This dialog isn't indeterminate
+			progressDialog2.setIndeterminate(false);
+			// Display the progress dialog
+			progressDialog2.show();
+		}
+
+		// The code to be executed in a background thread.
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				makeSignUpRequest(getFullName,getEmailId,getMobileNumber,getConfirmPassword);
+			} catch (Exception e) {
+				progressDialog2.dismiss();
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		// after executing the code in the thread
+		@Override
+		protected void onPostExecute(Void result) {
+			progressDialog2.dismiss();
+			if(Const.SIGNUP_TOKEN.length()>=0)
+			new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+
+		}
 	}
 }
