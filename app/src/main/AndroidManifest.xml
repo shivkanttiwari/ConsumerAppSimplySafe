@@ -70,14 +70,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".utilsApp.radio.RadioWebViewActivity"
-            android:parentActivityName=".Activity.UtilityActivity" />
-
+            android:parentActivityName=".utilsApp.radio.entertainment.WebViewListsActivity" />
         <activity
             android:name=".utilsApp.radio.entertainment.WebViewListsActivity"
-            android:parentActivityName=".utilsApp.radio.entertainment.WebViewListsActivity" />
+            android:parentActivityName=".utilsApp.radio.entertainment.EntertainmentActivity" />
         <activity android:name=".Activity.ScrollviewAnimate" />
         <activity
             android:name=".utilsApp.radio.entertainment.EntertainmentActivity"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity
+            android:name=".utilsApp.radio.RewardsActivity"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
     </application>
 

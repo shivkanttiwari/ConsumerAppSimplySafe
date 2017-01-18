@@ -23,6 +23,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RewardsActivity;
 
 import java.util.List;
 import java.util.Random;
@@ -41,12 +42,12 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
 
         public MyViewHolder(View view) {
             super(view);
-            cardview=(CardView)view.findViewById(R.id.card_view);
+            cardview = (CardView) view.findViewById(R.id.card_view);
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
-            relativelayoutAlbumAdapter=(RelativeLayout)view.findViewById(R.id.relativelayoutAlbumAdapter);
+            relativelayoutAlbumAdapter = (RelativeLayout) view.findViewById(R.id.relativelayoutAlbumAdapter);
         }
     }
 
@@ -62,7 +63,6 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
                 .inflate(R.layout.album_card, parent, false);
 
 
-
         return new MyViewHolder(itemView);
     }
 
@@ -70,8 +70,7 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         MainMenuDashboard album = albumList.get(position);
         holder.title.setText(album.getName());
-     //   holder.count.setText(album.getNumOfSongs() + " songs");
-
+        //   holder.count.setText(album.getNumOfSongs() + " songs");
 
 
         int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
@@ -93,39 +92,35 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
             public void onClick(View v) {
 
 
-switch (position)
-{
-    case 0:
-        Intent merchantIntent=new Intent(mContext, MerchantActivity.class);
-        mContext.startActivity(merchantIntent);
+                switch (position) {
+                    case 0:
+                        Intent merchantIntent = new Intent(mContext, MerchantActivity.class);
+                        mContext.startActivity(merchantIntent);
 
-        break;
-    case 1:
+                        break;
+                    case 1:
 
-        Intent utiltyIntent=new Intent(mContext, UtilityActivity.class);
-        mContext.startActivity(utiltyIntent);
-        break;
-    case 2:
-
-
-        break;
-    case 3:
+                        Intent utiltyIntent = new Intent(mContext, UtilityActivity.class);
+                        mContext.startActivity(utiltyIntent);
+                        break;
+                    case 2:
+                        mContext.startActivity(new Intent(mContext, RewardsActivity.class));
+                        break;
+                    case 3:
 
 
-        break;
-    case 4:
+                        break;
+                    case 4:
 
 
-        break;
-    case 5:
+                        break;
+                    case 5:
 
 
-        break;
+                        break;
 
 
-
-
-}
+                }
 
 
             /*    if(position==0)
@@ -167,14 +162,14 @@ switch (position)
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_favourite:
-                   // Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    AlertDialog dialog= new GeneralFunction().AskOption(mContext);
+                    // Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                    AlertDialog dialog = new GeneralFunction().AskOption(mContext);
                     dialog.show();
                     Button nbutton = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-                   // nbutton.setBackgroundColor(Color.MAGENTA);
+                    // nbutton.setBackgroundColor(Color.MAGENTA);
                     nbutton.setTextColor(R.color.black);
                     Button pbutton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-                   // pbutton.setBackgroundColor(Color.YELLOW);
+                    // pbutton.setBackgroundColor(Color.YELLOW);
                     pbutton.setTextColor(R.color.black);
 //                    AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
 //                    alertDialog.setTitle("Title");
@@ -193,7 +188,7 @@ switch (position)
 //                    pbutton.setBackgroundColor(Color.YELLOW);
                     return true;
                 case R.id.action_play_next:
-                  //  Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
 
 
                     return true;
