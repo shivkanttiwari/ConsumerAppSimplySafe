@@ -53,6 +53,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     PrefManager prefManager;
     String getMobilenumber;// = mobileNumber.getText().toString();
     String getPassword ;//= password.getText().toString();
+    String status;//=json.getString("status");;
     public Login_Fragment() {
 
     }
@@ -277,18 +278,30 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                 JSONObject json = new JSONObject(res);
                 if (json != null) {
 
-                    String logintoken = json.getString("access_token");
+                     status=json.getString("status");
+                    String message=json.getString("message");
+                    if(status.equalsIgnoreCase("true"))
+                    {
+                        JSONObject userdata=json.getJSONObject("data");
 
-                    Const.LOGIN_TOKEN = logintoken;
-                    Const.TOKEN_WITH_BEARER += Const.LOGIN_TOKEN;
-                    Log.d("token", Const.TOKEN_WITH_BEARER);
-                    prefManager.setToken(logintoken);
+                        //Const.SIGNUP_TOKEN=userdata.getString("otp");
 
-                    //getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
-                    getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
-                    Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
-                            .show();
-                    getActivity().finish();
+                        String logintoken = userdata.getString("access_token");
+
+                        Const.LOGIN_TOKEN = logintoken;
+                        Const.TOKEN_WITH_BEARER += Const.LOGIN_TOKEN;
+                        Log.d("token", Const.TOKEN_WITH_BEARER);
+                        prefManager.setToken(logintoken);
+
+
+
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
+                    }
+
+
                    // new GeneralFunction().hideProgressDialog();
                 }
             } else {
@@ -348,7 +361,21 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         @Override
         protected void onPostExecute(Void result) {
             progressDialog2.dismiss();
+            if(status.equalsIgnoreCase("true"))
+            {
 
+
+                //getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+                Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
+                        .show();
+                getActivity().finish();
+
+            }
+            else
+            {
+                Toast.makeText(getActivity(),"Login Unsuccessful",Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

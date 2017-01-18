@@ -18,7 +18,7 @@
 
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/logo"
+        <ImageView android:src="@drawable/logo_big"
             android:layout_width="300dp"
 
             android:layout_height="100dp"
@@ -66,7 +66,7 @@
                 android:maxLength="4"
                 android:drawablePadding="10dp"
                 android:drawableLeft="@drawable/password"
-                android:hint="Password"/>
+                android:hint="Please Enter Your SSPIN"/>
         </android.support.design.widget.TextInputLayout>
 
         <TextView android:id="@+id/forget_password_link"

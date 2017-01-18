@@ -228,7 +228,7 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
 
             if (status.equalsIgnoreCase("true"))
             {
-
+                Toast.makeText(getActivity(),"User Created SUcessfully",Toast.LENGTH_SHORT).show();
                 new MainActivity().replaceLoginFragment();
             }
         }

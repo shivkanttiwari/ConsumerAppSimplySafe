@@ -105,7 +105,7 @@ public class DrawerActivity extends AppCompatActivity {
         });
         View header = navigationView.getHeaderView(0);
         TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
-        tv_email.setText("shivkant.tiwari123@gmail.com");
+        tv_email.setText(Const.USER_EMAIL);
 
         navigationDrawerImageview = (ImageView) header.findViewById(R.id.navigationdrawerimageuser);
 

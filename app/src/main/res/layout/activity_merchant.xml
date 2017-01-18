@@ -7,8 +7,19 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-
+    <TextView
+        android:id="@+id/txt_noMerchant"
+        android:text="NO merchant.Add new one."
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:textSize="25dp"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
     <ListView
 
         android:id="@+id/list"

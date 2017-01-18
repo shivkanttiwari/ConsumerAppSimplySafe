@@ -58,7 +58,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     private static final int REQUEST_WRITE_PERMISSION = 20;
     MerchantViewAdapter mAdapter;
 
-
+TextView txt_noMerchant;
 
     private Toolbar toolbar;
 
@@ -76,7 +76,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant);
 
-
+        txt_noMerchant=(TextView)findViewById(R.id.txt_noMerchant);
        // llProgress = (LinearLayout) findViewById(R.id.llProgress);
 
          mRecyclerView = (ListView) findViewById(R.id.list);
@@ -103,6 +103,13 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         //mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
 
       //  mRecyclerView.setHasFixedSize(true); //Data size is fixed - improves performance
+        if(Const.MERCHANT_DATA.size()>0)
+        {
+            txt_noMerchant.setVisibility(View.GONE);
+        }
+        else {
+            txt_noMerchant.setVisibility(View.VISIBLE);
+        }
         mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
 
