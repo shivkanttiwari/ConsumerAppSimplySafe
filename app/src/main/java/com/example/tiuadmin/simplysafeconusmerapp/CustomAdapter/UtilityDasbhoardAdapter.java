@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -14,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,8 +28,11 @@ import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RewardsActivity
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Created by tiuadmin on 21/01/17.
+ */
 
-public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashboardAdapter.MyViewHolder> {
+public class UtilityDasbhoardAdapter extends RecyclerView.Adapter<UtilityDasbhoardAdapter.MyViewHolder> {
 
     private Activity mContext;
     private List<MainMenuDashboard> albumList;
@@ -52,7 +55,7 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
     }
 
 
-    public MainMenuDashboardAdapter(Activity mContext, List<MainMenuDashboard> albumList) {
+    public UtilityDasbhoardAdapter(Activity mContext, List<MainMenuDashboard> albumList) {
         this.mContext = mContext;
         this.albumList = albumList;
     }
@@ -203,3 +206,4 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
         return albumList.size();
     }
 }
+

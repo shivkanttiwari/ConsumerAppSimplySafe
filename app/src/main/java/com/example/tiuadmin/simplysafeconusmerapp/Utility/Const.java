@@ -20,4 +20,12 @@ public class Const {
 	public static String USER_EMAIL = "";
 
 	public static ArrayList<Merchant> MERCHANT_DATA = new ArrayList<>();
+
+
+	public static String IS_MAIN_DASHBOARD_VIEW = "1";
+	public static String IS_MAIN_UTILITY_VIEW = "2";
+	public static String IS_UTILITY_ENTERTINMENT_VIEW = "3";
+	public static String IS_UTILITY_ENTERTINMENT_CRICKET_VIEW = "4";
+
+
 }

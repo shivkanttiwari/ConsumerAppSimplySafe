@@ -59,7 +59,8 @@
             android:name=".Merchant.MerchantActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
         <activity
-            android:name=".Activity.UtilityActivity"
+
+            android:name=".APPUtility.UtilityActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
         <activity
             android:name=".User.UserProfileActivity"

@@ -30,7 +30,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+    compile project(':ViewPagerIndicator-Library')
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
@@ -53,8 +53,6 @@ dependencies {
     compile 'com.parse:parse-android:1.11.0'
     compile 'com.android.support:palette-v7:23.4.0'
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:design:23.1.0'
     compile 'com.github.flavienlaurent.discrollview:library:0.0.2'
-    compile project(':ViewPagerIndicator-Library')
+    testCompile 'junit:junit:4.12'
 }
