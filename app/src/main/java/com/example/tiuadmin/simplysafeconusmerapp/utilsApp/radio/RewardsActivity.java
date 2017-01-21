@@ -29,6 +29,7 @@ public class RewardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewars);
 
+        getSupportActionBar().setTitle("Rewards");
         listView = (AnimatedExpandableListView) findViewById(R.id.listView1);
         // In order to show animations, we need to use a custom click handler
         // for our ExpandableListView.

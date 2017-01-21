@@ -190,9 +190,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button1:
-                //checkValidation();
-                getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
-                getActivity().finish();
+                checkValidation();
+
 
                 break;
 

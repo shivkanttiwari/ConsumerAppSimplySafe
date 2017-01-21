@@ -37,7 +37,7 @@ public class UtilityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_utility);
 
-getSupportActionBar().setTitle("Utilities");
+        getSupportActionBar().setTitle("Utilities");
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
 
         albumList = new ArrayList<>();

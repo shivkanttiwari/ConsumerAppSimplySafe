@@ -23,6 +23,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RadioWebViewActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RewardsActivity;
 
 import java.util.List;
@@ -115,6 +116,9 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
 
                         break;
                     case 5:
+
+                        RadioWebViewActivity.loadUrl = "http://gaana.com/";
+                        mContext.startActivity(new Intent(mContext, RadioWebViewActivity.class));
 
 
                         break;

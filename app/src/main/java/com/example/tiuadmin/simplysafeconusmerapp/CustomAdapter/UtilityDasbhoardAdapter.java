@@ -18,12 +18,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.tiuadmin.simplysafeconusmerapp.APPUtility.UtilityActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RewardsActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RadioWebViewActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.entertainment.EntertainmentActivity;
 
 import java.util.List;
 import java.util.Random;
@@ -97,28 +96,29 @@ public class UtilityDasbhoardAdapter extends RecyclerView.Adapter<UtilityDasbhoa
 
                 switch (position) {
                     case 0:
-                        Intent merchantIntent = new Intent(mContext, MerchantActivity.class);
-                        mContext.startActivity(merchantIntent);
+                        Intent i = new Intent();
+                        i.setClassName("com.android.calculator2",
+                                "com.android.calculator2.Calculator");
+                        mContext.startActivity(i);
 
                         break;
                     case 1:
 
-                        Intent utiltyIntent = new Intent(mContext, UtilityActivity.class);
-                        mContext.startActivity(utiltyIntent);
+                       // Intent utiltyIntent = new Intent(mContext, UtilityActivity.class);
+                       // mContext.startActivity(utiltyIntent);
                         break;
                     case 2:
-                        mContext.startActivity(new Intent(mContext, RewardsActivity.class));
+
                         break;
                     case 3:
 
-
+                        mContext.startActivity(new Intent(mContext, EntertainmentActivity.class));
                         break;
                     case 4:
 
 
                         break;
                     case 5:
-
 
                         break;
 

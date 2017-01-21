@@ -78,7 +78,7 @@
         <activity android:name=".Activity.ScrollviewAnimate" />
         <activity
             android:name=".utilsApp.radio.entertainment.EntertainmentActivity"
-            android:parentActivityName=".Activity.DrawerActivity" />
+            android:parentActivityName=".APPUtility.UtilityActivity" />
         <activity
             android:name=".utilsApp.radio.RewardsActivity"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
