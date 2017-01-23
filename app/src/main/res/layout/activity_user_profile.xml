@@ -14,12 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_Save"
 
+
         android:id="@+id/scrollView">
 
         <LinearLayout
             android:id="@+id/user_pro_LinearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="visible">
 
@@ -83,7 +84,7 @@
                         android:textColor="@color/white"
                         android:hint="@string/fullName"
                         android:imeOptions="actionNext"
-                        android:focusable="false"
+android:enabled="false"
                         android:inputType="textNoSuggestions" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -101,7 +102,7 @@
                         android:textColor="@color/white"
                         android:hint="@string/email"
                         android:imeOptions="actionNext"
-                        android:focusable="false"
+                        android:enabled="false"
                         android:inputType="textNoSuggestions" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -119,7 +120,7 @@
                         android:ems="10"
                         android:textColor="@color/white"
                         android:hint="@string/mobileNumber"
-                        android:focusable="false"
+                        android:enabled="false"
                         android:imeOptions="actionNext"
                         android:inputType="textNoSuggestions" />
 
@@ -139,7 +140,7 @@
                         android:ems="10"
                         android:textColor="@color/white"
                         android:hint="@string/address"
-                        android:focusable="false"
+                        android:enabled="false"
                         android:imeOptions="actionNext"
                         android:inputType="textNoSuggestions" />
 
@@ -152,16 +153,16 @@
     </ScrollView>
 
 
-
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:text="Save"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
+
         android:id="@+id/btn_Save"
         android:textColor="@color/black"
-        android:visibility="gone"
 
-        android:layout_alignParentEnd="true" />
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

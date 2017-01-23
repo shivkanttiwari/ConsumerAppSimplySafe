@@ -1,12 +1,13 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Webservices;
 
 
-
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 
+import java.io.File;
 import java.io.IOException;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -110,5 +111,25 @@ public class WebService {
         return response.body().string();
     }
 
+
+    public String postWithHeaderImage(String url,String filename) throws IOException {
+
+
+        File sourceFile = new File(filename);
+          MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("user_image", "shivkantSS.png", RequestBody.create(MEDIA_TYPE_PNG, sourceFile))
+
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .addHeader("Authorization", "Bearer "+Const.LOGIN_TOKEN.trim())
+
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
 
 }

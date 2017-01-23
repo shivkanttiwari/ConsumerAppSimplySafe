@@ -200,7 +200,7 @@ public class DrawerActivity extends AppCompatActivity {
 
                     Const.USER_NAME=json.getString("name");
                     Const.USER_MOBILENUMBER=json.getString("phone");
-
+                    Const.USER_EMAIL=json.getString("email");
 
 
                    /* String logintoken = json.getString("access_token");

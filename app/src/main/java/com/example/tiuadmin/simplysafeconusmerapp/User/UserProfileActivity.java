@@ -3,6 +3,7 @@ package com.example.tiuadmin.simplysafeconusmerapp.User;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +21,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -29,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.CompressImage;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
@@ -42,6 +45,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import static android.R.id.message;
+import static com.example.tiuadmin.simplysafeconusmerapp.R.drawable.phone;
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -60,6 +67,13 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     String image1Base64 = null;
     AlertDialog alertdialog;
     private String selectedImagePath = null;
+    String status;//=json.getString("status");;;
+    String Status_ProfileUPdate;//=json.getString("status");;;
+
+    String fullname;//=ed_FullName.getText().toString();
+    String email;//=ed_Email.getText().toString();
+    String mobile;//=ed_MobilNumber.getText().toString();
+    String address;//=ed_Address.getText().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +99,11 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         shakeAnimation = AnimationUtils.loadAnimation(UserProfileActivity.this,
                 R.anim.shake);
 
+        ed_FullName.setEnabled(false);
+        ed_Email.setEnabled(false);;//, ed_MobilNumber, ed_Address;
+        ed_MobilNumber.setEnabled(false);
+        ed_Address.setEnabled(false);
+
         // Setting text selector over textviews
         XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
         try {
@@ -96,7 +115,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             ed_MobilNumber.setTextColor(csl);
             ed_Address.setTextColor(csl);
             //	show_hide_password.setTextColor(csl);
-            btn_Save.setTextColor(csl);
+           // btn_Save.setTextColor(csl);
         } catch (Exception e) {
         }
 
@@ -121,13 +140,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.user_pro_edit_imageView:
-                Toast.makeText(getApplicationContext(), "Save Clicked", Toast.LENGTH_SHORT).show();
-                ed_Email.setEnabled(true);
-                ed_Email.setFocusable(true);
-                ed_MobilNumber.setEnabled(true);
-                ed_MobilNumber.setFocusable(true);
                 ed_FullName.setEnabled(true);
-                ed_FullName.setFocusable(true);
+                ed_Email.setEnabled(true);;//, ed_MobilNumber, ed_Address;
+                ed_MobilNumber.setEnabled(true);
+                ed_Address.setEnabled(true);
 
                 btn_Save.setVisibility(View.VISIBLE);
                 break;
@@ -156,6 +172,15 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 }
 
 
+                break;
+
+            case R.id.btn_Save:
+                Toast.makeText(getApplicationContext(), "Save Clicked", Toast.LENGTH_SHORT).show();
+
+                new AsyncTaskUpdateProfile().execute();
+                //getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+
+                //getActivity().finish();
                 break;
 
 
@@ -302,6 +327,8 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile
                         .getAbsolutePath());
                 img_profilepic.setImageBitmap(myBitmap);
+
+
                 try {
                     image1Base64 = fileToBase64(result);
 /*
@@ -428,4 +455,195 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         return imgPath;
     }
 
+
+    //******************webservice********
+    private ProgressDialog progressDialog2 = null;
+    String username;
+    ArrayList<Merchant> setget = new ArrayList<>();
+    String fname, lname, strGender;
+
+    // To use the AsyncTask, it must be subclassed
+    private class AsyncTaskUpdateProfile extends AsyncTask<Void, Integer, Void> {
+        // Before running code in separate thread
+        @Override
+        protected void onPreExecute() {
+            // Create a new progress dialog
+            progressDialog2 = new ProgressDialog(UserProfileActivity.this);
+            progressDialog2.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+            progressDialog2.getWindow().setGravity(Gravity.CENTER);
+            // Set the progress dialog to display a horizontal progress bar
+            progressDialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            // Set the dialog title to 'Loading...'
+            // Set the dialog message to 'Loading application View, please
+            // wait...'
+            progressDialog2.setMessage("Pleaes Wait...");
+            // This dialog can't be canceled by pressing the back key
+            progressDialog2.setCancelable(false);
+            // This dialog isn't indeterminate
+            progressDialog2.setIndeterminate(false);
+            // Display the progress dialog
+            progressDialog2.show();
+        }
+
+        // The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                makeUploadProfileRequest();
+            } catch (Exception e) {
+                progressDialog2.dismiss();
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        // after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result) {
+
+
+        }
+    }
+
+
+    /**
+     * Making json object request
+     */
+    private void makeUploadProfileRequest() {
+
+        String res = null;
+        String responseCode = null;
+        String returnResponse = null;
+        try {
+
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/user/image";
+          /*  JSONObject jsonrequest = new JSONObject();
+            jsonrequest.put("phone", phone);
+            jsonrequest.put("sspin", password);
+*/
+
+
+            if(selectedImagePath!=null || selectedImagePath.length()>0) {
+                WebService web = new WebService();
+                res = web.postWithHeaderImage(url, selectedImagePath);
+                Log.d(res, res);
+
+
+                if (res != null && res.length() > 0) {
+                    JSONObject json = new JSONObject(res);
+                    if (json != null) {
+
+
+                        status = json.getString("status");
+                        String message = json.getString("message");
+                        if (status.equalsIgnoreCase("true")) {
+                            UpdateOnlyProfile();
+                        }
+
+                    }
+                }
+            }else {
+
+                UpdateOnlyProfile();
+
+                }
+
+
+
+
+
+        } catch (Exception e) {
+            new GeneralFunction().hideProgressDialog();
+            Toast.makeText(getApplicationContext(), "Unable to Update User Information.", Toast.LENGTH_SHORT)
+                    .show();
+            e.printStackTrace();
+        }
+    }
+
+
+    public  boolean validation()
+    {
+        boolean isvalidate=true;
+         fullname=ed_FullName.getText().toString();
+         email=ed_Email.getText().toString();
+         mobile=ed_MobilNumber.getText().toString();
+         address=ed_Address.getText().toString();
+
+        if(fullname.length()<=0)
+        {
+            Toast.makeText(UserProfileActivity.this,"Please enter valid Name",Toast.LENGTH_SHORT).show();
+            isvalidate=false;
+        }
+        else   if(email.length()<=0)
+        {
+            Toast.makeText(UserProfileActivity.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
+            isvalidate=false;
+        }
+        else   if(mobile.length()<=0)
+        {
+            Toast.makeText(UserProfileActivity.this,"Mobile Number can not be blank",Toast.LENGTH_SHORT).show();
+            isvalidate=false;
+        }
+        else   if(mobile.length()>=0)
+        {
+            if(mobile.length()<10) {
+                Toast.makeText(UserProfileActivity.this, "Please enter valid mobilenumber", Toast.LENGTH_SHORT).show();
+                isvalidate = false;
+            }
+        }
+        else   if(address.length()<=0)
+        {
+            Toast.makeText(UserProfileActivity.this,"Please enter valid address",Toast.LENGTH_SHORT).show();
+            isvalidate=false;
+        }
+
+        return  isvalidate;
+    }
+
+    public  void UpdateOnlyProfile() {
+        try {
+            String UpdateUserProfileUrl = "http://52.66.101.233/Customer-Backend/public/api/v1/user/profile/edit";
+
+            boolean value = validation();
+
+            if (value) {
+                JSONObject jsonrequest = new JSONObject();
+                jsonrequest.put("name", fullname);
+                jsonrequest.put("email", email);
+                jsonrequest.put("phone", phone);
+                jsonrequest.put("sspin", "1234");
+                jsonrequest.put("confirmSSpin", "1234");
+
+                WebService web1 = new WebService();
+                String res1 = web1.postWithHeader(UpdateUserProfileUrl, jsonrequest.toString());
+                Log.d(res1, res1);
+
+                if (res1 != null && res1.length() > 0) {
+                    JSONObject jsonProfileUpdate = new JSONObject(res1);
+                    if (jsonProfileUpdate != null) {
+
+
+                        Status_ProfileUPdate = jsonProfileUpdate.getString("status");
+                        String messageProfileUPdate = jsonProfileUpdate.getString("message");
+                        if (Status_ProfileUPdate.equalsIgnoreCase("true")) {
+
+
+                            Toast.makeText(UserProfileActivity.this, message, Toast.LENGTH_LONG).show();
+                            progressDialog2.dismiss();
+                        }
+
+                    }
+                }
+            } else {
+
+            }
+
+
+        } catch (Exception e) {
+            new GeneralFunction().hideProgressDialog();
+            Toast.makeText(getApplicationContext(), "Unable to Update User Information.", Toast.LENGTH_SHORT)
+                    .show();
+            e.printStackTrace();
+        }
+    }
 }

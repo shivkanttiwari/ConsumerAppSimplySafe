@@ -64,6 +64,8 @@
             android:parentActivityName=".Activity.DrawerActivity" />
         <activity
             android:name=".User.UserProfileActivity"
+
+            android:windowSoftInputMode="stateUnchanged|adjustResize"
             android:parentActivityName=".Activity.DrawerActivity" />
         <activity
             android:name=".Merchant.QRCodeScanActivity"
