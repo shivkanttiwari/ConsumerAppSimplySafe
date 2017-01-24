@@ -5,9 +5,34 @@
     android:id="@+id/activity_rewars"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RewardsActivity">
+    android:orientation="vertical"
+    tools:context="com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards.RewardsActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HELLO, XYZ"
+            android:textColor="@color/white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Points :         600"
+            android:textColor="@color/white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Family Points :      0"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,7 +58,7 @@
             app:snap="false" />
     </RelativeLayout>
 
-    <com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.AnimatedExpandableListView
+    <com.example.tiuadmin.simplysafeconusmerapp.utilsApps.AnimatedExpandableListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

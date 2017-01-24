@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.entertainment;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.ListView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.UtilityNameListAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RadioWebViewActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.UtilsConstants;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.RadioWebViewActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.UtilsConstants;
 
 public class WebViewListsActivity extends AppCompatActivity {
 
@@ -25,6 +25,21 @@ public class WebViewListsActivity extends AppCompatActivity {
 
     String[] strChannels = {"Hot Star", "sonyLIV", "EROS NOW"};
     String[] strChannelsLinks = {"http://www.hotstar.com/", "http://www.sonyliv.com/", "http://erosnow.com/welcome"};
+
+    String[] strRadios = {"Internet Radio", "TuneIn", "Streema", "TuneIn City", "Radio4fm"};
+    String[] strRadiosLinks = {"https://www.internet-radio.com/stations/bollywood/",
+            "http://tunein.com/radio/Bollywood-g2762/", "http://streema.com/radios/genre/Bollywood",
+            "http://tunein.com/radio/City-1016-FM-s14329/", "http://www.radio4fm.com/player/"};
+
+    String[] strMovies = {"Snag films", "Eros Now", "BoxTv"};
+    String[] strMoviesLinks = {"http://www.snagfilms.com/categories/", "http://erosnow.com/",
+            "http://www.boxtv.com/movies/"};
+
+    String[] strRecharges = {"Freecharge", "Paytm", "Mobikwik", "RechargeItNow"};
+    String[] strRechargesLinks = {"https://www.freecharge.in/mobile/", "https://paytm.com/recharge",
+            "https://m.mobikwik.com/", "http://m.rechargeitnow.com/"};
+
+
     //********PREPARE LIST*******
 
 
@@ -51,6 +66,21 @@ public class WebViewListsActivity extends AppCompatActivity {
                 loadedListLinks = strChannelsLinks;
             }
             break;
+            case UtilsConstants.RADIO: {
+                setAdapter(strRadios);
+                loadedListLinks = strRadiosLinks;
+            }
+            break;
+            case UtilsConstants.MOVIES: {
+                setAdapter(strMovies);
+                loadedListLinks = strMoviesLinks;
+            }
+            break;
+            case UtilsConstants.RECHARGE: {
+                setAdapter(strRecharges);
+                loadedListLinks = strRechargesLinks;
+            }
+            break;
         }
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -73,15 +103,20 @@ public class WebViewListsActivity extends AppCompatActivity {
                     }
                     break;
                     case 3: {
-
+                        RadioWebViewActivity.loadUrl = loadedListLinks[position];
+                        startActivity(new Intent(WebViewListsActivity.this, RadioWebViewActivity.class));
                     }
                     break;
                     case 4: {
-                        //startActivity(new Intent(UtilityActivity.this, EntertainmentActivity.class));
+                        RadioWebViewActivity.loadUrl = loadedListLinks[position];
+                        startActivity(new Intent(WebViewListsActivity.this, RadioWebViewActivity.class));
                     }
                     break;
-                    case 5:
-                        break;
+                    case 5: {
+                        RadioWebViewActivity.loadUrl = loadedListLinks[position];
+                        startActivity(new Intent(WebViewListsActivity.this, RadioWebViewActivity.class));
+                    }
+                    break;
                 }
             }
         });

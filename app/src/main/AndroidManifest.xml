@@ -3,30 +3,20 @@
     package="com.example.tiuadmin.simplysafeconusmerapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.AppController"
@@ -59,30 +49,34 @@
             android:name=".Merchant.MerchantActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
         <activity
-
             android:name=".APPUtility.UtilityActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
         <activity
             android:name=".User.UserProfileActivity"
-
-            android:windowSoftInputMode="stateUnchanged|adjustResize"
-            android:parentActivityName=".Activity.DrawerActivity" />
+            android:parentActivityName=".Activity.DrawerActivity"
+            android:windowSoftInputMode="stateUnchanged|adjustResize" />
         <activity
             android:name=".Merchant.QRCodeScanActivity"
             android:parentActivityName=".Merchant.MerchantActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".utilsApp.radio.RadioWebViewActivity"
-            android:parentActivityName=".utilsApp.radio.entertainment.WebViewListsActivity" />
+            android:name=".utilsApps.RadioWebViewActivity"
+            android:parentActivityName=".utilsApps.entertainment.WebViewListsActivity" />
         <activity
-            android:name=".utilsApp.radio.entertainment.WebViewListsActivity"
-            android:parentActivityName=".utilsApp.radio.entertainment.EntertainmentActivity" />
+            android:name=".utilsApps.entertainment.WebViewListsActivity"
+            android:parentActivityName=".utilsApps.entertainment.EntertainmentActivity" />
         <activity android:name=".Activity.ScrollviewAnimate" />
         <activity
-            android:name=".utilsApp.radio.entertainment.EntertainmentActivity"
+            android:name=".utilsApps.entertainment.EntertainmentActivity"
             android:parentActivityName=".APPUtility.UtilityActivity" />
         <activity
-            android:name=".utilsApp.radio.RewardsActivity"
+            android:name=".utilsApps.rewards.RewardsActivity"
+            android:label="Home"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity android:name=".utilsApps.NoInternetActivity" />
+        <activity
+            android:name=".utilsApps.rewards.RewardHomeActivity"
+            android:label="Rewards"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.AnimatedExpandableListView;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.SlidingImage_Adapter;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -29,7 +31,6 @@ public class RewardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewars);
 
-        getSupportActionBar().setTitle("Rewards");
         listView = (AnimatedExpandableListView) findViewById(R.id.listView1);
         // In order to show animations, we need to use a custom click handler
         // for our ExpandableListView.

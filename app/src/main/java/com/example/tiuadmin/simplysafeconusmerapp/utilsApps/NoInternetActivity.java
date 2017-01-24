@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.ConnectionDetector;
 

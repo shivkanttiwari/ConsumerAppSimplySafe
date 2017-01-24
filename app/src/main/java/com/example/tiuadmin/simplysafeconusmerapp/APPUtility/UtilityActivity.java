@@ -63,7 +63,6 @@ public class UtilityActivity extends AppCompatActivity {
                 R.drawable.gamepad,
                 R.drawable.entertainment,
                 R.drawable.knowledge,
-
         };
 
         MainMenuDashboard a = new MainMenuDashboard("0",strList[0],covers[0]);
@@ -81,10 +80,6 @@ public class UtilityActivity extends AppCompatActivity {
         a = new MainMenuDashboard("4",strList[4],covers[4]);
         albumList.add(a);
 
-
-
-
-//
 //        a = new Merchant("OLA", 1, covers[5]);
 //        albumList.add(a);
 //

@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps;
 
 import android.content.Intent;
 import android.os.Bundle;

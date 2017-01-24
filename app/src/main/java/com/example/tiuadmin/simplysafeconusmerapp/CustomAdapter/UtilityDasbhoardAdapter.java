@@ -21,8 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.RadioWebViewActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApp.radio.entertainment.EntertainmentActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.EntertainmentActivity;
 
 import java.util.List;
 import java.util.Random;
