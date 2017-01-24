@@ -66,7 +66,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private String imgPath;
     String image1Base64 = null;
     AlertDialog alertdialog;
-    private String selectedImagePath = null;
+    private String selectedImagePath = "";
     String status;//=json.getString("status");;;
     String Status_ProfileUPdate;//=json.getString("status");;;
 
@@ -267,10 +267,12 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     Const.USER_NAME=json.getString("name");
                     Const.USER_MOBILENUMBER=json.getString("phone");
                     Const.USER_EMAIL=json.getString("email");
+                    String address=json.getString("address");
 
                     ed_FullName.setText(Const.USER_NAME);
                     ed_Email.setText(Const.USER_EMAIL);
                     ed_MobilNumber.setText(Const.USER_MOBILENUMBER);
+                    ed_Address.setText(address);
 
                    /* String logintoken = json.getString("access_token");
 
@@ -523,7 +525,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 */
 
 
-            if(selectedImagePath!=null || selectedImagePath.length()>0) {
+            if(selectedImagePath.length()>0) {
                 WebService web = new WebService();
                 res = web.postWithHeaderImage(url, selectedImagePath);
                 Log.d(res, res);
@@ -553,7 +555,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
 
         } catch (Exception e) {
-            new GeneralFunction().hideProgressDialog();
+
             Toast.makeText(getApplicationContext(), "Unable to Update User Information.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
@@ -611,8 +613,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 jsonrequest.put("name", fullname);
                 jsonrequest.put("email", email);
                 jsonrequest.put("phone", phone);
-                jsonrequest.put("sspin", "1234");
-                jsonrequest.put("confirmSSpin", "1234");
+                jsonrequest.put("address", address);
+                jsonrequest.put("city", "Bhopal");
+                jsonrequest.put("gender", "Male");
 
                 WebService web1 = new WebService();
                 String res1 = web1.postWithHeader(UpdateUserProfileUrl, jsonrequest.toString());
