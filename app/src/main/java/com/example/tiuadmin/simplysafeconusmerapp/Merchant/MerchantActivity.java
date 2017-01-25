@@ -310,6 +310,8 @@ TextView txt_noMerchant;
         @Override
         protected void onPostExecute(Void result) {
             progressDialog2.dismiss();
+
+
             mAdapter.notifyDataSetChanged();
             // sendRequest();
 
@@ -467,9 +469,9 @@ TextView txt_noMerchant;
 
 
 
-
-                        Const.MERCHANT_DATA.add(new Merchant(recordID,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merchant_status
-                                ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
+                        makeGetMerchantConsumerDatabaseRequest();
+                      //  Const.MERCHANT_DATA.add(new Merchant(recordID,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merchant_status
+                          //      ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
 
 
                     }

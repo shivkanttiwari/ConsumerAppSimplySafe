@@ -2,6 +2,8 @@ package com.example.tiuadmin.simplysafeconusmerapp.Activity;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -27,6 +29,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -71,6 +74,7 @@ public class DrawerActivity extends AppCompatActivity {
          navigationView = (NavigationView)findViewById(R.id.navigation_view);
 
 
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -113,6 +117,8 @@ public class DrawerActivity extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
         TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
         tv_email.setText(Const.USER_EMAIL);
+
+
 
         navigationDrawerImageview = (ImageView) header.findViewById(R.id.navigationdrawerimageuser);
 
@@ -205,19 +211,18 @@ public class DrawerActivity extends AppCompatActivity {
                 if (json != null) {
 
 
+                    Const.USER_ID=json.getString("id");
                     Const.USER_NAME=json.getString("name");
                     Const.USER_MOBILENUMBER=json.getString("phone");
                     Const.USER_EMAIL=json.getString("email");
+                    String address=json.getString("address");
 
 
-                   /* String logintoken = json.getString("access_token");
 
-                    Const.LOGIN_TOKEN=logintoken;
-                    Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
-                    Log.d("token",Const.TOKEN_WITH_BEARER);
-                    startActivity(new Intent(DrawerActivity.this, DrawerActivity.class));
 
-                   finish();*/
+                    Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(navigationDrawerImageview);
+
+                    Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);
                     new GeneralFunction().hideProgressDialog();
                 }
             }
@@ -234,6 +239,9 @@ public class DrawerActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+
 
     boolean doubleBackToExitPressedOnce = false;
 
