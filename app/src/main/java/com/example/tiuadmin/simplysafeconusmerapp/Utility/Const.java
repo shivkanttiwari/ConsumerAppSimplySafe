@@ -15,6 +15,7 @@ public class Const {
 	public static String SIGNUP_TOKEN ="";
 	public static String ForgetPassword_TOKEN ="";
 
+	public static String USER_ID = "";
 	public static String USER_NAME = "";
 	public static String USER_MOBILENUMBER = "";
 	public static String USER_EMAIL = "";

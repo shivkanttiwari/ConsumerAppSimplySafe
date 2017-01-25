@@ -37,6 +37,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.CompressImage;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -190,7 +191,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         // ****************img click dialog box start********************
         compressImage = new CompressImage(UserProfileActivity.this);
 
-        final String[] items = new String[]{"From Camera", "From SD Card"};
+        final String[] items = new String[]{"From Camera", "From Phone"};
         ArrayAdapter<String> aadapter = new ArrayAdapter<String>(this,
                 android.R.layout.select_dialog_item, items);
         AlertDialog.Builder builder = new AlertDialog.Builder(UserProfileActivity.this);
@@ -263,7 +264,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 JSONObject json = new JSONObject(res);
                 if (json != null) {
 
-
+                    Const.USER_ID=json.getString("id");
                     Const.USER_NAME=json.getString("name");
                     Const.USER_MOBILENUMBER=json.getString("phone");
                     Const.USER_EMAIL=json.getString("email");
@@ -273,6 +274,12 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     ed_Email.setText(Const.USER_EMAIL);
                     ed_MobilNumber.setText(Const.USER_MOBILENUMBER);
                     ed_Address.setText(address);
+
+
+                    Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(img_profilepic);
+
+                    Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);
+
 
                    /* String logintoken = json.getString("access_token");
 
@@ -503,7 +510,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         @Override
         protected void onPostExecute(Void result) {
 
-
+            progressDialog2.dismiss();
         }
     }
 

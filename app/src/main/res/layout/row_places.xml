@@ -45,7 +45,7 @@
       <LinearLayout
         android:id="@+id/placeNameHolder"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
 
@@ -55,7 +55,7 @@
           android:id="@+id/placeName"
           android:layout_width="0dp"
             android:layout_weight="1"
-          android:layout_height="wrap_content"
+          android:layout_height="match_parent"
           android:layout_gravity="center_vertical"
           android:gravity="left"
           android:paddingLeft="10dp"
