@@ -9,6 +9,11 @@
             android:id="@+id/Rewards"
             android:title="Rewards"
             android:icon="@drawable/rewards"/>
+
+        <item
+            android:id="@+id/ChangePassword"
+            android:title="Change Password"
+            android:icon="@drawable/key"/>
         <item
             android:id="@+id/aboutus"
             android:title="About Us"

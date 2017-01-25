@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.DashboardFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.User.ChangePasswordActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
@@ -80,6 +81,12 @@ public class DrawerActivity extends AppCompatActivity {
                 switch (id){
                     case R.id.home:
                         Toast.makeText(getApplicationContext(),"Home",Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
+                        break;
+
+                    case R.id.ChangePassword:
+                       // Toast.makeText(getApplicationContext(),"Trash",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(DrawerActivity.this, ChangePasswordActivity.class));
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.contactus:

@@ -42,4 +42,8 @@
     <string name="otp_newpassword">Enter new password</string>
     <string name="address">Please enter address</string>
 
+    <string name="oldpassword">Please enter old password</string>
+    <string name="newpassword">Please enter New password</string>
+    <string name="confirmpassword">Please enter password again</string>
+
 </resources>

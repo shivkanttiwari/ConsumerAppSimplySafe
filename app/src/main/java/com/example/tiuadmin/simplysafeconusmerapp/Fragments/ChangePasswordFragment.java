@@ -248,6 +248,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
 
                 new MainActivity().replaceLoginFragment();
             }
+
         }
     }
 }
