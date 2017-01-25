@@ -1,9 +1,12 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -15,22 +18,26 @@ public class MerchanteWebviewActivity extends AppCompatActivity {
 
     WebView webView;
     ProgressDialog progressDialog;
+    String MerchantURL;
+    String Passkey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchante_webview);
 
 
-        String MerchantURL;
+
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 MerchantURL= null;
             } else {
                 MerchantURL= extras.getString("MerchantURL");
+                Passkey= extras.getString("Passkey");
             }
         } else {
             MerchantURL= (String) savedInstanceState.getSerializable("MerchantURL");
+            Passkey= (String) savedInstanceState.getSerializable("Passkey");
         }
 
         webView=(WebView)findViewById(R.id.webview);
@@ -73,7 +80,37 @@ public class MerchanteWebviewActivity extends AppCompatActivity {
             }
         });
        // webView.loadUrl(url);
-        webView.loadUrl(MerchantURL);
+        webView.loadUrl(MerchantURL+"/shop?"+Passkey);
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    } else {
+                        new AlertDialog.Builder(this)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .setTitle("Closing Merchant Shop")
+                                .setMessage("Are you sure you want to close this shop?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+
+                                })
+                                .setNegativeButton("No", null)
+                                .show();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

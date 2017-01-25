@@ -3,6 +3,7 @@ package com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -18,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -337,7 +339,11 @@ public class MerchantViewAdapter extends
                             String updated_at=MerchantStatusJSON.getString("updated_at");
 
 
+                            Intent merchantShopIntent=new Intent(mContext, MerchanteWebviewActivity.class);
 
+                            merchantShopIntent.putExtra("MerchantURL",merchant_pos_url);
+                            merchantShopIntent.putExtra("Passkey",merchant_password);
+                            mContext.startActivity(merchantShopIntent);
 
 
 
