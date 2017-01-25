@@ -80,7 +80,7 @@ public class MerchanteWebviewActivity extends AppCompatActivity {
             }
         });
        // webView.loadUrl(url);
-        webView.loadUrl(MerchantURL+"/shop?"+Passkey);
+        webView.loadUrl(MerchantURL+"/shop?pass="+Passkey);
 
     }
 
