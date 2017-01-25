@@ -88,56 +88,6 @@ public class UtilityDasbhoardAdapter extends RecyclerView.Adapter<UtilityDasbhoa
             }
         });
 
-        holder.relativelayoutAlbumAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                switch (position) {
-                    case 0:
-                        Intent i = new Intent();
-                        i.setClassName("com.android.calculator2",
-                                "com.android.calculator2.Calculator");
-                        mContext.startActivity(i);
-
-                        break;
-                    case 1:
-
-                       // Intent utiltyIntent = new Intent(mContext, UtilityActivity.class);
-                       // mContext.startActivity(utiltyIntent);
-                        break;
-                    case 2:
-
-                        break;
-                    case 3:
-
-                        mContext.startActivity(new Intent(mContext, EntertainmentActivity.class));
-                        break;
-                    case 4:
-
-
-                        break;
-                    case 5:
-
-                        break;
-
-
-                }
-
-
-            /*    if(position==0)
-                {
-                    merchantIntent.putExtra("MerchantURL", "https://www.flipkart.com/");
-                }
-                else
-                {
-
-
-                    merchantIntent.putExtra("MerchantURL", "http://www.amazon.in/");
-                }
-                mContext.startActivity(merchantIntent);*/
-            }
-        });
     }
 
     /**

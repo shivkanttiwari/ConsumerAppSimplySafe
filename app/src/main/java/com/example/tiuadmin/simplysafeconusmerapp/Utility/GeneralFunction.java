@@ -21,37 +21,39 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 public class GeneralFunction {
     public static ProgressDialog pDialog;
 
-        // Custom Toast Method
-        public void Show_Toast(Context context, View view, String error) {
 
-            // Layout Inflater for inflating custom view
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            // inflate the layout over view
-            View layout = inflater.inflate(R.layout.custom_toast,
-                    (ViewGroup) view.findViewById(R.id.toast_root));
+    // Custom Toast Method
+    public void Show_Toast(Context context, View view, String error) {
 
-            // Get TextView id and set error
-            TextView text = (TextView) layout.findViewById(R.id.toast_error);
-            text.setText(error);
+        // Layout Inflater for inflating custom view
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            Toast toast = new Toast(context);// Get Toast Context
-            toast.setGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL, 0, 0);// Set
-            // Toast
-            // gravity
-            // and
-            // Fill
-            // Horizoontal
+        // inflate the layout over view
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) view.findViewById(R.id.toast_root));
 
-            toast.setDuration(Toast.LENGTH_SHORT);// Set Duration
-            toast.setView(layout); // Set Custom View over toast
+        // Get TextView id and set error
+        TextView text = (TextView) layout.findViewById(R.id.toast_error);
+        text.setText(error);
 
-            toast.show();// Finally show toast
-        }
-    public AlertDialog AskOption(Activity context)
-    {
-        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(context)
+        Toast toast = new Toast(context);// Get Toast Context
+        toast.setGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL, 0, 0);// Set
+        // Toast
+        // gravity
+        // and
+        // Fill
+        // Horizoontal
+
+        toast.setDuration(Toast.LENGTH_SHORT);// Set Duration
+        toast.setView(layout); // Set Custom View over toast
+
+        toast.show();// Finally show toast
+    }
+
+    public AlertDialog AskOption(Activity context) {
+        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
                 //set message, title, and icon
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete this merchant?")
@@ -65,7 +67,6 @@ public class GeneralFunction {
                     }
 
                 })
-
 
 
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -93,6 +94,6 @@ public class GeneralFunction {
             pDialog.dismiss();
     }
 
-    }
+}
 
 

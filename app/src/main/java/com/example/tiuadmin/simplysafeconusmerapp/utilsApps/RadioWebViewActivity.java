@@ -8,9 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
-import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.ConnectionDetector;
 
@@ -27,7 +25,6 @@ public class RadioWebViewActivity extends AppCompatActivity {
 
         webView = (WebView) findViewById(R.id.webView1);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
 
         webView.getSettings().setBuiltInZoomControls(true);
@@ -40,29 +37,9 @@ public class RadioWebViewActivity extends AppCompatActivity {
         // Set the progress dialog to display a horizontal progress bar
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Loading...");
-        progressDialog.show();
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                if (progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                Toast.makeText(RadioWebViewActivity.this, "Error:" + description, Toast.LENGTH_SHORT).show();
-
-            }
-        });
         if (new ConnectionDetector(RadioWebViewActivity.this).isConnectingToInternet()) {
+            progressDialog.show();
             //ll.setVisibility(View.VISIBLE);
             webView.loadUrl(loadUrl);
             webView.setWebViewClient(new WebViewClient() {
@@ -86,6 +63,9 @@ public class RadioWebViewActivity extends AppCompatActivity {
 //                        if (ll.getVisibility() == View.VISIBLE) {
 //                            ll.setVisibility(View.GONE);
 //                        }
+                        if (progressDialog.isShowing()) {
+                            progressDialog.dismiss();
+                        }
                     } else {
                         Intent mainIntent = new Intent(RadioWebViewActivity.this, NoInternetActivity.class);
                         startActivity(mainIntent);
