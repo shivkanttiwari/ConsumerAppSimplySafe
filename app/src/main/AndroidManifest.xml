@@ -78,7 +78,11 @@
             android:name=".utilsApps.rewards.RewardHomeActivity"
             android:label="Rewards"
             android:parentActivityName=".Activity.DrawerActivity" />
-        <activity android:name=".User.ChangePasswordActivity"
+        <activity
+            android:name=".User.ChangePasswordActivity"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity android:name=".User.SettingActivityUser"
+
             android:parentActivityName=".Activity.DrawerActivity"></activity>
     </application>
 

@@ -22,10 +22,10 @@ import com.example.tiuadmin.simplysafeconusmerapp.APPUtility.UtilityActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.User.SettingActivityUser;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.RadioWebViewActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards.RewardHomeActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards.RewardsActivity;
 
 import java.util.List;
 import java.util.Random;
@@ -35,7 +35,7 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
 
     private Activity mContext;
     private List<MainMenuDashboard> albumList;
-
+    private static final int SETTINGS_RESULT = 1;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
         public ImageView thumbnail, overflow;
@@ -110,11 +110,13 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
                         break;
                     case 3:
 
-
+                        Intent i = new Intent(mContext,SettingActivityUser.class);
+                        mContext.startActivityForResult(i, SETTINGS_RESULT);
                         break;
                     case 4:
 
-
+                        Intent i1 = new Intent(mContext, SettingActivityUser.class);
+                        mContext.startActivityForResult(i1, SETTINGS_RESULT);
                         break;
                     case 5:
                         RadioWebViewActivity.loadUrl = "http://gaana.com/";
@@ -140,6 +142,10 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
             }
         });
     }
+
+
+
+
 
     /**
      * Showing popup menu when tapping on 3 dots
@@ -205,4 +211,6 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
     public int getItemCount() {
         return albumList.size();
     }
+
+
 }
