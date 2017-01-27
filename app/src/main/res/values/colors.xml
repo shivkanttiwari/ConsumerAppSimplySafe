@@ -29,6 +29,7 @@
 
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
+    <color name="blackColour">#000000</color>
 
 
 
@@ -132,7 +133,7 @@
     <item name="ForestGreen" type="color">#FF228B22</item>
     <item name="LightSeaGreen" type="color">#FF20B2AA</item>
     <item name="DodgerBlue" type="color">#FF1E90FF</item>
-    <item name="MidnightBlue" type="color">#FF191970</item>
+
 
     <item name="DarkTurquoise" type="color">#FF00CED1</item>
     <item name="DeepSkyBlue" type="color">#FF00BFFF</item>
@@ -142,9 +143,7 @@
     <item name="DarkGreen" type="color">#FF006400</item>
     <item name="Blue" type="color">#FF0000FF</item>
     <item name="MediumBlue" type="color">#FF0000CD</item>
-    <item name="DarkBlue" type="color">#FF00008B</item>
-    <item name="Navy" type="color">#FF000080</item>
-    <item name="Black" type="color">#FF000000</item>
+
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -244,7 +243,7 @@
         <item>@color/ForestGreen</item>
         <item>@color/LightSeaGreen</item>
         <item>@color/DodgerBlue</item>
-        <item>@color/MidnightBlue</item>
+
 
         <item>@color/DarkTurquoise</item>
         <item>@color/DeepSkyBlue</item>
@@ -253,9 +252,6 @@
         <item>@color/Green</item>
         <item>@color/DarkGreen</item>
         <item>@color/Blue</item>
-        <item>@color/MediumBlue</item>
-        <item>@color/DarkBlue</item>
-        <item>@color/Navy</item>
-        <item>@color/Black</item>
+
     </integer-array>
 </resources>

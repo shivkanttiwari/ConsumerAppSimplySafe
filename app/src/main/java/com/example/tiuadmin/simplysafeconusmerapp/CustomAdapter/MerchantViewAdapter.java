@@ -198,6 +198,10 @@ public class MerchantViewAdapter extends
                 Picasso.with(mContext).load(R.drawable.cinema).into(holder.MerchantIMage);
                 break;
 
+            case -1:
+                Picasso.with(mContext).load(R.drawable.addmerchantdummey).into(holder.MerchantIMage);
+                break;
+
 
 
         }

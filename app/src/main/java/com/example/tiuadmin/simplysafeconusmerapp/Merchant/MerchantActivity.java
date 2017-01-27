@@ -110,6 +110,18 @@ TextView txt_noMerchant;
         else {
             txt_noMerchant.setVisibility(View.VISIBLE);
         }
+
+
+        if( Const.MERCHANT_DATA.size()<=0)
+        {
+            for(int i=0;i<4;i++)
+            {
+
+                Const.MERCHANT_DATA.add(new Merchant("-1","-1","-1","Please add merchant","","","-1",""
+                        ,"","","","","","",""));
+
+            }
+        }
         mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -296,6 +308,8 @@ TextView txt_noMerchant;
         @Override
         protected Void doInBackground(Void... params) {
             try {
+
+
                 makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
             } catch (Exception e) {
                 progressDialog2.dismiss();
@@ -345,6 +359,8 @@ TextView txt_noMerchant;
             if (res != null && res.length()>0) {
                 JSONObject json = new JSONObject(res);
                 if (json != null) {
+
+
 
                     String merhantStatus=json.getString("status");
                     JSONObject jsonuserdata=new JSONObject();
@@ -529,6 +545,7 @@ TextView txt_noMerchant;
                     {
                         JSONArray merchantJsonArrayData=json.getJSONArray("data");
 
+                        Const.MERCHANT_DATA.clear();
                         for(int i=0;i<merchantJsonArrayData.length();i++)
                         {
 
