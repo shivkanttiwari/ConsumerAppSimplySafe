@@ -46,7 +46,7 @@
         <item name="colorControlActivated">@color/white</item>
     </style>
 
-<!--    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
@@ -54,7 +54,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-    </style>-->
+    </style>
 
     <style name="DialogAnimation_2">
         <item name="android:windowEnterAnimation">@anim/slide_up_dialog</item>

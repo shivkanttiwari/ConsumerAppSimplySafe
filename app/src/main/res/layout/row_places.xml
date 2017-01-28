@@ -5,8 +5,8 @@
     android:id="@+id/placeCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    card_view:cardCornerRadius="@dimen/card_corner_radius"
+
+
     card_view:cardElevation="@dimen/card_elevation">
 
     <FrameLayout
@@ -27,10 +27,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:id="@+id/txtstatusmerchant"
             android:textStyle="bold"
-            android:padding="10dp"
+
             android:layout_weight="1" />
       </LinearLayout>
       <ImageView
@@ -56,9 +56,11 @@
           android:layout_width="0dp"
             android:layout_weight="1"
           android:layout_height="match_parent"
-          android:layout_gravity="center_vertical"
+          android:layout_gravity="center"
           android:gravity="left"
           android:paddingLeft="10dp"
+
+
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:textColor="@android:color/white" />
 

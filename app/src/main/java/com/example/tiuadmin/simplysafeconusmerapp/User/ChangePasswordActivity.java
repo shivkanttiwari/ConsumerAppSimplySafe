@@ -17,8 +17,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
-import com.db.chart.view.animation.Animation;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -26,6 +27,8 @@ import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import static android.R.style.Animation;
 
 public class ChangePasswordActivity extends AppCompatActivity implements View.OnClickListener {
     private static EditText OldPassword, NewPassword,ConfimPassword;
