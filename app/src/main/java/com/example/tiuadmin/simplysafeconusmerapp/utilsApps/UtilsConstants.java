@@ -10,4 +10,6 @@ public interface UtilsConstants {
     int RADIO = 3;
     int MOVIES = 4;
     int RECHARGE = 5;
+    int MUSIC = 6;
+    int MUSIC_RADIO = 7;
 }

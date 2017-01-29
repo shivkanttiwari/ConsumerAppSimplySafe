@@ -34,26 +34,44 @@ public class WebViewListsActivity extends AppCompatActivity {
     String[] loadedListLinks;
 
     //********PREPARE LIST*******
-    int[] iconsCricket = new int[]{R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge};
+    int[] iconsCricket = new int[]{R.drawable.icc_cricket, R.drawable.icc_cricket, R.drawable.icc_cricket};
     String[] strCricket = {"ICC", "ESPN", "Cricbuzz"};
     String[] strCricketLinks = {"http://www.icc-cricket.com/", "http://m.espncricinfo.com/", "http://www.m.cricbuzz.com/"};
 
-    int[] iconsChannels = new int[]{R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge};
+    int[] iconsChannels = new int[]{R.drawable.icc_channels, R.drawable.icc_channels, R.drawable.icc_channels};
     String[] strChannels = {"Hot Star", "sonyLIV", "EROS NOW"};
     String[] strChannelsLinks = {"http://www.hotstar.com/", "http://www.sonyliv.com/", "http://erosnow.com/welcome"};
 
-    int[] iconsRadios = new int[]{R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge};
-    String[] strRadios = {"Internet Radio", "TuneIn", "Streema", "TuneIn City", "Radio4fm"};
-    String[] strRadiosLinks = {"https://www.internet-radio.com/stations/bollywood/",
-            "http://tunein.com/radio/Bollywood-g2762/", "http://streema.com/radios/genre/Bollywood",
+    //*****************
+    int[] iconsMusicRadio = new int[]{R.drawable.icc_music, R.drawable.icc_music,
+            R.drawable.icc_radio, R.drawable.icc_radio,
+            R.drawable.icc_radio, R.drawable.icc_radio, R.drawable.icc_radio};
+    String[] strMusicRadio = {"Gaana", "Saavan", "Internet Radio", "TuneIn", "Streema", "TuneIn City", "Radio4fm"};
+    String[] strMusicRadioLinks = {"http://gaana.com/", "http://www.saavn.com/",
+            "https://www.internet-radio.com/stations/bollywood/",
+            "http://tunein.com/radio/Bollywood-g2762/", "http://streema.com/radios/genre/Bollywood/",
             "http://tunein.com/radio/City-1016-FM-s14329/", "http://www.radio4fm.com/player/"};
 
-    int[] iconsMovies = new int[]{R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge};
+    int[] iconsMusic = new int[]{R.drawable.icc_music, R.drawable.icc_music};
+    String[] strMusic = {"Gaana", "Saavan"};
+    String[] strMusicLinks = {"http://gaana.com/",
+            "http://www.saavn.com/"};
+
+    int[] iconsRadios = new int[]{R.drawable.icc_radio, R.drawable.icc_radio,
+            R.drawable.icc_radio, R.drawable.icc_radio, R.drawable.icc_radio};
+    String[] strRadios = {"Internet Radio", "TuneIn", "Streema", "TuneIn City", "Radio4fm"};
+    String[] strRadiosLinks = {"https://www.internet-radio.com/stations/bollywood/",
+            "http://tunein.com/radio/Bollywood-g2762/", "http://streema.com/radios/genre/Bollywood/",
+            "http://tunein.com/radio/City-1016-FM-s14329/", "http://www.radio4fm.com/player/"};
+    //*****************
+
+    int[] iconsMovies = new int[]{R.drawable.icc_movies, R.drawable.icc_movies, R.drawable.icc_movies};
     String[] strMovies = {"Snag films", "Eros Now", "BoxTv"};
     String[] strMoviesLinks = {"http://www.snagfilms.com/categories/", "http://erosnow.com/",
             "http://www.boxtv.com/movies/"};
 
-    int[] iconsRecharges = new int[]{R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge, R.drawable.knowledge};
+    int[] iconsRecharges = new int[]{R.drawable.knowledge, R.drawable.knowledge,
+            R.drawable.knowledge, R.drawable.knowledge};
     String[] strRecharges = {"Freecharge", "Paytm", "Mobikwik", "RechargeItNow"};
     String[] strRechargesLinks = {"https://www.freecharge.in/mobile/", "https://paytm.com/recharge",
             "https://m.mobikwik.com/", "http://m.rechargeitnow.com/"};
@@ -112,6 +130,16 @@ public class WebViewListsActivity extends AppCompatActivity {
                         startActivity(new Intent(WebViewListsActivity.this, RadioWebViewActivity.class));
                     }
                     break;
+                    case 6: {
+                        RadioWebViewActivity.loadUrl = loadedListLinks[position];
+                        startActivity(new Intent(WebViewListsActivity.this, RadioWebViewActivity.class));
+                    }
+                    break;
+                    case 7: {
+                        RadioWebViewActivity.loadUrl = loadedListLinks[position];
+                        startActivity(new Intent(WebViewListsActivity.this, RadioWebViewActivity.class));
+                    }
+                    break;
                 }
             }
 
@@ -147,9 +175,18 @@ public class WebViewListsActivity extends AppCompatActivity {
                 loadedListLinks = strRechargesLinks;
             }
             break;
+            case UtilsConstants.MUSIC: {
+                prepareGrid(strMusic, iconsMusic);
+                loadedListLinks = strMusicLinks;
+            }
+            break;
+            case UtilsConstants.MUSIC_RADIO: {
+                prepareGrid(strMusicRadio, iconsMusicRadio);
+                loadedListLinks = strMusicRadioLinks;
+            }
+            break;
         }
     }
-
 
     //******PREPARE GRID*******
 

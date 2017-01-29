@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/album_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="40dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/aboutus" />
 
@@ -31,9 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/thumbnail"
                 android:gravity="center"
-                android:paddingLeft="@dimen/album_title_padding"
-                android:paddingRight="@dimen/album_title_padding"
-                android:text="shivkant"
+                android:padding="@dimen/album_title_padding"
+                android:text="name"
                 android:textColor="@color/album_title"
                 android:textSize="@dimen/album_title" />
 

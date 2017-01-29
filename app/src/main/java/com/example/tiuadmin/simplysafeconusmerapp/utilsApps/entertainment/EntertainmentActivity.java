@@ -61,17 +61,7 @@ public class EntertainmentActivity extends AppCompatActivity {
                     }
                     break;
                     case 2: {
-                        WebViewListsActivity.loadList = UtilsConstants.RADIO;
-                        startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
-                    }
-                    break;
-                    case 3: {
                         WebViewListsActivity.loadList = UtilsConstants.MOVIES;
-                        startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
-                    }
-                    break;
-                    case 4: {
-                        WebViewListsActivity.loadList = UtilsConstants.RECHARGE;
                         startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
                     }
                     break;
@@ -97,13 +87,11 @@ public class EntertainmentActivity extends AppCompatActivity {
     }
 
     private void prepareGrid() {
-        String[] strList = {"Cricket", "Channels", "Radio", "Movies", "Recharge"};
+        String[] strList = {"Cricket", "Channels", "Movies"};
         int[] covers = new int[]{
-                R.drawable.knowledge,
-                R.drawable.knowledge,
-                R.drawable.knowledge,
-                R.drawable.knowledge,
-                R.drawable.knowledge,
+                R.drawable.icc_cricket,
+                R.drawable.icc_channels,
+                R.drawable.icc_movies
         };
 
         for (int i = 0; i < strList.length; i++) {

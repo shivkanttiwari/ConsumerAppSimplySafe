@@ -25,6 +25,9 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.User.SettingActivityUser;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.RadioWebViewActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.UtilsConstants;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.EntertainmentActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.WebViewListsActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards.RewardHomeActivity;
 
 import java.util.List;
@@ -36,6 +39,7 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
     private Activity mContext;
     private List<MainMenuDashboard> albumList;
     private static final int SETTINGS_RESULT = 1;
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
         public ImageView thumbnail, overflow;
@@ -63,7 +67,6 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.album_card, parent, false);
-
 
         return new MyViewHolder(itemView);
     }
@@ -101,7 +104,6 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
 
                         break;
                     case 1:
-
                         Intent utiltyIntent = new Intent(mContext, UtilityActivity.class);
                         mContext.startActivity(utiltyIntent);
                         break;
@@ -110,7 +112,7 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
                         break;
                     case 3:
 
-                        Intent i = new Intent(mContext,SettingActivityUser.class);
+                        Intent i = new Intent(mContext, SettingActivityUser.class);
                         mContext.startActivityForResult(i, SETTINGS_RESULT);
                         break;
                     case 4:
@@ -119,11 +121,9 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
                         mContext.startActivityForResult(i1, SETTINGS_RESULT);
                         break;
                     case 5:
-                        RadioWebViewActivity.loadUrl = "http://gaana.com/";
-                        mContext.startActivity(new Intent(mContext, RadioWebViewActivity.class));
-
+                        WebViewListsActivity.loadList = UtilsConstants.MUSIC_RADIO;
+                        mContext.startActivity(new Intent(mContext, WebViewListsActivity.class));
                         break;
-
 
                 }
 
@@ -142,9 +142,6 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
             }
         });
     }
-
-
-
 
 
     /**
