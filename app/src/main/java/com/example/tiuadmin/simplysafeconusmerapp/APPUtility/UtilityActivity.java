@@ -104,7 +104,7 @@ public class UtilityActivity extends AppCompatActivity {
         String[] strList = {"Calculator", "Weather", "Games", "Entertainment", "Recharge", "Knowledge"};
         int[] covers = new int[]{
                 R.drawable.calculator,
-                R.drawable.cloud,
+                R.drawable.icc_weather,
                 R.drawable.gamepad,
                 R.drawable.entertainment,
                 R.drawable.knowledge,
