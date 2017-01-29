@@ -18,8 +18,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.APPUtility.GridSpacingItemDeco
 import com.example.tiuadmin.simplysafeconusmerapp.APPUtility.UtilityActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.RadioWebViewActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.UtilsConstants;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils.UtilsConstants;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -24,9 +24,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.User.SettingActivityUser;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.RadioWebViewActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.UtilsConstants;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.EntertainmentActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils.UtilsConstants;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.WebViewListsActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards.RewardHomeActivity;
 

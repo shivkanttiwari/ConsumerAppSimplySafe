@@ -12,8 +12,8 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.AnimatedExpandableListView;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.SlidingImage_Adapter;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.AnimatedExpandableListView;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.SlidingImage_Adapter;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -45,7 +45,24 @@ public class RewardsActivity extends AppCompatActivity {
                 if (listView.isGroupExpanded(groupPosition)) {
                     listView.collapseGroupWithAnimation(groupPosition);
                 } else {
+
+//                    long packedPosition = listView.getPackedPositionForGroup(groupPosition);
+//                    final long flatPosition = listView.getFlatListPosition(packedPosition);
+
                     listView.expandGroupWithAnimation(groupPosition);
+
+//                    new Handler().postDelayed(new Runnable() {
+//
+//                        @Override
+//                        public void run() {
+//                            runOnUiThread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    listView.smoothScrollToPositionFromTop((int) flatPosition, 1000, 200);
+//                                }
+//                            });
+//                        }
+//                    }, 300);
                 }
                 return true;
             }
@@ -153,50 +170,51 @@ public class RewardsActivity extends AppCompatActivity {
 //        }
         // Populate our list with groups and it's children
 
-        GroupItem itemg1 = new GroupItem();
-        GroupItem itemg2 = new GroupItem();
-        GroupItem itemg3 = new GroupItem();
-        GroupItem itemg4 = new GroupItem();
+        GroupItem item1 = new GroupItem();
+        GroupItem item2 = new GroupItem();
+        GroupItem item3 = new GroupItem();
+        GroupItem item4 = new GroupItem();
 
-        itemg1.title = "Redeem Now";
-        itemg2.title = "My Points";
-        itemg3.title = "Earn eDGE Points";
-        itemg4.title = "Help Centre";
-//
-//
-        ChildItem childg1 = new ChildItem();
-        ChildItem childg2 = new ChildItem();
-        ChildItem childg3 = new ChildItem();
-        ChildItem childg4 = new ChildItem();
+        item1.title = "Redeem Now";
+        item2.title = "My Points";
+        item3.title = "Earn eDGE Points";
+        item4.title = "Help Centre";
 
-
-        childg1.title = "Reward Store\n\nRecharges & Bookings\n\nPartner Deals";
-        itemg1.items.add(childg1);
-
-        childg2.title = "My Profile\n" +
-                "\n" +
-                "My eDGE Transactions\n" +
-                "\n" +
-                "Transfer My Points";
-        itemg2.items.add(childg2);
-
-        childg3.title = "Earn Faster With\n" +
-                "\n" +
-                "How Can I Earn?";
-        itemg3.items.add(childg3);
-
-        childg4.title = "FAQ\n" +
-                "\n" +
-                "Contact Us\n" +
-                "\n" +
-                "Terms & Conditions\n\nAbout eDGE";
-        itemg4.items.add(childg4);
+        String[] child1 = {"Reward Store", "Recharges & Bookings", "Partner Deals"};
+        String[] child2 = {"My Profile", "My eDGE Transactions", "Transfer My Points"};
+        String[] child3 = {"Earn Faster With", "How Can I Earn?"};
+        String[] child4 = {"FAQ", "Contact Us", "Terms & Conditions", "About eDGE"};
 
 
-        items.add(itemg1);
-        items.add(itemg2);
-        items.add(itemg3);
-        items.add(itemg4);
+        for (int i = 0; i < child1.length; i++) {
+            ChildItem ct = new ChildItem();
+            ct.title = child1[i];
+            item1.items.add(ct);
+        }
+
+        for (int i = 0; i < child2.length; i++) {
+            ChildItem ct = new ChildItem();
+            ct.title = child2[i];
+            item2.items.add(ct);
+        }
+
+        for (int i = 0; i < child3.length; i++) {
+            ChildItem ct = new ChildItem();
+            ct.title = child3[i];
+            item3.items.add(ct);
+        }
+
+        for (int i = 0; i < child4.length; i++) {
+            ChildItem ct = new ChildItem();
+            ct.title = child4[i];
+            item4.items.add(ct);
+        }
+
+
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
 
         adapter = new ExampleAdapter(RewardsActivity.this);
         adapter.setData(items);

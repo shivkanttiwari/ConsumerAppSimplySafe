@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApps;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils;
 
 /**
  * Created by mayur.p on 1/17/2017.

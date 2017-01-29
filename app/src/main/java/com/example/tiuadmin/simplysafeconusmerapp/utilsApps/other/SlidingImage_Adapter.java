@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApps;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other;
 
 import android.content.Context;
 import android.os.Parcelable;
