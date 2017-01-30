@@ -233,7 +233,7 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
         holder.mainholderlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
 
                 mContext.startActivity(new Intent(mContext, SimpleTabsActivity.class));
             }

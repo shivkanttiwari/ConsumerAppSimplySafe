@@ -134,7 +134,7 @@ TextView txt_noMerchant;
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mScannerView = new ZXingScannerView(MerchantActivity.this);
-                Toast.makeText(getApplicationContext(),"merchant add",Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(),"merchant add",Toast.LENGTH_SHORT).show();
 
 
                 final Dialog dialog = new Dialog(MerchantActivity.this);

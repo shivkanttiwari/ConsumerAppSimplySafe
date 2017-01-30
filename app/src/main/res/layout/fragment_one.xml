@@ -1,15 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tiuadmin.simplysafeconusmerapp.Fragments.OneFragment">
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HELLo 1"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:layout_above="@+id/btn_Save"
+
+
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:id="@+id/user_pro_LinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <com.example.tiuadmin.simplysafeconusmerapp.Utility.CircleImageView
+                    android:id="@+id/user_pro_img_imageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/profileuser"
+                    app:civ_border_color="#EEEEEE"
+                    app:civ_border_width="4dp"
+                    android:visibility="gone"
+                    app:civ_shadow="true"
+                    app:civ_shadow_color="#8BC34A"
+                    app:civ_shadow_radius="10" />
+
+
+
+
+
+                <ImageView
+                    android:id="@+id/user_pro_edit_imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/edit_profilepic"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true" />
+
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:id="@+id/btn_Save"
+        android:textColor="@color/black"
+
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:theme="@style/TextLabel"
+            android:textColorHint="#FFFFFF"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/user_pro_fullname_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:hint="@string/fullName"
+                android:imeOptions="actionNext"
+                android:text="Snapdeal Ltd."
+                android:enabled="false"
+                android:inputType="textNoSuggestions" />
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:theme="@style/TextLabel"
+            android:textColorHint="#FFFFFF"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/user_pro_email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:text="Snapdeal@gmail.com"
+                android:enabled="false"
+                android:inputType="textNoSuggestions" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:theme="@style/TextLabel"
+            android:textColorHint="#FFFFFF"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/user_pro_mobno_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:hint="@string/mobileNumber"
+                android:enabled="false"
+                android:text="9096572182"
+                android:imeOptions="actionNext"
+                android:inputType="textNoSuggestions" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:theme="@style/TextLabel"
+            android:textColorHint="#FFFFFF"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/user_pro_address_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:hint="@string/address"
+                android:enabled="false"
+                android:text="Noida,India"
+                android:imeOptions="actionNext"
+                android:inputType="textNoSuggestions" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+    </LinearLayout>
 
 </RelativeLayout>
