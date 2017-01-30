@@ -70,8 +70,6 @@ public class WebService {
     public String postWithoutHeader(String url, String json) throws IOException {
 
 
-
-
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)
@@ -86,7 +84,7 @@ public class WebService {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .addHeader("Authorization", "Bearer "+Const.LOGIN_TOKEN.trim())
+                .addHeader("Authorization", "Bearer " + Const.LOGIN_TOKEN.trim())
                 .addHeader("Content-Type", "application/json")
                 .build();
         Response response = client.newCall(request).execute();
@@ -104,7 +102,7 @@ public class WebService {
     public String getWithHeader(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Authorization", "Bearer "+Const.LOGIN_TOKEN.trim())
+                .addHeader("Authorization", "Bearer " + Const.LOGIN_TOKEN.trim())
 
                 .build();
         Response response = client.newCall(request).execute();
@@ -112,11 +110,10 @@ public class WebService {
     }
 
 
-    public String postWithHeaderImage(String url,String filename) throws IOException {
-
+    public String postWithHeaderImage(String url, String filename) throws IOException {
 
         File sourceFile = new File(filename);
-          MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+        MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("user_image", "shivkantSS.png", RequestBody.create(MEDIA_TYPE_PNG, sourceFile))
@@ -125,7 +122,7 @@ public class WebService {
         Request request = new Request.Builder()
                 .url(url)
                 .post(requestBody)
-                .addHeader("Authorization", "Bearer "+Const.LOGIN_TOKEN.trim())
+                .addHeader("Authorization", "Bearer " + Const.LOGIN_TOKEN.trim())
 
                 .build();
         Response response = client.newCall(request).execute();

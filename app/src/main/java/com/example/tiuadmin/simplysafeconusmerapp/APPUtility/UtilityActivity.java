@@ -22,6 +22,8 @@ import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.WebVie
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.martykan.forecastie.activities.SplashActivity;
+
 public class UtilityActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -41,7 +43,7 @@ public class UtilityActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(UtilityActivity.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(UtilsConstants.GRID_PADDING), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
@@ -58,7 +60,7 @@ public class UtilityActivity extends AppCompatActivity {
                     }
                     break;
                     case 1: {
-
+                        startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
                     }
                     break;
                     case 2: {

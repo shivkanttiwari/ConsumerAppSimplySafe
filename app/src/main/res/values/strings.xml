@@ -47,7 +47,6 @@
     <string name="confirmpassword">Please enter password again</string>
 
 
-
     //*****************Preference
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>

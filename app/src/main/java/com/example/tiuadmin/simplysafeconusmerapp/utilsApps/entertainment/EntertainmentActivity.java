@@ -41,7 +41,7 @@ public class EntertainmentActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(EntertainmentActivity.this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(UtilsConstants.GRID_PADDING), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
@@ -62,6 +62,16 @@ public class EntertainmentActivity extends AppCompatActivity {
                     break;
                     case 2: {
                         WebViewListsActivity.loadList = UtilsConstants.MOVIES;
+                        startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
+                    }
+                    break;
+                    case 3: {
+                        WebViewListsActivity.loadList = UtilsConstants.MUSIC;
+                        startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
+                    }
+                    break;
+                    case 4: {
+                        WebViewListsActivity.loadList = UtilsConstants.RADIO;
                         startActivity(new Intent(EntertainmentActivity.this, WebViewListsActivity.class));
                     }
                     break;
@@ -87,11 +97,10 @@ public class EntertainmentActivity extends AppCompatActivity {
     }
 
     private void prepareGrid() {
-        String[] strList = {"Cricket", "Channels", "Movies"};
+        String[] strList = {"Cricket", "Channels", "Movies", "Music", "Radio"};
         int[] covers = new int[]{
-                R.drawable.icc_cricket,
-                R.drawable.icc_channels,
-                R.drawable.icc_movies
+                R.drawable.icc_cricket, R.drawable.icc_channels, R.drawable.icc_movies,
+                R.drawable.icc_music, R.drawable.icc_radio
         };
 
         for (int i = 0; i < strList.length; i++) {

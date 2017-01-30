@@ -27,6 +27,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="c_50">#E8EAF6</color>
+    <color name="c_100">#C5CAE9</color>
+    <color name="c_200">#9FA8DA</color>
+    <color name="c_300">#7986CB</color>
+
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
     <color name="blackColour">#000000</color>

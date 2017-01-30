@@ -81,9 +81,12 @@
         <activity
             android:name=".User.ChangePasswordActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
-        <activity android:name=".User.SettingActivityUser"
-
-            android:parentActivityName=".Activity.DrawerActivity"></activity>
+        <activity
+            android:name=".User.SettingActivityUser"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity
+            android:name=".utilsApps.rewards.TransactionHistoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

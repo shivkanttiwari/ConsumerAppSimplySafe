@@ -12,4 +12,7 @@ public interface UtilsConstants {
     int RECHARGE = 5;
     int MUSIC = 6;
     int MUSIC_RADIO = 7;
+
+
+    int GRID_PADDING = 5;
 }

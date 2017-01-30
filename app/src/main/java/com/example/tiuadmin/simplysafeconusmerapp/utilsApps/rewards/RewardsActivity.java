@@ -1,6 +1,7 @@
 package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -68,8 +69,19 @@ public class RewardsActivity extends AppCompatActivity {
             }
 
         });
-        prepareListData();
 
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                startActivity(new Intent(RewardsActivity.this, TransactionHistoryActivity.class));
+
+                return false;
+            }
+        });
+
+
+        prepareListData();
 
         mPager = (ViewPager) findViewById(R.id.pager);
         indicator = (CirclePageIndicator) findViewById(R.id.indicator);

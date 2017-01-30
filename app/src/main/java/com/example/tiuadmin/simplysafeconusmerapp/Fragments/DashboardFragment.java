@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MainMenuDashboardAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils.UtilsConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,16 +80,16 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_blank, container, false);
+        View v = inflater.inflate(R.layout.fragment_blank, container, false);
 
-        recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
 
         albumList = new ArrayList<>();
         adapter = new MainMenuDashboardAdapter(getActivity(), albumList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(5), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(UtilsConstants.GRID_PADDING), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
@@ -116,22 +117,22 @@ public class DashboardFragment extends Fragment {
                 R.drawable.album11
         };
 
-       MainMenuDashboard a = new MainMenuDashboard("0","Merchant",covers[0]);
+        MainMenuDashboard a = new MainMenuDashboard("0", "Merchant", covers[0]);
         albumList.add(a);
 
-        a = new MainMenuDashboard("1","Utilities",covers[1]);
+        a = new MainMenuDashboard("1", "Utilities", covers[1]);
         albumList.add(a);
 
-        a = new MainMenuDashboard("2","Rewards",covers[2]);
+        a = new MainMenuDashboard("2", "Rewards", covers[2]);
         albumList.add(a);
 
-        a = new MainMenuDashboard("3","Setting",covers[3]);
+        a = new MainMenuDashboard("3", "Setting", covers[3]);
         albumList.add(a);
 
-        a = new MainMenuDashboard("4","Coupans",covers[4]);
+        a = new MainMenuDashboard("4", "Coupans", covers[4]);
         albumList.add(a);
 
-        a = new MainMenuDashboard("5","Music",covers[5]);
+        a = new MainMenuDashboard("5", "Music", covers[5]);
         albumList.add(a);
 //
 //        a = new Merchant("OLA", 1, covers[5]);
