@@ -56,7 +56,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     private List<String> list = new ArrayList<String>();
     private ZXingScannerView mScannerView;
     private static final int REQUEST_WRITE_PERMISSION = 20;
-    MerchantViewAdapter mAdapter;
+   public static MerchantViewAdapter mAdapter;
 
 TextView txt_noMerchant;
 
@@ -105,10 +105,10 @@ TextView txt_noMerchant;
       //  mRecyclerView.setHasFixedSize(true); //Data size is fixed - improves performance
         if(Const.MERCHANT_DATA.size()>0)
         {
-            txt_noMerchant.setVisibility(View.GONE);
+            //txt_noMerchant.setVisibility(View.GONE);
         }
         else {
-            txt_noMerchant.setVisibility(View.VISIBLE);
+            //txt_noMerchant.setVisibility(View.VISIBLE);
         }
 
 
@@ -427,7 +427,7 @@ TextView txt_noMerchant;
 
             String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant";
            JSONObject jsonrequest = new JSONObject();
-            jsonrequest.put("status", merchantDetail);
+            jsonrequest.put("status", merchantDetail.getStatus());
 
 
             JSONObject jsonres = new JSONObject();

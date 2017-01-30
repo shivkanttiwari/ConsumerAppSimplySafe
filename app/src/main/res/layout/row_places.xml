@@ -32,13 +32,19 @@
             android:textStyle="bold"
 
             android:layout_weight="1" />
+
+        <ImageView
+            android:src="@android:drawable/ic_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgdeleteMerchant" />
       </LinearLayout>
       <ImageView
           android:id="@+id/placeImage"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:scaleType="centerCrop"
-          android:src="@drawable/logo"
+          android:src="@drawable/logo_big"
           android:layout_gravity="center"
           android:transitionName="tImage" />
 

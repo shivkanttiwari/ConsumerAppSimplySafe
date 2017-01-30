@@ -1,8 +1,10 @@
 package com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,8 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import com.squareup.picasso.Picasso;
 
@@ -49,6 +53,7 @@ public class MerchantViewAdapter extends
 
     String Merchant_ID="";
     String MerchantStatus="";
+    String MerchantDeleteStatus="";
     public MerchantViewAdapter(Activity context, ArrayList<Merchant> merchantArrray) {
         super(context, R.layout.row_places, merchantArrray);
         this.mContext = context;
@@ -84,91 +89,64 @@ public class MerchantViewAdapter extends
             holder.merchantName  = (TextView) convertView.findViewById(R.id.placeName);
             holder.MerchantIMage  = (ImageView) convertView.findViewById(R.id.placeImage);
             holder.txtstatusmerchant  = (TextView) convertView.findViewById(R.id.txtstatusmerchant);
-
+holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchant);
 
             int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
             int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
             holder.mainholderlayout.setBackgroundColor(randomAndroidColor);
             convertView.setTag(holder);
+
+            int MerchantType=Integer.parseInt(merchantArray.get(position).getMerchantType());
+            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
+
+            switch (MerchantType)
+            {
+
+
+                case 1:
+                    Picasso.with(mContext).load(R.drawable.cutlery).into(holder.MerchantIMage);
+                    break;
+
+                case 2:
+                    Picasso.with(mContext).load(R.drawable.building).into(holder.MerchantIMage);
+                    break;
+
+                case 3:
+                    Picasso.with(mContext).load(R.drawable.cart).into(holder.MerchantIMage);
+                    break;
+
+                case 4:
+                    Picasso.with(mContext).load(R.drawable.toaster).into(holder.MerchantIMage);
+                    break;
+
+                case 5:
+                    Picasso.with(mContext).load(R.drawable.kirana).into(holder.MerchantIMage);
+                    break;
+
+                case 6:
+                    Picasso.with(mContext).load(R.drawable.cinema).into(holder.MerchantIMage);
+                    break;
+
+                case -1:
+                    Picasso.with(mContext).load(R.drawable.addmerchantdummey).into(holder.MerchantIMage);
+                    break;
+
+
+
+            }
+            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+                    holder.bottmPlaceholdeLayout.setBackgroundColor(mutedLight);
+                }
+            });
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-
-        if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pending"))
-        {
-            holder.txtstatusmerchant.setText("Status:"+merchantArray.get(position).getStatus());
-        }
-        else
-        {
-            holder.txtstatusmerchant.setVisibility(View.GONE);
-        }
-
-
-        holder.mainholderlayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        holder.bottmPlaceholdeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Merchant_ID=merchantArray.get(position).getMerchant_id();
-                new AsyncTaskUpdateProfile().execute();
-              /*  if(merchantArray.get(position).getStatus().equalsIgnoreCase("false"))
-                {
-                    Toast.makeText(mContext, "Account not verified.Please contact respected merchant to activiate.", Toast.LENGTH_SHORT).show();
-                }
-                else {
-
-
-                    Toast.makeText(mContext, "pos clicked", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(mContext, MerchanteWebviewActivity.class);
-                    i.putExtra("MerchantURL", merchantArray.get(position).getPOSURL());
-                    mContext.startActivity(i);
-                }*/
-
-
-
-
-            }
-        });
-
-
-        if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pendings"))
-        {
-            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.MerchantIMage);
-
-            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
-
-            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
-                public void onGenerated(Palette palette) {
-                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
-                    holder.bottmPlaceholdeLayout.setBackgroundColor(mutedLight);
-                }
-            });
-        }
-        else {
-            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.MerchantIMage);
-
-            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
-
-            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
-                public void onGenerated(Palette palette) {
-                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
-                    holder.bottmPlaceholdeLayout.setBackgroundColor(mutedLight);
-                }
-            });
-        }
-
-
         int MerchantType=Integer.parseInt(merchantArray.get(position).getMerchantType());
-
+        Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
 
         switch (MerchantType)
         {
@@ -205,6 +183,112 @@ public class MerchantViewAdapter extends
 
 
         }
+        holder.deleteMerchant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"delete",Toast.LENGTH_SHORT).show();
+
+                AlertDialog myQuittingDialogBox = new AlertDialog.Builder(mContext)
+                        //set message, title, and icon
+                        .setTitle("Delete")
+                        .setMessage("Do you want to Delete this merchant?")
+                        .setIcon(R.drawable.cross_delete)
+
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                //your deleting code
+                                dialog.dismiss();
+                                makeForgetPasswordRequest(merchantArray.get(position).getMobilenumber(),position);
+                            }
+
+                        })
+
+
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                dialog.dismiss();
+
+                            }
+                        })
+                        .create();
+
+                myQuittingDialogBox.show();
+
+            }
+        });
+        if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pending"))
+        {
+            holder.txtstatusmerchant.setVisibility(View.VISIBLE);
+            holder.txtstatusmerchant.setText("Status:"+merchantArray.get(position).getStatus());
+        }
+        else
+        {
+            holder.txtstatusmerchant.setVisibility(View.INVISIBLE);
+        }
+
+
+        holder.mainholderlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.bottmPlaceholdeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+               // Merchant_ID=merchantArray.get(position).getMerchant_id();
+                //new AsyncTaskUpdateProfile().execute();
+                if(merchantArray.get(position).getStatus().equalsIgnoreCase("false"))
+                {
+                    Toast.makeText(mContext, "Account not verified.Please contact respected merchant to activiate.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+
+                     Merchant_ID=merchantArray.get(position).getMerchant_id();
+                    new AsyncTaskUpdateProfile().execute();
+                }
+
+
+
+
+            }
+        });
+
+
+        /*if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pendings"))
+        {
+            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.MerchantIMage);
+
+            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
+
+            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+                    holder.bottmPlaceholdeLayout.setBackgroundColor(mutedLight);
+                }
+            });
+        }
+        else {
+            Picasso.with(mContext).load(R.drawable.pendingimage).into(holder.MerchantIMage);
+
+            Bitmap photo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pendingimage);
+
+            Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+                    holder.bottmPlaceholdeLayout.setBackgroundColor(mutedLight);
+                }
+            });
+        }*/
+
+
+
         Merchant merchant = getItem(position);
 
 
@@ -224,6 +308,7 @@ public class MerchantViewAdapter extends
         private TextView merchantName;
         private ImageView MerchantIMage;
         private TextView txtstatusmerchant;
+        private ImageView deleteMerchant;
     }
 
 
@@ -343,11 +428,17 @@ public class MerchantViewAdapter extends
                             String updated_at=MerchantStatusJSON.getString("updated_at");
 
 
-                            Intent merchantShopIntent=new Intent(mContext, MerchanteWebviewActivity.class);
+                            if(merchant_status.equalsIgnoreCase("Pending"))
+                            {
+                                MerchantStatus="false";
+                            }
+                            else {
+                                Intent merchantShopIntent=new Intent(mContext, MerchanteWebviewActivity.class);
 
-                            merchantShopIntent.putExtra("MerchantURL",merchant_pos_url);
-                            merchantShopIntent.putExtra("Passkey",merchant_password);
-                            mContext.startActivity(merchantShopIntent);
+                                merchantShopIntent.putExtra("MerchantURL",merchant_pos_url);
+                                merchantShopIntent.putExtra("Passkey",merchant_password);
+                                mContext.startActivity(merchantShopIntent);
+                            }
 
 
 
@@ -367,6 +458,52 @@ public class MerchantViewAdapter extends
 
             Toast.makeText(mContext, "Unable to authenticate consumer .Please try again..", Toast.LENGTH_SHORT)
                     .show();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Making json object request
+     */
+    private void makeForgetPasswordRequest(String phone,int position) {
+
+        String res = null;
+        String responseCode = null;
+        String returnResponse = null;
+        try {
+
+            String url = Const.MERCHANT_DELETE_API;
+            JSONObject jsonrequest = new JSONObject();
+
+            jsonrequest.put("phone", phone);
+
+
+
+
+            WebService web = new WebService();
+            res = web.postWithHeader(url, jsonrequest.toString());
+            Log.d(res, res);
+
+
+            if (res != null) {
+                JSONObject json = new JSONObject(res);
+                if (json != null) {
+
+                    MerchantDeleteStatus = json.getString("status");
+                    String message = json.getString("message");
+
+                    Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+
+                    merchantArray.remove(position);
+                    MerchantActivity.mAdapter.notifyDataSetChanged();
+
+
+                }
+            }
+
+        } catch (Exception e) {
+
+            Toast.makeText(mContext,"There is a problem whiile deleting this merchant,Please try agian later",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
