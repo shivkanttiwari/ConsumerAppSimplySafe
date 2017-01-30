@@ -43,7 +43,7 @@
             android:parentActivityName=".Merchant.MerchantActivity" />
         <activity
             android:name=".Merchant.SimpleTabsActivity"
-            android:parentActivityName=".Activity.DrawerActivity"
+            android:parentActivityName=".Merchant.MerchantActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Merchant.MerchantActivity"

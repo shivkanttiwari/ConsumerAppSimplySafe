@@ -28,5 +28,11 @@ public class Const {
 	public static String IS_UTILITY_ENTERTINMENT_VIEW = "3";
 	public static String IS_UTILITY_ENTERTINMENT_CRICKET_VIEW = "4";
 
+	public static String MAIN_URL = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/";
+
+	public static String MERCHANT_DELETE_API = MAIN_URL+"delete";
+
+
+
 
 }
