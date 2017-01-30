@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Merchant.SimpleTabsActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
@@ -233,6 +234,8 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
+
+                mContext.startActivity(new Intent(mContext, SimpleTabsActivity.class));
             }
         });
 
