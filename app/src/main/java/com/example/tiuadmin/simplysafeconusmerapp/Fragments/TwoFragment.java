@@ -5,13 +5,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantMessageCustomAdapter;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantMessageModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
-;
+;import java.util.ArrayList;
 
 
 public class TwoFragment extends Fragment {
+
+
+    ArrayList<MerchantMessageModel>merchantMessageModels;
+    ListView lv_MerchantListview;
+    View MerchantMessageView;
+
+    MerchantMessageCustomAdapter messageAdapter;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -26,7 +36,35 @@ public class TwoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_two, container, false);
+
+         MerchantMessageView=inflater.inflate(R.layout.fragment_two, container, false);
+
+        initialize();
+
+        return MerchantMessageView;
+    }
+
+    public void initialize()
+    {
+        lv_MerchantListview=(ListView)MerchantMessageView.findViewById(R.id.lv_MerchantMessage);
+        merchantMessageModels=new ArrayList<>();
+
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+
+
+        messageAdapter=new MerchantMessageCustomAdapter(getActivity(),merchantMessageModels);
+
+        lv_MerchantListview.setAdapter(messageAdapter);
+
     }
 
 }

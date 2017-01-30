@@ -14,6 +14,12 @@
             android:id="@+id/ChangePassword"
             android:title="Change Password"
             android:icon="@drawable/key"/>
+
+
+        <item
+            android:id="@+id/Notificaiton"
+            android:title="General Notificaitons"
+            android:icon="@drawable/contactud"/>
         <item
             android:id="@+id/aboutus"
             android:title="About Us"
