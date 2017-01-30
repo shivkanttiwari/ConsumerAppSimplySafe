@@ -56,7 +56,6 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     String status;//=json.getString("status");;
 
     public Login_Fragment() {
-
     }
 
     @Override

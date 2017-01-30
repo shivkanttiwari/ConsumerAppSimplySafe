@@ -60,7 +60,7 @@
             android:parentActivityName=".Merchant.MerchantActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".utilsApps.RadioWebViewActivity"
+            android:name=".utilsApps.entertainment.RadioWebViewActivity"
             android:parentActivityName=".utilsApps.entertainment.WebViewListsActivity" />
         <activity
             android:name=".utilsApps.entertainment.WebViewListsActivity"
@@ -73,7 +73,7 @@
             android:name=".utilsApps.rewards.RewardsActivity"
             android:label="Home"
             android:parentActivityName=".Activity.DrawerActivity" />
-        <activity android:name=".utilsApps.NoInternetActivity" />
+        <activity android:name=".utilsApps.other.NoInternetActivity" />
         <activity
             android:name=".utilsApps.rewards.RewardHomeActivity"
             android:label="Rewards"

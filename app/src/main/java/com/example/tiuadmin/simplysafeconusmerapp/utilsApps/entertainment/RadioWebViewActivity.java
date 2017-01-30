@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApps;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.webkit.WebViewClient;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.ConnectionDetector;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.NoInternetActivity;
 
 public class RadioWebViewActivity extends AppCompatActivity {
 

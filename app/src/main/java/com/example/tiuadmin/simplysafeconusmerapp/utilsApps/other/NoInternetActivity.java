@@ -1,4 +1,4 @@
-package com.example.tiuadmin.simplysafeconusmerapp.utilsApps;
+package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.ConnectionDetector;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.RadioWebViewActivity;
 
 public class NoInternetActivity extends AppCompatActivity {
 
