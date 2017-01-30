@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantDetailActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -110,6 +111,9 @@ public class MerchantViewAdapter extends
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
+
+
+                mContext.startActivity(new Intent(mContext, MerchantDetailActivity.class));
             }
         });
 

@@ -427,7 +427,7 @@ TextView txt_noMerchant;
 
             String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant";
            JSONObject jsonrequest = new JSONObject();
-            jsonrequest.put("status", merchantDetail);
+            jsonrequest.put("status", merchantDetail.getStatus());
 
 
             JSONObject jsonres = new JSONObject();

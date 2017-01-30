@@ -81,9 +81,14 @@
         <activity
             android:name=".User.ChangePasswordActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
-        <activity android:name=".User.SettingActivityUser"
-
-            android:parentActivityName=".Activity.DrawerActivity"></activity>
+        <activity
+            android:name=".User.SettingActivityUser"
+            android:parentActivityName=".Activity.DrawerActivity" />
+        <activity
+            android:name=".Merchant.MerchantDetailActivity"
+            android:parentActivityName=".Merchant.MerchantActivity"
+            android:label="@string/title_activity_merchant_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
