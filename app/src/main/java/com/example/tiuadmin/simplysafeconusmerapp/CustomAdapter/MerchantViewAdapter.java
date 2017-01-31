@@ -219,7 +219,7 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
 
             }
         });
-        if(merchantArray.get(position).getStatus().equalsIgnoreCase("Pending"))
+        if(merchantArray.get(position).getStatus().equalsIgnoreCase("0"))
         {
             holder.txtstatusmerchant.setVisibility(View.VISIBLE);
             holder.txtstatusmerchant.setText("Status:"+merchantArray.get(position).getStatus());
@@ -431,16 +431,17 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
                             String updated_at=MerchantStatusJSON.getString("updated_at");
 
 
-                            if(merchant_status.equalsIgnoreCase("Pending"))
+                            if(merchant_status.equalsIgnoreCase("1"))
                             {
-                                MerchantStatus="false";
-                            }
-                            else {
+
                                 Intent merchantShopIntent=new Intent(mContext, MerchanteWebviewActivity.class);
 
                                 merchantShopIntent.putExtra("MerchantURL",merchant_pos_url);
                                 merchantShopIntent.putExtra("Passkey",merchant_password);
                                 mContext.startActivity(merchantShopIntent);
+                            }
+                            else {
+                                MerchantStatus="false";
                             }
 
 

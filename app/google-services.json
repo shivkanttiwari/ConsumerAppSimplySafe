@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "942650485593",
+    "firebase_url": "https://ssconsumer-app.firebaseio.com",
+    "project_id": "ssconsumer-app",
+    "storage_bucket": "ssconsumer-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942650485593:android:a25b2fbf3c36cbe4",
+        "android_client_info": {
+          "package_name": "com.example.tiuadmin.simplysafeconusmerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942650485593-0i0u91kpp3uvqqdm5a2ebuqpf6qmkiqk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tiuadmin.simplysafeconusmerapp",
+            "certificate_hash": "BEE7ABC8FBA12448DE495E1DD9C844003BAEF711"
+          }
+        },
+        {
+          "client_id": "942650485593-n448dnrptdfmdmndc3kb184pteo9th54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1LeAGl8zzmldFwHtM7fcq1wHbJ2i7TFM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942650485593-n448dnrptdfmdmndc3kb184pteo9th54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
