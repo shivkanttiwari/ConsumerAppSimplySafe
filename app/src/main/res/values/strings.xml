@@ -134,7 +134,7 @@
     <string name="pref_user_profile">User Profile</string>
     <string name="pref_update_setting">Update Settings</string>
 
-    <string name="pref_allow_pushnotificaiton">Disable Push Notification</string>
+    <string name="pref_allow_pushnotificaiton">Enable Push Notification</string>
     <string name="pref_allow_pushnotificaiton_summary">user will not be able to recive any notification</string>
     <string name="pref_allow_notification_popup">Show Push Notificaiton POP UP</string>
     <string name="pref_allow_notification_popup_summary">Display pop up when notificaiton arrive</string>

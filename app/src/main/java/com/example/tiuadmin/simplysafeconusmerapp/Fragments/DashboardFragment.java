@@ -14,7 +14,6 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MainMenuDashboardAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
@@ -124,7 +123,7 @@ public class DashboardFragment extends Fragment {
                 + sharedPrefs.getBoolean("prefallowpushnotificaitonpopup", false));
 
 
-        Toast.makeText(getActivity(),"preference"+builder,Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(getActivity(),"preference"+builder,Toast.LENGTH_SHORT).show();
      /*   TextView settingsTextView = (TextView) findViewById(R.id.textUserSettings);
 
         settingsTextView.setText(builder.toString());*/
