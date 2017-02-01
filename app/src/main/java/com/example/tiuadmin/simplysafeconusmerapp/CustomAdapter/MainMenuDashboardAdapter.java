@@ -23,7 +23,6 @@ import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.User.MyPreferencesActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.User.SettingActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.WebViewListsActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards.RewardHomeActivity;
@@ -116,8 +115,8 @@ public class MainMenuDashboardAdapter extends RecyclerView.Adapter<MainMenuDashb
                         break;
                     case 4:
 
-                        Intent i1 = new Intent(mContext, SettingActivity.class);
-                        mContext.startActivityForResult(i1, SETTINGS_RESULT);
+                       // Intent i1 = new Intent(mContext, SettingActivity.class);
+                       // mContext.startActivityForResult(i1, SETTINGS_RESULT);
                         break;
                     case 5:
                         WebViewListsActivity.loadList = UtilsConstants.MUSIC_RADIO;
