@@ -83,28 +83,26 @@
             android:parentActivityName=".Activity.DrawerActivity" />
         <activity
             android:name=".User.SettingActivityUser"
-            android:parentActivityName=".Activity.DrawerActivity"></activity>
-
+            android:parentActivityName=".Activity.DrawerActivity" />
         <activity
             android:name=".utilsApps.rewards.TransactionHistoryActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
-        <!--
-                   Defining Services
-               -->
-        <service
-            android:name=".PushNotification.MyFirebaseMessagingService">
+        <!-- Defining Services -->
+        <service android:name=".PushNotification.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".PushNotification.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".PushNotification.MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
+        <activity android:name=".User.SettingActivity" />
+        <activity android:name=".User.MyPreferencesActivity"
+            android:parentActivityName=".Activity.DrawerActivity"></activity>
     </application>
 
 </manifest>
