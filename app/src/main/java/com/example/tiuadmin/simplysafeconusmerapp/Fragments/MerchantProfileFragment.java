@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
 
-public class OneFragment extends Fragment {
+public class MerchantProfileFragment extends Fragment {
 
-    public OneFragment() {
+    public MerchantProfileFragment() {
         // Required empty public constructor
     }
 

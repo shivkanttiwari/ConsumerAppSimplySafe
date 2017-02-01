@@ -110,7 +110,7 @@ public class GeneralFunction {
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/device/register";
+            String url =Const.REGISTER_DEVICE_FCM;
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("device_token", Const.DEVICE_TOKEN);
             jsonrequest.put("device_type_id", "");

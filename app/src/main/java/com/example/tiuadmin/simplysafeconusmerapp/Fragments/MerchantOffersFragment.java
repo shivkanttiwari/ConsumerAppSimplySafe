@@ -14,7 +14,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 ;import java.util.ArrayList;
 
 
-public class TwoFragment extends Fragment {
+public class MerchantOffersFragment extends Fragment {
 
 
     ArrayList<MerchantMessageModel>merchantMessageModels;
@@ -23,7 +23,7 @@ public class TwoFragment extends Fragment {
 
     MerchantMessageCustomAdapter messageAdapter;
 
-    public TwoFragment() {
+    public MerchantOffersFragment() {
         // Required empty public constructor
     }
 

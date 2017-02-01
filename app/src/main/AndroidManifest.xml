@@ -42,8 +42,9 @@
             android:name=".Activity.MerchanteWebviewActivity"
             android:parentActivityName=".Merchant.MerchantActivity" />
         <activity
-            android:name=".Merchant.SimpleTabsActivity"
+            android:name=".Merchant.MerchantDetialVIewActivtiy"
             android:parentActivityName=".Merchant.MerchantActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Merchant.MerchantActivity"
