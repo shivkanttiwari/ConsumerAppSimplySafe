@@ -333,7 +333,11 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 		protected void onPostExecute(Void result) {
 			progressDialog2.dismiss();
 			if(Const.SIGNUP_TOKEN.length()>=0)
-			new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+			{
+				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS="1";
+				new MainActivity().replaceRgistrationOTPVerificaitonFragment();
+			}
+
 
 		}
 	}

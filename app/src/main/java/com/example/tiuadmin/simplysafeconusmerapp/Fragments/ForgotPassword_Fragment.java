@@ -215,6 +215,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 
 			if(Const.ForgetPassword_TOKEN.length()>0)
 			{
+				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS="0";
 				new MainActivity().replaceForgetPasswordOTPVerificaitonFragment();
 			}
 

@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -64,7 +63,7 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
         submit = (TextView) view.findViewById(R.id.otpverficaitonsubmitBtn);
         back = (TextView) view.findViewById(R.id.otpbackToLoginBtn);
 
-        otp.setText(Const.ForgetPassword_TOKEN);
+        //otp.setText(Const.ForgetPassword_TOKEN);
         // Setting text selector over textviews
         XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
         try {
@@ -85,6 +84,11 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
         submit.setOnClickListener(this);
     }
 
+    public void setOTP(String otpnumber)
+    {
+        otpnumber=otpnumber.substring(0,6);
+        otp.setText(otpnumber);
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

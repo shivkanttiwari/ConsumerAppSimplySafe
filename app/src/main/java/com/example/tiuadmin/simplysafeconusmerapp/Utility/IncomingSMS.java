@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.VerifyOTPForgetPassword;
+import com.example.tiuadmin.simplysafeconusmerapp.Fragments.VerifyOTP_Fragment;
 
 /**
  * Created by tiuadmin on 17/01/17.
@@ -33,8 +34,23 @@ import com.example.tiuadmin.simplysafeconusmerapp.Fragments.VerifyOTPForgetPassw
                         {
                             if (senderNum .equals("VK-SIMPLY"))
                             {
-                                VerifyOTPForgetPassword Sms = new VerifyOTPForgetPassword();
-                                Sms.setOTP(message );
+
+                                switch (Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS)
+                                {
+
+                                    case "0":
+                                        VerifyOTPForgetPassword SmsVerifyOTPForgetPassword = new VerifyOTPForgetPassword();
+                                        SmsVerifyOTPForgetPassword.setOTP(message );
+                                        break;
+
+                                    case "1":
+                                        VerifyOTP_Fragment SmsVerifyOTP_Fragment = new VerifyOTP_Fragment();
+                                        SmsVerifyOTP_Fragment.setOTP(message );
+                                        break;
+
+
+                                }
+
                             }
                         }
                         catch(Exception e){}
