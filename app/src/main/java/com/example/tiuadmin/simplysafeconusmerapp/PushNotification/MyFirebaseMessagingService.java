@@ -6,6 +6,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -17,6 +20,12 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 /**
  * Created by Belal on 5/27/2016.
  */
@@ -25,7 +34,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
     boolean Is_PushNotification_Enabled;
-
+    Bitmap remote_picture = null;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Displaying data in log
@@ -38,8 +47,25 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
 
+        // TODO(developer): Handle FCM messages here.
+        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
+        Log.d(TAG, "From: " + remoteMessage.getFrom());
+
+        // Check if message contains a data payload.
+        if (remoteMessage.getData().size() > 0) {
+            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+        }
+
+        // Check if message contains a notification payload.
+        if (remoteMessage.getNotification() != null) {
+            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+        }
+
         //Calling method to generate notification
         if(Is_PushNotification_Enabled) {
+
+            String ttile=remoteMessage.getData().get("heading");
+            String context=remoteMessage.getData().get("text");
             sendNotification(remoteMessage.getNotification().getBody());
         }
         else {
@@ -70,6 +96,38 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     //This method is only generating push notification
     //It is same as we did in earlier posts
     private void sendNotification(String messageBody) {
+
+        String messageText="";
+        String imageURL="";
+        String Heading="";
+        String Message_id="";
+        String Merchant_id="";
+        String Message_type="";
+
+        try {
+            JSONObject obj = new JSONObject(messageBody);
+
+            messageText=obj.getString("text");
+            imageURL=obj.getString("imageUrl");
+            Heading=obj.getString("heading");
+            Message_id=obj.getString("id");
+            Merchant_id=obj.getString("merchand_id");
+            Message_type=obj.getString("type");
+        }
+        catch (Exception e)
+        {
+            Log.d("Push_Parsing_Exception",e.toString());
+        }
+
+        NotificationCompat.BigPictureStyle notiStyle = new NotificationCompat.BigPictureStyle();
+        notiStyle.setSummaryText(messageText);
+
+        try {
+            remote_picture = BitmapFactory.decodeStream((InputStream) new URL(imageURL).getContent());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        notiStyle.bigPicture(remote_picture);
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
@@ -77,9 +135,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Firebase Push Notification")
-                .setContentText(messageBody)
+                .setSmallIcon(R.drawable.logo_big)
+                .setContentTitle(Heading)
+                .setContentText(messageText)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -90,13 +148,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         defaults |= android.app.Notification.DEFAULT_SOUND;
         defaults |= android.app.Notification.DEFAULT_VIBRATE;
         notificationBuilder.setDefaults(defaults);
+        notificationBuilder.setStyle(notiStyle).build();
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(Integer.parseInt(Message_id), notificationBuilder.build());
     }
 
+
+    private void sendNotification(String messageTitle,String messageBody) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,0 /* request code */, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long[] pattern = {500,500,500,500,500};
+
+        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.logo_big)
+                .setContentTitle(messageTitle)
+                .setContentText(messageBody)
+                .setAutoCancel(true)
+                .setVibrate(pattern)
+                .setLights(Color.BLUE,1,1)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+    }
 
 
 }

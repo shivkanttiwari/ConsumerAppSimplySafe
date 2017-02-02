@@ -5,14 +5,14 @@
 
     <PreferenceCategory android:title="@string/pref_update_setting" >
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="prefallowpushnotificaiton"
             android:summary="@string/pref_allow_pushnotificaiton_summary"
             android:title="@string/pref_allow_pushnotificaiton">
         </CheckBoxPreference>
 
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="prefallowpushnotificaitonpopup"
             android:summary="@string/pref_allow_notification_popup_summary"
             android:title="@string/pref_allow_notification_popup" >
