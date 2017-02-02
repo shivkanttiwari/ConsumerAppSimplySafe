@@ -84,6 +84,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
 
+
+        //Added defaults
+        int defaults = 0;
+        defaults |= android.app.Notification.DEFAULT_SOUND;
+        defaults |= android.app.Notification.DEFAULT_VIBRATE;
+        notificationBuilder.setDefaults(defaults);
+
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
