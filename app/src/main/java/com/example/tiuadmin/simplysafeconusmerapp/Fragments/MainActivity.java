@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 		} else {
 			newString= (String) savedInstanceState.getSerializable("STRING_I_NEED");
 		}
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main_main);
 		fragmentManager = getSupportFragmentManager();
 
 		// If savedinstnacestate is null then replace login fragment

@@ -15,14 +15,13 @@ import android.view.View;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils.UtilsConstants;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.EntertainmentActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.WebViewListsActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils.UtilsConstants;
+import com.simplemobiletools.draw.activities.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cz.martykan.forecastie.activities.SplashActivity;
 
 public class UtilityActivity extends AppCompatActivity {
 
@@ -60,7 +59,7 @@ public class UtilityActivity extends AppCompatActivity {
                     }
                     break;
                     case 1: {
-                        startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
+                        //startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
                     }
                     break;
                     case 2: {
@@ -79,6 +78,14 @@ public class UtilityActivity extends AppCompatActivity {
 
                     case 5: {
 
+                    }
+                    break;
+                    case 6: {
+                        startActivity(new Intent(UtilityActivity.this, MainActivity.class));
+                    }
+                    break;
+                    case 7: {
+                        //startActivity(new Intent(UtilityActivity.this, main.class));
                     }
                     break;
                 }
@@ -103,12 +110,14 @@ public class UtilityActivity extends AppCompatActivity {
     }
 
     private void prepareGrid() {
-        String[] strList = {"Calculator", "Weather", "Games", "Entertainment", "Recharge", "Knowledge"};
+        String[] strList = {"Calculator", "Weather", "Games", "Entertainment", "Recharge", "Knowledge","Simply Draw","Camera"};
         int[] covers = new int[]{
                 R.drawable.calculator,
                 R.drawable.icc_weather,
                 R.drawable.gamepad,
                 R.drawable.entertainment,
+                R.drawable.knowledge,
+                R.drawable.knowledge,
                 R.drawable.knowledge,
                 R.drawable.knowledge
         };
