@@ -29,6 +29,8 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -217,10 +219,15 @@ public class DrawerActivity extends AppCompatActivity {
                     Const.USER_EMAIL=json.getString("email");
                     String address=json.getString("address");
 
+                    Picasso
+                            .with(this)
+                            .load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID)
+                            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                            .networkPolicy(NetworkPolicy.NO_CACHE)
+                            .into(navigationDrawerImageview);
 
 
-
-                    Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(navigationDrawerImageview);
+                   // Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(navigationDrawerImageview);
 
                     Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);
                     new GeneralFunction().hideProgressDialog();

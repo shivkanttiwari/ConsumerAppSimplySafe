@@ -599,7 +599,7 @@ TextView txt_noMerchant;
 
         } catch (Exception e) {
 
-            Toast.makeText(getApplicationContext(), "Please provide valid mobile number.", Toast.LENGTH_SHORT)
+            Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
         }

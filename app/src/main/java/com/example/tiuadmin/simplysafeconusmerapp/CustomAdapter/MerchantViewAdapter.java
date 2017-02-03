@@ -224,6 +224,16 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
             holder.txtstatusmerchant.setVisibility(View.VISIBLE);
             holder.txtstatusmerchant.setText("Status:Pending");
         }
+        else if(merchantArray.get(position).getStatus().equalsIgnoreCase("-1"))
+        {
+            holder.txtstatusmerchant.setVisibility(View.VISIBLE);
+            holder.txtstatusmerchant.setText("Status:Denied");
+        }
+        else if(merchantArray.get(position).getStatus().equalsIgnoreCase("1"))
+        {
+            holder.txtstatusmerchant.setVisibility(View.VISIBLE);
+            holder.txtstatusmerchant.setText("Status:Approved");
+        }
         else
         {
             holder.txtstatusmerchant.setVisibility(View.INVISIBLE);

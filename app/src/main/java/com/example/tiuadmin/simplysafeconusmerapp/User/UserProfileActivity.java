@@ -37,6 +37,8 @@ import com.example.tiuadmin.simplysafeconusmerapp.Utility.CompressImage;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -274,9 +276,15 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     ed_Email.setText(Const.USER_EMAIL);
                     ed_MobilNumber.setText(Const.USER_MOBILENUMBER);
                     ed_Address.setText(address);
+                    Picasso
+                            .with(this)
+                            .load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                            .networkPolicy(NetworkPolicy.NO_CACHE)
+                            .into(img_profilepic);
 
-
-                    Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(img_profilepic);
+                 //   Picasso.memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE),
+                    //        with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(img_profilepic);
 
                     Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);
 
