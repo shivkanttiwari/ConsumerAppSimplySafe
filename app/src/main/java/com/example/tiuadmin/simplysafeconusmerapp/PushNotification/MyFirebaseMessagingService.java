@@ -20,8 +20,6 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -65,8 +63,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if(Is_PushNotification_Enabled) {
 
             String ttile=remoteMessage.getData().get("heading");
-            String context=remoteMessage.getData().get("text");
-            sendNotification(remoteMessage.getNotification().getBody());
+            String message=remoteMessage.getData().get("text");
+            String image=remoteMessage.getData().get("imageUrl");
+            String id=remoteMessage.getData().get("id");
+            sendNotification(ttile,message,image,id);
         }
         else {
            // Toast.makeText(getApplicationContext(),"Notification blocked from setting",Toast.LENGTH_SHORT).show();
@@ -95,9 +95,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
     //This method is only generating push notification
     //It is same as we did in earlier posts
-    private void sendNotification(String messageBody) {
+    private void sendNotification(String title,String message,String image,String id) {
 
-        String messageText="";
+       /* String messageText="";
         String imageURL="";
         String Heading="";
         String Message_id="";
@@ -117,18 +117,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         catch (Exception e)
         {
             Log.d("Push_Parsing_Exception",e.toString());
-        }
+        }*/
 
         NotificationCompat.BigPictureStyle notiStyle = new NotificationCompat.BigPictureStyle();
-        notiStyle.setSummaryText(messageText);
+        notiStyle.setSummaryText(message);
 
         try {
-            remote_picture = BitmapFactory.decodeStream((InputStream) new URL(imageURL).getContent());
+            remote_picture = BitmapFactory.decodeStream((InputStream) new URL(image).getContent());
         } catch (IOException e) {
             e.printStackTrace();
         }
         notiStyle.bigPicture(remote_picture);
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("title", id);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
@@ -136,8 +137,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.logo_big)
-                .setContentTitle(Heading)
-                .setContentText(messageText)
+                .setContentTitle(title)
+                .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -153,7 +154,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(Integer.parseInt(Message_id), notificationBuilder.build());
+        notificationManager.notify(Integer.parseInt(id), notificationBuilder.build());
     }
 
 

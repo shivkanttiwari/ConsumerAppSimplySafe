@@ -25,6 +25,20 @@ public class MainActivity extends AppCompatActivity {
 		//StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
 		//StrictMode.setThreadPolicy(policy);
+
+
+		String newString;
+		if (savedInstanceState == null) {
+			Bundle extras = getIntent().getExtras();
+			if(extras == null) {
+				newString= null;
+			} else {
+				newString= extras.getString("title");
+
+			}
+		} else {
+			newString= (String) savedInstanceState.getSerializable("STRING_I_NEED");
+		}
 		setContentView(R.layout.activity_main);
 		fragmentManager = getSupportFragmentManager();
 
