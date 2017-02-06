@@ -52,6 +52,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 	String getLocation ;//= location.getText().toString();
 	String getPassword ;//= password.getText().toString();
 	String getConfirmPassword ;//= confirmPassword.getText().toString();
+	String message;
 	public SignUp_Fragment() {
 
 	}
@@ -213,7 +214,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 				if (json != null) {
 
 					String status=json.getString("status");
-					String message=json.getString("message");
+					 message=json.getString("message");
 					if(status.equalsIgnoreCase("true"))
 					{
 						JSONObject userdata=json.getJSONObject("data");
@@ -332,12 +333,16 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 		@Override
 		protected void onPostExecute(Void result) {
 			progressDialog2.dismiss();
-			if(Const.SIGNUP_TOKEN.length()>=0)
+			if(Const.SIGNUP_TOKEN.length()>0)
 			{
 				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS="1";
 				new MainActivity().replaceRgistrationOTPVerificaitonFragment();
 			}
 
+			else
+			{
+				Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+			}
 
 		}
 	}

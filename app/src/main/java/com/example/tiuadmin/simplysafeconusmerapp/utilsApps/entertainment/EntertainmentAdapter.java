@@ -18,6 +18,8 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import java.util.List;
 import java.util.Random;
 
+import cz.martykan.forecastie.activities.SplashActivity;
+
 /**
  * Created by mayur.p on 1/24/2017.
  */
@@ -96,8 +98,8 @@ public class EntertainmentAdapter extends RecyclerView.Adapter<EntertainmentAdap
 
                         break;
                     case 1:
-                        // Intent utiltyIntent = new Intent(mContext, UtilityActivity.class);
-                        // mContext.startActivity(utiltyIntent);
+                         Intent utiltyIntent = new Intent(mContext, SplashActivity.class);
+                         mContext.startActivity(utiltyIntent);
                         break;
                     case 2:
 

@@ -23,6 +23,8 @@ import com.simplemobiletools.draw.activities.MainActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.martykan.forecastie.activities.SplashActivity;
+
 public class UtilityActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -59,7 +61,7 @@ public class UtilityActivity extends AppCompatActivity {
                     }
                     break;
                     case 1: {
-                        //startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
+                        startActivity(new Intent(UtilityActivity.this, SplashActivity.class));
                     }
                     break;
                     case 2: {
