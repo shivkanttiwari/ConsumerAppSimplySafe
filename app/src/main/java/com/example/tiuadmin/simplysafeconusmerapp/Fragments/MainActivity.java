@@ -1,11 +1,13 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,15 +27,20 @@ public class MainActivity extends AppCompatActivity {
 		//StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
 		//StrictMode.setThreadPolicy(policy);
-
+		if (getIntent().getExtras() != null) {
+			for (String key : getIntent().getExtras().keySet()) {
+				Object value = getIntent().getExtras().get(key);
+				Log.d("Push kEY", "Key: " + key + " Value: " + value);
+			}
+		}
 
 		String newString;
 		if (savedInstanceState == null) {
-			Bundle extras = getIntent().getExtras();
+			Intent extras = getIntent();
 			if(extras == null) {
 				newString= null;
 			} else {
-				newString= extras.getString("title");
+				newString= extras.getStringExtra("text");
 
 			}
 		} else {

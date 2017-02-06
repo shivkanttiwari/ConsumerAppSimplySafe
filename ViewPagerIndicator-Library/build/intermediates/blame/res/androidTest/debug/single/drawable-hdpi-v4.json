@@ -8,6 +8,10 @@
         "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png"
     },
     {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_holo.9.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_holo.9.png"
+    },
+    {
         "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png",
         "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png"
     },
@@ -16,11 +20,31 @@
         "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png"
     },
     {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png"
+    },
+    {
         "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png",
         "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png"
     },
     {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png"
+    },
+    {
         "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png",
         "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png"
     }
 ]
