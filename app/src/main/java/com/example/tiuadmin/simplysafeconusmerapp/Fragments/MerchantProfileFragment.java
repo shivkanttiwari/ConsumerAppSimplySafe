@@ -18,6 +18,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantMessageModel;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantTransactionModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONArray;
@@ -32,6 +33,7 @@ public class MerchantProfileFragment extends Fragment {
     EditText user_pro_email_editText;//=(EditText)view.findViewById(R.id.user_pro_email_editText);
     EditText user_pro_mobno_editText;//=(EditText)view.findViewById(user_pro_mobno_editText);
     EditText user_pro_address_editText;//=(EditText)view.findViewById(user_pro_address_editText);
+    PrefManager prefManager;
     public MerchantProfileFragment() {
         // Required empty public constructor
     }
@@ -45,7 +47,7 @@ public class MerchantProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        prefManager=new PrefManager(getActivity());
         View view= inflater.inflate(R.layout.fragment_one, container, false);
 
          user_pro_fullname_edittext=(EditText)view.findViewById(R.id.user_pro_fullname_edittext);
@@ -152,7 +154,7 @@ public class MerchantProfileFragment extends Fragment {
             //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
 
             WebService web = new WebService();
-            res = web.getWithHeader(url);
+            res = web.getWithHeader(url,prefManager.getToken());
             Log.d(res, res);
 
 

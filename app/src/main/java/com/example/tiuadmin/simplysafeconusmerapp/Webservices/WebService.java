@@ -79,12 +79,12 @@ public class WebService {
         return response.body().string();
     }
 
-    public String postWithHeader(String url, String json) throws IOException {
+    public String postWithHeader(String url, String json,String token) throws IOException {
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .addHeader("Authorization", "Bearer " + Const.LOGIN_TOKEN.trim())
+                .addHeader("Authorization", "Bearer " + token)
                 .addHeader("Content-Type", "application/json")
                 .build();
         Response response = client.newCall(request).execute();
@@ -99,10 +99,10 @@ public class WebService {
         return response.body().string();
     }
 
-    public String getWithHeader(String url) throws IOException {
+    public String getWithHeader(String url,String token) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
-                .addHeader("Authorization", "Bearer " + Const.LOGIN_TOKEN.trim())
+                .addHeader("Authorization", "Bearer " + token)
 
                 .build();
         Response response = client.newCall(request).execute();
@@ -110,7 +110,7 @@ public class WebService {
     }
 
 
-    public String postWithHeaderImage(String url, String filename) throws IOException {
+    public String postWithHeaderImage(String url, String filename,String token) throws IOException {
 
         File sourceFile = new File(filename);
         MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
@@ -122,7 +122,7 @@ public class WebService {
         Request request = new Request.Builder()
                 .url(url)
                 .post(requestBody)
-                .addHeader("Authorization", "Bearer " + Const.LOGIN_TOKEN.trim())
+                .addHeader("Authorization", "Bearer " + token)
 
                 .build();
         Response response = client.newCall(request).execute();

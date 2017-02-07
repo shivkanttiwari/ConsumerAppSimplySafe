@@ -26,7 +26,7 @@ public class GeneralFunction {
     public static ProgressDialog pDialog;
 
 
-
+PrefManager prefManager;
     // Custom Toast Method
     public void Show_Toast(Context context, View view, String error) {
 
@@ -101,23 +101,23 @@ public class GeneralFunction {
     /**
      * Making json object request
      */
-    public void sendRegistrationToServer() {
+    public void sendRegistrationToServer(Context context) {
         // new GeneralFunction().showProgressDialog(getActivity());
-
+        prefManager=new PrefManager(context);
 
         String res = null;
         String responseCode = null;
         String returnResponse = null;
         try {
 
-            String url =Const.REGISTER_DEVICE_FCM;
+            String url ="http://52.66.101.233/Customer-Backend/public/api/v1/customer/device/register";
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("device_token", Const.DEVICE_TOKEN);
             jsonrequest.put("device_type_id", "");
 
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
             if (res != null && res.length() > 0) {

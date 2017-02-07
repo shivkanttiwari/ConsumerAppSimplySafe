@@ -19,6 +19,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
@@ -35,7 +36,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 	private static EditText mobilenumber;
 	private static TextView submit, back;
 	String getMobileNumber;
-
+PrefManager prefManager;
 
 	public ForgotPassword_Fragment() {
 
@@ -53,6 +54,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 
 	// Initialize the views
 	private void initViews() {
+		prefManager=new PrefManager(getActivity());
 		mobilenumber = (EditText) view.findViewById(R.id.registered_mobilenumber);
 		submit = (TextView) view.findViewById(R.id.forgot_button);
 		back = (TextView) view.findViewById(R.id.backToLoginBtn);
@@ -138,7 +140,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 
 
 			WebService web = new WebService();
-			res = web.postWithHeader(url, jsonrequest.toString());
+			res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
 			Log.d(res, res);
 
 

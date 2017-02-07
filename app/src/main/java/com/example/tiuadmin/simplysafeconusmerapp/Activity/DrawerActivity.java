@@ -203,8 +203,9 @@ public class DrawerActivity extends AppCompatActivity {
 */
 
 
+
             WebService web = new WebService();
-            res = web.getWithHeader(url);
+            res = web.getWithHeader(url,prefManager.getToken());
             Log.d(res, res);
 
 

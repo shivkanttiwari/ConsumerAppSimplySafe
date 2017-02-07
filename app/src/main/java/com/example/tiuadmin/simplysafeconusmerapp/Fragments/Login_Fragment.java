@@ -270,7 +270,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
             jsonrequest.put("sspin", password);
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
             if (res != null && res.length() > 0) {
@@ -292,9 +292,11 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                         prefManager.setToken(logintoken);
 
 
-                        if(Const.DEVICE_TOKEN.length()>0 && Const.LOGIN_TOKEN.length()>0)
+
+
+                        if(prefManager.getDeviceToken().length()>0 && prefManager.getToken().length()>0)
                         {
-                            new GeneralFunction().sendRegistrationToServer();
+                            new GeneralFunction().sendRegistrationToServer(getActivity());
                         }
 
                     } else {

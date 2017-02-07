@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
@@ -39,6 +40,7 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
     String getphonenumber ;//= SignUp_Fragment.phoneNumberCommonforUserRegistraiotn;
     String getotp;// = otp.getText().toString().trim();
     String status;
+    PrefManager prefManager;
     public VerifyOTP_Fragment() {
         // Required empty public constructor
     }
@@ -58,6 +60,7 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
     }
     // Initialize the views
     private void initViews() {
+        prefManager=new PrefManager(getActivity());
         phonenumber = (EditText) view.findViewById(R.id.registration_otp_phonenumber);
         otp = (EditText) view.findViewById(R.id.registration_otp);
         submit = (TextView) view.findViewById(R.id.otpverficaitonsubmitBtn);
@@ -160,7 +163,7 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
 
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
 

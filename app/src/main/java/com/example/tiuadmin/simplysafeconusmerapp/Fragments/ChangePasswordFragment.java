@@ -22,6 +22,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
@@ -55,6 +56,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
     String getotp ;//= otp.getText().toString().trim();
     String getnewpassword;// = newpassword.getText().toString().trim();
     String status ;//= json.getString("status");;
+    PrefManager prefManager;
     public ChangePasswordFragment() {
 
     }
@@ -71,6 +73,8 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
     }
     // Initialize the views
     private void initViews() {
+
+        prefManager=new PrefManager(getActivity());
         mobileNumber = (EditText) view.findViewById(R.id.changepassowrd_phone);
         otp = (EditText) view.findViewById(R.id.changepassowrd_otp);
         newpassword = (EditText) view.findViewById(R.id.changepassword_newpassword);
@@ -174,7 +178,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
 
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
 

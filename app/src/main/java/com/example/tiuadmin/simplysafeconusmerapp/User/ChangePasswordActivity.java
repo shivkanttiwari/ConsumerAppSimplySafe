@@ -22,6 +22,7 @@ import android.view.animation.AnimationUtils;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
@@ -44,9 +45,11 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     String GetConfirmPassword;// = newpassword.getText().toString().trim();
     String status ;//= json.getString("status");;
     String message;
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_change_password);
 
         initViews();
@@ -54,6 +57,8 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     }
     // Initialize the views
     private void initViews() {
+
+        prefManager=new PrefManager(getApplicationContext());
         OldPassword = (EditText) findViewById(R.id.changepassowrd_oldpassword);
         NewPassword = (EditText) findViewById(R.id.changepassowrd_newpassword);
         ConfimPassword = (EditText) findViewById(R.id.changepassword_confirmpassword);
@@ -154,7 +159,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
 

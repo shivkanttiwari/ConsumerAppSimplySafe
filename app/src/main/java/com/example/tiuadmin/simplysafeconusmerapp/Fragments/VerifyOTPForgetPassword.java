@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONObject;
@@ -36,7 +37,7 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
     String getphonenumber ;//= phonenumber.getText().toString().trim();
     String getotp ;//= otp.getText().toString().trim();
     String status;// = json.getString("status");
-
+PrefManager prefManager;
     public VerifyOTPForgetPassword() {
         // Required empty public constructor
     }
@@ -56,6 +57,7 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
     }
     // Initialize the views
     private void initViews() {
+        prefManager=new PrefManager(getActivity());
         phonenumber = (EditText) view.findViewById(R.id.registration_otp_phonenumber);
         ed_otp = (EditText) view.findViewById(R.id.registration_otp);
         submit = (TextView) view.findViewById(R.id.otpverficaitonsubmitBtn);
@@ -165,7 +167,7 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
 
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
 

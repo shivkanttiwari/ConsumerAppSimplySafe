@@ -24,6 +24,7 @@ public class PrefManager {
     private static final String PREF_NAME = "SSConusumerAPP";
 
     // All Shared Preferences Keys
+    private static final String KEY_DEVICE_TOKEN = "device_token";
     private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
     private static final String KEY_TOKEN = "token";
     private static final String KEY_REFRESH_TOKEN = "refresh_token";
@@ -199,5 +200,14 @@ public class PrefManager {
         editor.commit();
     }
 
+
+    public String getDeviceToken() {
+        return pref.getString(KEY_DEVICE_TOKEN, "");
+    }
+
+    public void setDeviceToken(String token) {
+        editor.putString(KEY_DEVICE_TOKEN, token);
+        editor.commit();
+    }
     //*************Location*********
 }

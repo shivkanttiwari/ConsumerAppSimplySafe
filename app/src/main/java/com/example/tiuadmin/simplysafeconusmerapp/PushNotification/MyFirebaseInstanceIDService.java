@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
@@ -22,7 +23,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public static final String REGISTRATION_SUCCESS = "RegistrationSuccess";
 
     private String status;
-
+    PrefManager prefManager;
 
     @Override
     public void onTokenRefresh() {
@@ -30,10 +31,13 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         Log.d(TAG, "Refreshed token: " + refreshedToken);
 
         Const.DEVICE_TOKEN=refreshedToken;
+        prefManager = new PrefManager(getApplicationContext());
 
-        if(Const.DEVICE_TOKEN.length()>0 && Const.LOGIN_TOKEN.length()>0)
+        prefManager.setDeviceToken(refreshedToken);
+
+        if(refreshedToken.length()>0 && prefManager.getToken().length()>0)
         {
-            new GeneralFunction().sendRegistrationToServer();
+            new GeneralFunction().sendRegistrationToServer(getApplicationContext());
         }
 
 
@@ -61,7 +65,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
             if (res != null && res.length() > 0) {

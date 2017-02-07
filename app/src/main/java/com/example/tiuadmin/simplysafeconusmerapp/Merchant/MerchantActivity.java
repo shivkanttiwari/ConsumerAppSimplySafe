@@ -37,6 +37,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import com.google.zxing.Result;
@@ -58,6 +59,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     private static final int REQUEST_WRITE_PERMISSION = 20;
    public static MerchantViewAdapter mAdapter;
 
+
 TextView txt_noMerchant;
 
     private Toolbar toolbar;
@@ -71,11 +73,12 @@ TextView txt_noMerchant;
     EditText edMerchantMobilenumber;
    // ArrayList<String> merchantArraay;
    ListView mRecyclerView;
+    PrefManager prefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant);
-
+        prefManager=new PrefManager(getApplicationContext());
         txt_noMerchant=(TextView)findViewById(R.id.txt_noMerchant);
        // llProgress = (LinearLayout) findViewById(R.id.llProgress);
 
@@ -450,7 +453,7 @@ TextView txt_noMerchant;
             //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
 
             WebService web = new WebService();
-            res = web.postWithHeader(url,jsonrequest.toString());
+            res = web.postWithHeader(url,jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
 
@@ -491,7 +494,7 @@ TextView txt_noMerchant;
 
 
                     }
-                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
 
 
 
@@ -531,7 +534,7 @@ TextView txt_noMerchant;
             //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
 
             WebService web = new WebService();
-            res = web.getWithHeader(url);
+            res = web.getWithHeader(url,prefManager.getToken());
             Log.d(res, res);
 
 
@@ -582,7 +585,7 @@ TextView txt_noMerchant;
 
 
                     }
-                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
 
 
 

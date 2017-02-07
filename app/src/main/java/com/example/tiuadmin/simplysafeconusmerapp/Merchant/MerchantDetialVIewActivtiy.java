@@ -29,6 +29,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantMessageModel;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantTransactionModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
 import org.json.JSONArray;
@@ -44,12 +45,13 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String merchant_id;
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_tabs);
-
+        prefManager=new PrefManager(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -211,7 +213,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
             //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
 
             WebService web = new WebService();
-            res = web.getWithHeader(url);
+            res = web.getWithHeader(url,prefManager.getToken());
             Log.d(res, res);
 
 

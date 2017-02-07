@@ -27,6 +27,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantDetialVIewAct
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import com.squareup.picasso.Picasso;
 
@@ -45,7 +46,7 @@ public class MerchantViewAdapter extends
 
     Activity mContext;
 
-
+PrefManager prefManager;
     ArrayList<Merchant>merchantArray;
     private static LayoutInflater inflater=null;
 
@@ -57,6 +58,7 @@ public class MerchantViewAdapter extends
     String MerchantDeleteStatus="";
     public MerchantViewAdapter(Activity context, ArrayList<Merchant> merchantArrray) {
         super(context, R.layout.row_places, merchantArrray);
+        prefManager=new PrefManager(context);
         this.mContext = context;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.merchantArray=merchantArrray;
@@ -408,7 +410,7 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
 
 
                 WebService web = new WebService();
-                res = web.getWithHeader(url);
+                res = web.getWithHeader(url,prefManager.getToken());
                 Log.d(res, res);
 
 
@@ -499,7 +501,7 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
 
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString());
+            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
             Log.d(res, res);
 
 

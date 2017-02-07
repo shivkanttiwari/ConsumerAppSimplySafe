@@ -23,6 +23,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 
@@ -40,7 +41,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private static Button signUpButton;
 	private static CheckBox terms_conditions;
 	private String TAG = SignUp_Fragment.class.getSimpleName();
-
+PrefManager prefManager;
 	private TextView msgResponse;
 	private ProgressDialog pDialog;
 	private String tag_json_obj = "jobj_req", tag_json_arry = "jarray_req";
@@ -75,6 +76,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 	// Initialize all views
 	private void initViews() {
 
+		prefManager=new PrefManager(getActivity());
 		pDialog = new ProgressDialog(getActivity());
 		pDialog.setMessage("Loading...");
 		pDialog.setCancelable(false);
@@ -205,7 +207,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 			phoneNumberCommonforUserRegistraiotn=phone;
 
 			WebService web = new WebService();
-			res = web.postWithHeader(url, signUpJsonRequestObject.toString());
+			res = web.postWithHeader(url, signUpJsonRequestObject.toString(),prefManager.getToken());
 			Log.d(res, res);
 
 

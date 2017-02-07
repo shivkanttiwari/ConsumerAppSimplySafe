@@ -36,6 +36,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.CompressImage;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -77,6 +78,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     String email;//=ed_Email.getText().toString();
     String mobile;//=ed_MobilNumber.getText().toString();
     String address;//=ed_Address.getText().toString();
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +92,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     // Initiate Views
     private void initViews() {
 
-
+        prefManager=new PrefManager(getApplicationContext());
         ed_FullName = (EditText) findViewById(R.id.user_pro_fullname_edittext);
         ed_Email = (EditText) findViewById(R.id.user_pro_email_editText);
         ed_MobilNumber = (EditText) findViewById(R.id.user_pro_mobno_editText);
@@ -258,7 +260,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
 
             WebService web = new WebService();
-            res = web.getWithHeader(url);
+            res = web.getWithHeader(url,prefManager.getToken());
             Log.d(res, res);
 
 
@@ -542,7 +544,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
             if(selectedImagePath.length()>0) {
                 WebService web = new WebService();
-                res = web.postWithHeaderImage(url, selectedImagePath);
+                res = web.postWithHeaderImage(url, selectedImagePath,prefManager.getToken());
                 Log.d(res, res);
 
 
@@ -633,7 +635,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 jsonrequest.put("gender", "Male");
 
                 WebService web1 = new WebService();
-                String res1 = web1.postWithHeader(UpdateUserProfileUrl, jsonrequest.toString());
+                String res1 = web1.postWithHeader(UpdateUserProfileUrl, jsonrequest.toString(),prefManager.getToken());
                 Log.d(res1, res1);
 
                 if (res1 != null && res1.length() > 0) {
