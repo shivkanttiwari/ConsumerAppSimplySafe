@@ -51,9 +51,9 @@ public class MerchantTransactionMessageCustomAdapter extends BaseAdapter {
         TextView txt_merchant_Transaction_time = (TextView) rowView.findViewById(R.id.txt_merchant_Transaction_time);
 
 
-        txt_merchant_Transaction_Message.setText(MerchantTransactionMessageList.get(i).getTransactionMessage());
-        txt_merchant_Transaction_date.setText(MerchantTransactionMessageList.get(i).getTransacitonDate());
-        txt_merchant_Transaction_time.setText(MerchantTransactionMessageList.get(i).getTransactionTIme()+" PM");
+       // txt_merchant_Transaction_Message.setText(MerchantTransactionMessageList.get(i).getTransactionMessage());
+        //txt_merchant_Transaction_date.setText(MerchantTransactionMessageList.get(i).getTransacitonDate());
+       // txt_merchant_Transaction_time.setText(MerchantTransactionMessageList.get(i).getTransactionTIme()+" PM");
 
 
         // txt_MerchantMessage.setText(MerchantMessageList.get(i).getMerchantMessage());

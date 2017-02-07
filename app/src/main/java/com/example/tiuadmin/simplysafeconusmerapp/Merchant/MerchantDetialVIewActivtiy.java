@@ -15,14 +15,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MerchantOffersFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MerchantProfileFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MerchantTransactionMessage;
-import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MerchantOffersFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class MerchantDetialVIewActivtiy extends AppCompatActivity {
@@ -30,6 +29,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private String merchant_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,21 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                merchant_id= null;
+            } else {
+                merchant_id= extras.getString("merchant_id");
+            }
+        } else {
+            merchant_id= (String) savedInstanceState.getSerializable("merchant_id");
+        }
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

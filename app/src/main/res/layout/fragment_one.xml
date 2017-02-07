@@ -92,6 +92,7 @@
             android:layout_width="match_parent"
             android:theme="@style/TextLabel"
             android:textColorHint="#FFFFFF"
+
             android:layout_height="wrap_content">
 
             <EditText
@@ -102,7 +103,7 @@
                 android:textColor="@color/white"
                 android:hint="@string/fullName"
                 android:imeOptions="actionNext"
-                android:text="Snapdeal Ltd."
+
                 android:enabled="false"
                 android:inputType="textNoSuggestions" />
 
@@ -121,7 +122,7 @@
                 android:textColor="@color/white"
                 android:hint="@string/email"
                 android:imeOptions="actionNext"
-                android:text="Snapdeal@gmail.com"
+
                 android:enabled="false"
                 android:inputType="textNoSuggestions" />
 
@@ -141,7 +142,7 @@
                 android:textColor="@color/white"
                 android:hint="@string/mobileNumber"
                 android:enabled="false"
-                android:text="9096572182"
+
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions" />
 
@@ -162,7 +163,6 @@
                 android:textColor="@color/white"
                 android:hint="@string/address"
                 android:enabled="false"
-                android:text="Noida,India"
                 android:imeOptions="actionNext"
                 android:inputType="textNoSuggestions" />
 

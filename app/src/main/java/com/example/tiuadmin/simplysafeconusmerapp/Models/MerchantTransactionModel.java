@@ -5,49 +5,58 @@ package com.example.tiuadmin.simplysafeconusmerapp.Models;
  */
 
 public class MerchantTransactionModel {
-    String id;
-    String TransactionMessage;
-    String TransacitonDate;
-    String TransactionTIme;
-    public MerchantTransactionModel(String id, String transactionMessage, String transacitonDate, String transactionTIme) {
-        this.id = id;
-        this.TransactionMessage = transactionMessage;
-        TransacitonDate = transacitonDate;
-        TransactionTIme = transactionTIme;
-    }
-    public String getId() {
-        return id;
+    public MerchantTransactionModel(String messageID, String merchantMessageID, String merchantMessageHeading, String merchantMessage, String merchantMessageImage) {
+        MessageID = messageID;
+        MerchantMessageID = merchantMessageID;
+        MerchantMessageHeading = merchantMessageHeading;
+        MerchantMessage = merchantMessage;
+        MerchantMessageImage = merchantMessageImage;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getMessageID() {
+        return MessageID;
     }
 
-    public String getTransactionMessage() {
-        return TransactionMessage;
+    public void setMessageID(String messageID) {
+        MessageID = messageID;
     }
 
-    public void setTransactionMessage(String transactionMessage) {
-        TransactionMessage = transactionMessage;
+    public String getMerchantMessageID() {
+        return MerchantMessageID;
     }
 
-    public String getTransacitonDate() {
-        return TransacitonDate;
+    public void setMerchantMessageID(String merchantMessageID) {
+        MerchantMessageID = merchantMessageID;
     }
 
-    public void setTransacitonDate(String transacitonDate) {
-        TransacitonDate = transacitonDate;
+    public String getMerchantMessageHeading() {
+        return MerchantMessageHeading;
     }
 
-    public String getTransactionTIme() {
-        return TransactionTIme;
+    public void setMerchantMessageHeading(String merchantMessageHeading) {
+        MerchantMessageHeading = merchantMessageHeading;
     }
 
-    public void setTransactionTIme(String transactionTIme) {
-        TransactionTIme = transactionTIme;
+    public String getMerchantMessage() {
+        return MerchantMessage;
     }
 
+    public void setMerchantMessage(String merchantMessage) {
+        MerchantMessage = merchantMessage;
+    }
 
+    public String getMerchantMessageImage() {
+        return MerchantMessageImage;
+    }
 
+    public void setMerchantMessageImage(String merchantMessageImage) {
+        MerchantMessageImage = merchantMessageImage;
+    }
+
+    String MessageID;
+    String MerchantMessageID;
+    String MerchantMessageHeading;
+    String MerchantMessage;
+    String MerchantMessageImage;
 
 }

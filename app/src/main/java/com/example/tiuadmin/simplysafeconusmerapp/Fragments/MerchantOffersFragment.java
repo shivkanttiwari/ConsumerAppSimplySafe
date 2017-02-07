@@ -49,6 +49,7 @@ public class MerchantOffersFragment extends Fragment {
         lv_MerchantListview=(ListView)MerchantMessageView.findViewById(R.id.lv_MerchantMessage);
         merchantMessageModels=new ArrayList<>();
 
+       /* merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
@@ -57,8 +58,7 @@ public class MerchantOffersFragment extends Fragment {
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
-        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
-        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
+        merchantMessageModels.add(new MerchantMessageModel("1","Hello"));*/
 
 
         messageAdapter=new MerchantMessageCustomAdapter(getActivity(),merchantMessageModels);

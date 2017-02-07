@@ -49,6 +49,7 @@ public class MerchantTransactionMessage extends Fragment {
         Lv_MerchantTransaction=(ListView)MerchantTransactionView.findViewById(R.id.Lv_MerchantTransaction);
 
         MerchantTransactionArray=new ArrayList<>();
+/*
 
         MerchantTransactionArray.add(new MerchantTransactionModel("1","Your account balance is 7000 Rs.Please pay early to avoid surplus charges","01/02/2017","12:02"));
         MerchantTransactionArray.add(new MerchantTransactionModel("1","Your account balance is 7000 Rs.Please pay early to avoid surplus charges","01/02/2017","12:02"));
@@ -58,6 +59,7 @@ public class MerchantTransactionMessage extends Fragment {
         MerchantTransactionArray.add(new MerchantTransactionModel("1","Your account balance is 7000 Rs.Please pay early to avoid surplus charges","01/02/2017","12:02"));
         MerchantTransactionArray.add(new MerchantTransactionModel("1","Your account balance is 7000 Rs.Please pay early to avoid surplus charges","01/02/2017","12:02"));
         MerchantTransactionArray.add(new MerchantTransactionModel("1","Your account balance is 7000 Rs.Please pay early to avoid surplus charges","01/02/2017","12:02"));
+*/
 
 
         MerchantTransactionMessageCustomAdapter adapter=new MerchantTransactionMessageCustomAdapter(getActivity(),MerchantTransactionArray);

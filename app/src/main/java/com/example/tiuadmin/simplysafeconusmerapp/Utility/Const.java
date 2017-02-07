@@ -1,6 +1,7 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Utility;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantDetailMessageModel;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,10 @@ public class Const {
 	public static String REGISTER_DEVICE_FCM = MAIN_URL+"device/register";
 
 
+
+	//******Arrays*******
+	public static String MerchantID_Selected_For_Detial="";
+	public static ArrayList<MerchantDetailMessageModel>merchantDetailMessageModels=new ArrayList<>();
 
 
 }

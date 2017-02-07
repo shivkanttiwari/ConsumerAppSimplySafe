@@ -245,7 +245,11 @@ holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchan
             public void onClick(View v) {
              //   Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
 
-                mContext.startActivity(new Intent(mContext, MerchantDetialVIewActivtiy.class));
+                Intent i=new Intent(mContext, MerchantDetialVIewActivtiy.class);
+
+                Const.MerchantID_Selected_For_Detial=merchantArray.get(position).getMerchant_id();
+                i.putExtra("merchant_id",merchantArray.get(position).getMerchant_id());
+                mContext.startActivity(i);
             }
         });
 
