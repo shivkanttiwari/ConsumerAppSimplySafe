@@ -48,7 +48,7 @@ public class MerchantMessageCustomAdapter extends BaseAdapter {
         View rowView=inflater.inflate(R.layout.merchantmessagecustomcell, null,true);
 
         TextView txt_MerchantMessage = (TextView) rowView.findViewById(R.id.merchantmessage);
-       // txt_MerchantMessage.setText(MerchantMessageList.get(i).getMerchantMessage());
+        txt_MerchantMessage.setText(MerchantMessageList.get(i).getMerchantMessage());
 
         return rowView;
     }

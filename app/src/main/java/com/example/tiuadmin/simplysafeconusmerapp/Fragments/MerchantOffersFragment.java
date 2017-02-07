@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantMessageCustomAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantMessageModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 
 ;import java.util.ArrayList;
 
@@ -49,6 +50,7 @@ public class MerchantOffersFragment extends Fragment {
         lv_MerchantListview=(ListView)MerchantMessageView.findViewById(R.id.lv_MerchantMessage);
         merchantMessageModels=new ArrayList<>();
 
+        merchantMessageModels= Const.merchantDetailMessageModels.get(0).getMerchantPromotionalMessageArrrya();
        /* merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));
         merchantMessageModels.add(new MerchantMessageModel("1","Hello"));

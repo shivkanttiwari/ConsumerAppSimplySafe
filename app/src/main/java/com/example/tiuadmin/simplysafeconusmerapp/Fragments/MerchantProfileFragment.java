@@ -53,10 +53,15 @@ public class MerchantProfileFragment extends Fragment {
          user_pro_mobno_editText=(EditText)view.findViewById(R.id.user_pro_mobno_editText);
          user_pro_address_editText=(EditText)view.findViewById(R.id.user_pro_address_editText);
 
-        new AsyncTaskAddMerchant().execute();
+       // new AsyncTaskAddMerchant().execute();
 
 
-
+        if(Const.merchantDetailMessageModels.size()>0) {
+            user_pro_fullname_edittext.setText(Const.merchantDetailMessageModels.get(0).getMerchantDetail().getName());
+            user_pro_email_editText.setText(Const.merchantDetailMessageModels.get(0).getMerchantDetail().getEmail());
+            user_pro_mobno_editText.setText(Const.merchantDetailMessageModels.get(0).getMerchantDetail().getMobilenumber());
+            user_pro_address_editText.setText(Const.merchantDetailMessageModels.get(0).getMerchantDetail().getAddress());
+        }
 
 
         return  view;
@@ -217,6 +222,8 @@ public class MerchantProfileFragment extends Fragment {
 
                     }
 
+                    if(Const.merchantDetailMessageModels.size()>0)
+                        Const.merchantDetailMessageModels.clear();
                     Const.merchantDetailMessageModels.add(new MerchantDetailMessageModel(MerchantProfile,merhantMessageModelArray,merchantTransactionModelArray));
 
 
