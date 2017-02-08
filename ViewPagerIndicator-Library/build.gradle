@@ -16,7 +16,7 @@ repositories {
 
 android {
   compileSdkVersion 15
-  buildToolsVersion "19.1.0"
+  buildToolsVersion '24.0.3'
 
   android {
     sourceSets {
@@ -31,5 +31,5 @@ android {
 }
 
 dependencies {
-  compile "com.android.support:support-v4:19.1.0"
+  compile 'com.android.support:support-v4:25.1.1'
 }

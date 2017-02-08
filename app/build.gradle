@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion '24.0.3'
     defaultConfig {
         applicationId "com.example.tiuadmin.simplysafeconusmerapp"
@@ -55,10 +55,16 @@ dependencies {
     compile 'me.dm7.barcodescanner:zxing:1.8.4'
     compile 'com.github.flavienlaurent.discrollview:library:0.0.2'
     compile 'com.google.firebase:firebase-messaging:10.0.1'
+    compile 'me.relex:circleindicator:1.2.2@aar'
     testCompile 'junit:junit:4.12'
-    compile project(':ViewPagerIndicator-Library')
     compile project(':weather1')
     compile project(':simpleDraw')
+
+    //PDF Viewer
+    compile project(':pdfViewer')
+    provided 'org.androidannotations:androidannotations:4.0.0'
+    compile 'org.androidannotations:androidannotations-api:4.0.0'
+
 
 }
 apply plugin: 'com.google.gms.google-services'

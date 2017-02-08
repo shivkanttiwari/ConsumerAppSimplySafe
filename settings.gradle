@@ -1,1 +1,1 @@
-include ':app', ':ViewPagerIndicator-Library', ':weather1', ':simpleDraw'
+include ':app', ':weather1', ':simpleDraw', ':pdfViewer'

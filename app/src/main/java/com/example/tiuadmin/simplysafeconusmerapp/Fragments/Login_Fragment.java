@@ -189,9 +189,13 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         switch (v.getId()) {
             case R.id.login_button1:
 
+                getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+                Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
+                        .show();
+                getActivity().finish();
 
 
-                checkValidation();
+                //checkValidation();
 
                 break;
 
@@ -365,8 +369,6 @@ public class Login_Fragment extends Fragment implements OnClickListener {
             progressDialog2.dismiss();
             if (status.equalsIgnoreCase("true")) {
 
-
-                //getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
                 getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
                 Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
                         .show();

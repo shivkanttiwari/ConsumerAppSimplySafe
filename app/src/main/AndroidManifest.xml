@@ -32,6 +32,7 @@
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -46,8 +47,8 @@
         <activity
             android:name=".Merchant.MerchantDetialVIewActivtiy"
             android:parentActivityName=".Merchant.MerchantActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Merchant.MerchantActivity"
             android:parentActivityName=".Activity.DrawerActivity" />
@@ -105,9 +106,11 @@
         </service>
 
         <activity android:name=".User.SettingActivity" />
-        <activity android:name=".User.MyPreferencesActivity"
+        <activity
+            android:name=".User.MyPreferencesActivity"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
-
+        <activity android:name=".utilsApps.pdfViewer.PDFViewActivity_"
+            android:parentActivityName=".APPUtility.UtilityActivity"/>
 
     </application>
 

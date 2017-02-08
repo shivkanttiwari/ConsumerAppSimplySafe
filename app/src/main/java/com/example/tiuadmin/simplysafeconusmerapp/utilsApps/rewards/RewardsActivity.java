@@ -15,15 +15,16 @@ import android.widget.TextView;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.AnimatedExpandableListView;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.SlidingImage_Adapter;
-import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import me.relex.circleindicator.CircleIndicator;
+
 public class RewardsActivity extends AppCompatActivity {
-    CirclePageIndicator indicator;
+    CircleIndicator indicator;
     private AnimatedExpandableListView listView;
     private ExampleAdapter adapter;
 
@@ -84,7 +85,7 @@ public class RewardsActivity extends AppCompatActivity {
         prepareListData();
 
         mPager = (ViewPager) findViewById(R.id.pager);
-        indicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        indicator = (CircleIndicator) findViewById(R.id.indicator);
         updateSliderImages();
 
     }
@@ -116,7 +117,7 @@ public class RewardsActivity extends AppCompatActivity {
         indicator.setViewPager(mPager);
 
         final float density = getResources().getDisplayMetrics().density;
-        indicator.setRadius(5 * density);
+        //indicator.setRadius(5 * density);
         //NUM_PAGES = IMAGES.length;
         NUM_PAGES = ImagesArray.size();
 

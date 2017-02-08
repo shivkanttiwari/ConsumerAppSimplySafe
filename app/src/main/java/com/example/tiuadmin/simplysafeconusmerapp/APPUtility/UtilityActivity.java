@@ -17,6 +17,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.EntertainmentActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.WebViewListsActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.pdfViewer.PDFViewActivity_;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils.UtilsConstants;
 import com.simplemobiletools.draw.activities.MainActivity;
 
@@ -87,7 +88,7 @@ public class UtilityActivity extends AppCompatActivity {
                     }
                     break;
                     case 7: {
-                        //startActivity(new Intent(UtilityActivity.this, main.class));
+                        startActivity(new Intent(UtilityActivity.this, PDFViewActivity_.class));
                     }
                     break;
                 }
@@ -112,7 +113,7 @@ public class UtilityActivity extends AppCompatActivity {
     }
 
     private void prepareGrid() {
-        String[] strList = {"Calculator", "Weather", "Games", "Entertainment", "Recharge", "Knowledge","Simply Draw","Camera"};
+        String[] strList = {"Calculator", "Weather", "Games", "Entertainment", "Recharge", "Knowledge","Simply Draw","PDF Viewer"};
         int[] covers = new int[]{
                 R.drawable.calculator,
                 R.drawable.icc_weather,

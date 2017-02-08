@@ -139,4 +139,7 @@
     <string name="pref_allow_notification_popup">Show Push Notificaiton POP UP</string>
     <string name="pref_allow_notification_popup_summary">Display pop up when notificaiton arrive</string>
 
+    <string name="pick_file">Pick file</string>
+    <string name="toast_pick_file_error">Unable to pick file. Check status of file manager.</string>
+
 </resources>

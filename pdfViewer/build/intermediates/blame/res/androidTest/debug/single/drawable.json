@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\default_scroll_handle_left.xml",
+        "source": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\bundles\\debug\\res\\drawable\\default_scroll_handle_left.xml"
+    },
+    {
+        "merged": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\default_scroll_handle_bottom.xml",
+        "source": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\bundles\\debug\\res\\drawable\\default_scroll_handle_bottom.xml"
+    },
+    {
+        "merged": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\default_scroll_handle_right.xml",
+        "source": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\bundles\\debug\\res\\drawable\\default_scroll_handle_right.xml"
+    },
+    {
+        "merged": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\default_scroll_handle_top.xml",
+        "source": "D:\\android_studio_workspace\\Other\\PROS\\GIT\\1\\consumerandroidapp\\pdfViewer\\build\\intermediates\\bundles\\debug\\res\\drawable\\default_scroll_handle_top.xml"
+    }
+]
