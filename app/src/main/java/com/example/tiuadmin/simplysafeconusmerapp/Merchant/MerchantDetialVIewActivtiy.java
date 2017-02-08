@@ -81,7 +81,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MerchantProfileFragment(), "Merchant Profile");
+        adapter.addFragment(new MerchantProfileFragment(), "Profile");
         adapter.addFragment(new MerchantOffersFragment(), "Promotional");
         adapter.addFragment(new MerchantTransactionMessage(), "Transaction");
 
@@ -262,7 +262,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
                     for (int i=0; i<merchantPromotionalMessage.length(); i++) {
                         JSONObject messageObject = merchantPromotionalMessage.getJSONObject(i);
                         String messageID = messageObject.getString("id");
-                        String merchant_login_id = messageObject.getString("merchant_id");
+                        String merchant_login_id = messageObject.getString("merchantId");
                         String heading = messageObject.getString("heading");
                         String message = messageObject.getString("message");
                         String imageUrl = messageObject.getString("imageUrl");
