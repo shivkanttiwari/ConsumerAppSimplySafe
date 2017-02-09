@@ -28,5 +28,7 @@ public class FirebaseDataReceiver extends WakefulBroadcastReceiver {
         Log.d(TAG, dataBundle.toString());
 
     }
+
+
 }
 

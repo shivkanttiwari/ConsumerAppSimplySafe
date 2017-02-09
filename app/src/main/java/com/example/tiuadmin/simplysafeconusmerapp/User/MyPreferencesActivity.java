@@ -2,6 +2,8 @@ package com.example.tiuadmin.simplysafeconusmerapp.User;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -13,11 +15,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
-public class MyPreferencesActivity extends PreferenceActivity {
+public class MyPreferencesActivity extends PreferenceActivity  {
     private AppCompatDelegate mDelegate;
+    CheckBoxPreference prefCatOne;
+    CheckBoxPreference prefCatTwo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getDelegate().installViewFactory();
@@ -27,10 +32,38 @@ public class MyPreferencesActivity extends PreferenceActivity {
       //  getActionBar().setDisplayShowHomeEnabled(true);
        // getActionBar().setDisplayHomeAsUpEnabled(true);
         addPreferencesFromResource(R.xml.setting);
+         prefCatOne= (CheckBoxPreference)findPreference("prefallowpushnotificaiton");
+         prefCatTwo= (CheckBoxPreference)findPreference("prefallowpushnotificaitonpopup");
 
+
+        prefCatOne.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+
+            public boolean onPreferenceClick(Preference preference) {
+
+                if(prefCatOne.isChecked())
+                {
+                    prefCatTwo.setSelectable(false);
+                    prefCatTwo.setChecked(false);
+                }
+                else
+                {
+                    prefCatTwo.setSelectable(true);
+                }
+
+                Toast.makeText(getBaseContext(), "Some text", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
@@ -121,5 +154,6 @@ public class MyPreferencesActivity extends PreferenceActivity {
         }
         return mDelegate;
     }
+
 
 }

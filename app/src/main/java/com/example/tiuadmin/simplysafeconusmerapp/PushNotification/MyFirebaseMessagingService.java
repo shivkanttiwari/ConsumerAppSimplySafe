@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -31,7 +30,7 @@ import java.net.URL;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
-    boolean Is_PushNotification_Enabled;
+    boolean Is_PushNotification_Enabled=true;
     Bitmap remote_picture = null;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -140,6 +139,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentTitle(title)
                 .setContentText(message)
                 .setAutoCancel(true)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
 
@@ -155,31 +155,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(Integer.parseInt(id), notificationBuilder.build());
+
+
+
+
+
     }
 
 
-    private void sendNotification(String messageTitle,String messageBody) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0 /* request code */, intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
-        long[] pattern = {500,500,500,500,500};
-
-        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-        NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.logo_big)
-                .setContentTitle(messageTitle)
-                .setContentText(messageBody)
-                .setAutoCancel(true)
-                .setVibrate(pattern)
-                .setLights(Color.BLUE,1,1)
-                .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
-    }
 
 
 }
