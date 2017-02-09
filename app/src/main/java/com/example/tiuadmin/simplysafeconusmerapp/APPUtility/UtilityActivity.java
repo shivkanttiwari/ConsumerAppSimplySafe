@@ -113,16 +113,17 @@ public class UtilityActivity extends AppCompatActivity {
     }
 
     private void prepareGrid() {
-        String[] strList = {"Calculator", "Weather", "Games", "Entertainment", "Recharge", "Knowledge","Simply Draw","PDF Viewer"};
+        String[] strList = {"Calculator", "Weather", "Games", "Entertainment", "Recharge",
+                "Knowledge", "Simply Draw", "PDF Viewer"};
         int[] covers = new int[]{
                 R.drawable.calculator,
                 R.drawable.icc_weather,
                 R.drawable.gamepad,
                 R.drawable.entertainment,
-                R.drawable.knowledge,
-                R.drawable.knowledge,
-                R.drawable.knowledge,
-                R.drawable.knowledge
+                R.drawable.icc_information,
+                R.drawable.icc_information,
+                R.drawable.icc_draw,
+                R.drawable.icc_pdf
         };
 
         for (int i = 0; i < strList.length; i++) {

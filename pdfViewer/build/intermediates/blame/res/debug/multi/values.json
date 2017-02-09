@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/pdfViewer/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+        "outputFile": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,31 @@
                     "endOffset": 383
                 },
                 "from": {
-                    "file": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/pdfViewer/build/intermediates/exploded-aar/com.github.barteksc/pdfium-android/1.5.0/res/values/values.xml",
+                    "file": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\build\\intermediates\\exploded-aar\\com.github.barteksc\\pdfium-android\\1.5.0\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 43,
+                        "endOffset": 94
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 344,
+                    "endColumn": 43,
+                    "endOffset": 383
+                },
+                "from": {
+                    "file": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\build\\intermediates\\exploded-aar\\com.github.barteksc\\pdfium-android\\1.5.0\\res\\values\\values.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

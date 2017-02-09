@@ -7,6 +7,24 @@
         <option name="BUILDABLE" value="false" />
       </configuration>
     </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="1">
+        <option name="compilerInfo">
+          <KotlinCompilerInfo>
+            <option name="compilerSettings" />
+            <option name="k2jsCompilerArguments" />
+            <option name="_commonCompilerArguments" />
+          </KotlinCompilerInfo>
+        </option>
+        <option name="versionInfo">
+          <KotlinVersionInfo>
+            <option name="apiLevel" />
+            <option name="languageLevel" />
+            <option name="targetPlatformName" value="" />
+          </KotlinVersionInfo>
+        </option>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="true">
     <exclude-output />
