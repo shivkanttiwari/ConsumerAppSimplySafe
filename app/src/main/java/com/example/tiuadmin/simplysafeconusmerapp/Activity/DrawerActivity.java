@@ -45,6 +45,7 @@ public class DrawerActivity extends AppCompatActivity {
     TextView navigationDrawerTextview;
     ImageView navigationDrawerImageview;
     PrefManager prefManager;
+    TextView tv_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +118,7 @@ public class DrawerActivity extends AppCompatActivity {
             }
         });
         View header = navigationView.getHeaderView(0);
-        TextView tv_email = (TextView)header.findViewById(R.id.tv_email);
+         tv_email = (TextView)header.findViewById(R.id.tv_email);
         tv_email.setText(Const.USER_EMAIL);
 
 
@@ -228,6 +229,7 @@ public class DrawerActivity extends AppCompatActivity {
                             .into(navigationDrawerImageview);
 
 
+                    tv_email.setText(Const.USER_EMAIL);
                    // Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(navigationDrawerImageview);
 
                     Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);

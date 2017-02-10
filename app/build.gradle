@@ -60,6 +60,7 @@ dependencies {
     compile project(':weather1')
     compile project(':simpleDraw')
 
+
     //****PDF Viewer
     compile project(':pdfViewer')
     provided 'org.androidannotations:androidannotations:4.0.0'

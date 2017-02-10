@@ -60,7 +60,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
    public static MerchantViewAdapter mAdapter;
 
 
-TextView txt_noMerchant;
+    TextView txt_noMerchant;
 
     private Toolbar toolbar;
 
@@ -74,6 +74,8 @@ TextView txt_noMerchant;
    // ArrayList<String> merchantArraay;
    ListView mRecyclerView;
     PrefManager prefManager;
+    String message="";
+    String merchantMobileNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,6 +204,7 @@ TextView txt_noMerchant;
                         {
 
                             dialog.dismiss();
+                            merchantMobileNumber=edMerchantMobilenumber.getText().toString().trim();
                             new AsyncTaskAddMerchant().execute();
 
                                 //  makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
@@ -313,7 +316,7 @@ TextView txt_noMerchant;
             try {
 
 
-                makeAddMerchantRequest(edMerchantMobilenumber.getText().toString().trim());
+                makeAddMerchantRequest(merchantMobileNumber);
             } catch (Exception e) {
                 progressDialog2.dismiss();
 
@@ -329,12 +332,18 @@ TextView txt_noMerchant;
             progressDialog2.dismiss();
 
 
-            mAdapter.notifyDataSetChanged();
-            // sendRequest();
+            if (message.equalsIgnoreCase("0")) {
+                Toast.makeText(getApplicationContext(), "Merchant already exist.", Toast.LENGTH_SHORT).show();
+            } else {
 
-            // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
-            // mRecyclerView.setLayoutManager(layoutManager);
-            mRecyclerView.smoothScrollToPosition(0);
+
+                mAdapter.notifyDataSetChanged();
+                // sendRequest();
+
+                // MerchantViewAdapter layoutManager = new MerchantViewAdapter(getActivity());
+                // mRecyclerView.setLayoutManager(layoutManager);
+                mRecyclerView.smoothScrollToPosition(0);
+            }
         }
     }
     /**
@@ -368,29 +377,33 @@ TextView txt_noMerchant;
                     String merhantStatus=json.getString("status");
                     JSONObject jsonuserdata=new JSONObject();
 
-                    jsonuserdata=json.getJSONObject("res");
+                    message=json.getString("result");
 
-                    String merchantID=jsonuserdata.getString("id");
-                    String merchantName=jsonuserdata.getString("name");
-                    String merchantMobilenumber=jsonuserdata.getString("phone");
-                    String merchantPOSURL=jsonuserdata.getString("pos_url");
-                    String merchantType=jsonuserdata.getString("type");
-                    String merchantEmail=jsonuserdata.getString("email");
-                    String merchantaddress=jsonuserdata.getString("address");
-                    String merchantPosName=jsonuserdata.getString("pos_name");
-                    String merchantMessage=jsonuserdata.getString("message");
-
-                    String merchantPostCreated=jsonuserdata.getString("pos_create_at");
-                    String merchantPOSExpires=jsonuserdata.getString("pos_demo_expiry_at");
-                    String merchantPaymentStatus=jsonuserdata.getString("payment_status");
+                    if(message.equalsIgnoreCase("1")) {
 
 
+                        jsonuserdata = json.getJSONObject("res");
 
-                    makeAddMerchantConsumerDatabaseRequest(new Merchant("","",merchantID,merchantName,merchantMobilenumber,merchantPOSURL,merchantType,merhantStatus
-                            ,merchantEmail,merchantaddress,merchantPosName,merchantMessage,merchantPostCreated,merchantPOSExpires,merchantPaymentStatus));
-                   // Collections.reverse(Const.MERCHANT_DATA);
+                        String merchantID = jsonuserdata.getString("id");
+                        String merchantName = jsonuserdata.getString("name");
+                        String merchantMobilenumber = jsonuserdata.getString("phone");
+                        String merchantPOSURL = jsonuserdata.getString("pos_url");
+                        String merchantType = jsonuserdata.getString("type");
+                        String merchantEmail = jsonuserdata.getString("email");
+                        String merchantaddress = jsonuserdata.getString("address");
+                        String merchantPosName = jsonuserdata.getString("pos_name");
+                        String merchantMessage = jsonuserdata.getString("message");
+
+                        String merchantPostCreated = jsonuserdata.getString("pos_create_at");
+                        String merchantPOSExpires = jsonuserdata.getString("pos_demo_expiry_at");
+                        String merchantPaymentStatus = jsonuserdata.getString("payment_status");
 
 
+                        makeAddMerchantConsumerDatabaseRequest(new Merchant("", "", merchantID, merchantName, merchantMobilenumber, merchantPOSURL, merchantType, merhantStatus
+                                , merchantEmail, merchantaddress, merchantPosName, merchantMessage, merchantPostCreated, merchantPOSExpires, merchantPaymentStatus));
+                        // Collections.reverse(Const.MERCHANT_DATA);
+
+                    }
 
                    /* String logintoken = json.getString("access_token");
 

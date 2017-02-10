@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/pdfViewer/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/pdfViewer/src/release/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/src/release/shaders"/></dataSet></merger>
