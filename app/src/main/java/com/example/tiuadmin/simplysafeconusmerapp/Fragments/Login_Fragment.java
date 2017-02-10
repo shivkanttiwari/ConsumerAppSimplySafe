@@ -189,14 +189,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         switch (v.getId()) {
             case R.id.login_button1:
 
-              /*  getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
                 Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
                         .show();
-                getActivity().finish();*/
+                getActivity().finish();
 
-
-                checkValidation();
-
+                //checkValidation();
                 break;
 
             case R.id.forget_password_link:
@@ -274,7 +272,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
             jsonrequest.put("sspin", password);
 
             WebService web = new WebService();
-            res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
+            res = web.postWithHeader(url, jsonrequest.toString(), prefManager.getToken());
             Log.d(res, res);
 
             if (res != null && res.length() > 0) {
@@ -296,10 +294,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                         prefManager.setToken(logintoken);
 
 
-
-
-                        if(prefManager.getDeviceToken().length()>0 && prefManager.getToken().length()>0)
-                        {
+                        if (prefManager.getDeviceToken().length() > 0 && prefManager.getToken().length() > 0) {
                             new GeneralFunction().sendRegistrationToServer(getActivity());
                         }
 
@@ -383,8 +378,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 /*
     */
 /**
-     * Making json object request
-     *//*
+ * Making json object request
+ *//*
 
     private void sendRegistrationToServer() {
         // new GeneralFunction().showProgressDialog(getActivity());

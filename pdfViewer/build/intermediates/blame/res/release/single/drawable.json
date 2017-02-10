@@ -1,18 +1,34 @@
 [
     {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/build/intermediates/res/merged/release/drawable/default_scroll_handle_bottom.xml",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/src/main/res/drawable/default_scroll_handle_bottom.xml"
+        "merged": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_top.xml",
+        "source": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_top.xml"
     },
     {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/build/intermediates/res/merged/release/drawable/default_scroll_handle_right.xml",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/src/main/res/drawable/default_scroll_handle_right.xml"
+        "merged": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_bottom.xml",
+        "source": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_bottom.xml"
     },
     {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/build/intermediates/res/merged/release/drawable/default_scroll_handle_top.xml",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/src/main/res/drawable/default_scroll_handle_top.xml"
+        "merged": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_right.xml",
+        "source": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_right.xml"
     },
     {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/build/intermediates/res/merged/release/drawable/default_scroll_handle_left.xml",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/pdfViewer/src/main/res/drawable/default_scroll_handle_left.xml"
+        "merged": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_top.xml",
+        "source": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_top.xml"
+    },
+    {
+        "merged": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_left.xml",
+        "source": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_left.xml"
+    },
+    {
+        "merged": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_bottom.xml",
+        "source": "D:\\Users\\tiuadmin\\Desktop\\shivkant\\Android\\SimplySafeConusmerApp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_bottom.xml"
+    },
+    {
+        "merged": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_right.xml",
+        "source": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_right.xml"
+    },
+    {
+        "merged": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\build\\intermediates\\res\\merged\\release\\drawable\\default_scroll_handle_left.xml",
+        "source": "D:\\AStudio\\CUST\\PRO\\consumerandroidapp\\pdfViewer\\src\\main\\res\\drawable\\default_scroll_handle_left.xml"
     }
 ]
