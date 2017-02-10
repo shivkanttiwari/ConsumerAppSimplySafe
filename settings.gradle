@@ -1,1 +1,1 @@
-include ':app', ':weather1', ':simpleDraw', ':pdfViewer'
+include ':app', ':weather1', ':simpleDraw', ':pdfViewer', ':PeriodicTable'

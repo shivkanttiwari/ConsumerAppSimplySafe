@@ -62,5 +62,6 @@ dependencies {
     compile project(':pdfViewer')
     provided 'org.androidannotations:androidannotations:4.0.0'
     compile 'org.androidannotations:androidannotations-api:4.0.0'
+    compile project(':PeriodicTable')
 }
 apply plugin: 'com.google.gms.google-services'
