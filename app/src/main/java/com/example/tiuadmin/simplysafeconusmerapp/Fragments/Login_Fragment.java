@@ -189,12 +189,9 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         switch (v.getId()) {
             case R.id.login_button1:
 
-                getActivity().startActivity(new Intent(getActivity(), DrawerActivity.class));
-                Toast.makeText(getActivity(), "Login Successful", Toast.LENGTH_SHORT)
-                        .show();
-                getActivity().finish();
 
-                //checkValidation();
+
+                checkValidation();
                 break;
 
             case R.id.forget_password_link:
@@ -295,7 +292,11 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
 
                         if (prefManager.getDeviceToken().length() > 0 && prefManager.getToken().length() > 0) {
-                            new GeneralFunction().sendRegistrationToServer(getActivity());
+                            new GeneralFunction().sendRegistrationToServer(getActivity(),prefManager.getDeviceToken());
+                        }
+                        else {
+                            Toast.makeText(getActivity(),"You are not registered to recieve push notification." +
+                                    "Please login agin",Toast.LENGTH_SHORT).show();
                         }
 
                     } else {

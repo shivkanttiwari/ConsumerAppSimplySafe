@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -664,7 +665,22 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
        // CustomList cl = new CustomList(this, ParseJSON.ids,ParseJSON.names,ParseJSON.emails);
       //  listView.setAdapter(cl);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
 
+                Log.i("DATA", "Hit Actionbar Back Button");
+
+
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public void handleResult(Result result) {
         Log.e("handler", result.getText()); // Prints scan results

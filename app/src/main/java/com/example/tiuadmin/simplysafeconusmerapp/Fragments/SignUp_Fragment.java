@@ -144,7 +144,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 
 		// Check if all strings are null or not
 		if (getFullName.equals("") || getFullName.length() == 0
-				|| getEmailId.equals("") || getEmailId.length() == 0
+
 				|| getMobileNumber.equals("") || getMobileNumber.length() == 0
 
 				|| getPassword.equals("") || getPassword.length() == 0
@@ -155,9 +155,13 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 					"All fields are required.");
 
 			// Check if email id valid or not
-		else if (!m.find())
+		else if(getEmailId.length()>0 &&  (!m.find()))
+		{
+
 			new GeneralFunction().Show_Toast(getActivity(), view,
 					"Your Email Id is Invalid.");
+
+		}
 
 			// Check if both password should be equal
 		else if (!getConfirmPassword.equals(getPassword))
@@ -337,7 +341,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 			progressDialog2.dismiss();
 			if(Const.SIGNUP_TOKEN.length()>0)
 			{
-				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS="1";
+				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS=2;
 				new MainActivity().replaceRgistrationOTPVerificaitonFragment();
 			}
 

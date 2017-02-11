@@ -79,6 +79,18 @@ public class WebService {
         return response.body().string();
     }
 
+
+    public String postWithHeaderContentType(String url, String json,String token) throws IOException {
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+
+                .addHeader("Content-Type", "application/json")
+                .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
     public String postWithHeader(String url, String json,String token) throws IOException {
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()

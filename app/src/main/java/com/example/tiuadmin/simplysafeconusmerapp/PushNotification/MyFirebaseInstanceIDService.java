@@ -35,9 +35,9 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
         prefManager.setDeviceToken(refreshedToken);
 
-        if(refreshedToken.length()>0 && prefManager.getToken().length()>0)
+        if(refreshedToken.length()>0 && prefManager.getDeviceToken().length()>0)
         {
-            new GeneralFunction().sendRegistrationToServer(getApplicationContext());
+            new GeneralFunction().sendRegistrationToServer(getApplicationContext(),refreshedToken);
         }
 
 

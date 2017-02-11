@@ -38,12 +38,12 @@ import com.example.tiuadmin.simplysafeconusmerapp.Fragments.VerifyOTP_Fragment;
                                 switch (Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS)
                                 {
 
-                                    case "0":
+                                    case 0:
                                         VerifyOTPForgetPassword SmsVerifyOTPForgetPassword = new VerifyOTPForgetPassword();
                                         SmsVerifyOTPForgetPassword.setOTP(message );
                                         break;
 
-                                    case "1":
+                                    case 1:
                                         VerifyOTP_Fragment SmsVerifyOTP_Fragment = new VerifyOTP_Fragment();
                                         SmsVerifyOTP_Fragment.setOTP(message );
                                         break;

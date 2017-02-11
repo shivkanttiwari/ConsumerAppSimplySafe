@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -17,7 +19,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.MainMenuDashboard;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.EntertainmentActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.entertainment.WebViewListsActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.pdfViewer.PDFViewActivity_;
+
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.utils.UtilsConstants;
 import com.simplemobiletools.draw.activities.MainActivity;
 
@@ -88,7 +90,7 @@ public class UtilityActivity extends AppCompatActivity {
                     }
                     break;
                     case 7: {
-                        startActivity(new Intent(UtilityActivity.this, PDFViewActivity_.class));
+                       // startActivity(new Intent(UtilityActivity.this, PDFViewActivity_.class));
                     }
                     break;
                 }
@@ -182,6 +184,23 @@ public class UtilityActivity extends AppCompatActivity {
         @Override
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+                Log.i("DATA", "Hit Actionbar Back Button");
+
+
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
     //******CLICK EVENT*******

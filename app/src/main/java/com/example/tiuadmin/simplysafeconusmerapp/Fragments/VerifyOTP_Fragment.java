@@ -238,6 +238,10 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
                 Toast.makeText(getActivity(),"User Created SUcessfully",Toast.LENGTH_SHORT).show();
                 new MainActivity().replaceLoginFragment();
             }
+
+            else {
+                Toast.makeText(getActivity(),"OTP not valid please try agiain.",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

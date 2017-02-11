@@ -101,7 +101,7 @@ PrefManager prefManager;
     /**
      * Making json object request
      */
-    public void sendRegistrationToServer(Context context) {
+    public void sendRegistrationToServer(Context context,String token) {
         // new GeneralFunction().showProgressDialog(getActivity());
         prefManager=new PrefManager(context);
 
@@ -112,7 +112,7 @@ PrefManager prefManager;
 
             String url ="http://52.66.101.233/Customer-Backend/public/api/v1/customer/device/register";
             JSONObject jsonrequest = new JSONObject();
-            jsonrequest.put("device_token", Const.DEVICE_TOKEN);
+            jsonrequest.put("device_token", token);
             jsonrequest.put("device_type_id", "");
 
 

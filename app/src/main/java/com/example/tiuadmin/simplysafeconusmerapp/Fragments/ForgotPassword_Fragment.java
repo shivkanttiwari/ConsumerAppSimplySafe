@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
@@ -140,7 +141,7 @@ PrefManager prefManager;
 
 
 			WebService web = new WebService();
-			res = web.postWithHeader(url, jsonrequest.toString(),prefManager.getToken());
+			res = web.postWithHeaderContentType(url, jsonrequest.toString(),prefManager.getToken());
 			Log.d(res, res);
 
 
@@ -148,15 +149,22 @@ PrefManager prefManager;
 				JSONObject json = new JSONObject(res);
 				if (json != null) {
 					Const.ForgetPassword_TOKEN="";
-					//String status = json.getString("statConst.ForgetPassword_TOKENus");
-					//String message = json.getString("message");
-					//if (status.equalsIgnoreCase("true"))
+					String status = json.getString("status");
+					String message = json.getString("message");
+					if (status.equalsIgnoreCase("true"))
 					{
-						Const.ForgetPassword_TOKEN=json.getString("forgot_password_otp");
+
+
+						JSONObject userdata=json.getJSONObject("data");
+
+						//Const.SIGNUP_TOKEN=userdata.getString("otp");
+						Const.ForgetPassword_TOKEN=userdata.getString("forgot_password_otp");
 
 
 					}
-						//Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
+
+					Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 
 
 
@@ -217,7 +225,7 @@ PrefManager prefManager;
 
 			if(Const.ForgetPassword_TOKEN.length()>0)
 			{
-				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS="0";
+				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS=1;
 				new MainActivity().replaceForgetPasswordOTPVerificaitonFragment();
 			}
 

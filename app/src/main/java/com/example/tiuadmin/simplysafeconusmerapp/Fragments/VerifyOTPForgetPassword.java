@@ -37,6 +37,7 @@ public class VerifyOTPForgetPassword extends Fragment implements View.OnClickLis
     String getphonenumber ;//= phonenumber.getText().toString().trim();
     String getotp ;//= otp.getText().toString().trim();
     String status;// = json.getString("status");
+    String message;
 PrefManager prefManager;
     public VerifyOTPForgetPassword() {
         // Required empty public constructor
@@ -176,7 +177,7 @@ PrefManager prefManager;
                 if (json != null) {
 
                      status = json.getString("status");
-                    String message = json.getString("message");
+                     message = json.getString("message");
 
                     Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 
@@ -239,6 +240,9 @@ PrefManager prefManager;
             {
 
                 new MainActivity().replaceChangePasswordFragment();
+            }
+            else {
+                Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
             }
         }
     }

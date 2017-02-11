@@ -61,7 +61,7 @@
             <EditText android:id="@+id/login_pass_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:textColor="@color/white"
                 android:maxLength="4"
                 android:drawablePadding="10dp"

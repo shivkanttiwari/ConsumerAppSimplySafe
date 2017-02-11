@@ -3,6 +3,8 @@ package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.rewards;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -24,5 +26,22 @@ public class RewardHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(RewardHomeActivity.this, RewardsActivity.class));
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+                Log.i("DATA", "Hit Actionbar Back Button");
+
+
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

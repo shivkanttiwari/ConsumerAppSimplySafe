@@ -14,6 +14,9 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
 
 
     <uses-feature
@@ -92,6 +95,21 @@
             android:name=".utilsApps.rewards.TransactionHistoryActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+
+
+        <receiver
+            android:name="com.example.tiuadmin.simplysafeconusmerapp.Utility.IncomingSMS"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter
+                android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
+
+
         <!-- Defining Services -->
 
         <service android:name=".PushNotification.MyFirebaseMessagingService">
@@ -109,8 +127,7 @@
         <activity
             android:name=".User.MyPreferencesActivity"
             android:parentActivityName=".Activity.DrawerActivity"></activity>
-        <activity android:name=".utilsApps.pdfViewer.PDFViewActivity_"
-            android:parentActivityName=".APPUtility.UtilityActivity"/>
+
 
     </application>
 

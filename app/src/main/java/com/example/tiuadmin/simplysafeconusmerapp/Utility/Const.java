@@ -32,7 +32,7 @@ public class Const {
 
 
 
-	public static String OTP_VERIFICATION_MOUDLE_ID_FOR_SMS = "0";
+	public static int OTP_VERIFICATION_MOUDLE_ID_FOR_SMS = 0;
 
 	public static String MAIN_URL = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/";
 

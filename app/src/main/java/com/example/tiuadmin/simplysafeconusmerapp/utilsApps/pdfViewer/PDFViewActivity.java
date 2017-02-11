@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 package com.example.tiuadmin.simplysafeconusmerapp.utilsApps.pdfViewer;
 
 import android.content.ActivityNotFoundException;
@@ -191,13 +192,15 @@ public class PDFViewActivity extends AppCompatActivity implements OnPageChangeLi
         }
     }
 
-    /**
+    */
+/**
      * Listener for response to user permission request
      *
      * @param requestCode  Check that permission request code matches
      * @param permissions  Permissions that requested
      * @param grantResults Whether permissions granted
-     */
+     *//*
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
                                            @NonNull int[] grantResults) {
@@ -210,3 +213,4 @@ public class PDFViewActivity extends AppCompatActivity implements OnPageChangeLi
     }
 
 }
+*/
