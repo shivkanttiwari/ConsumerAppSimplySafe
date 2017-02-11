@@ -1,9 +1,11 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Activity;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -14,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.DashboardFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MainActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.User.ChangePasswordActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
@@ -34,6 +38,8 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import static com.example.tiuadmin.simplysafeconusmerapp.R.id.drawer;
 
@@ -51,13 +57,13 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_main);
         prefManager=new PrefManager(this);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+       // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-        StrictMode.setThreadPolicy(policy);
+        //StrictMode.setThreadPolicy(policy);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
-        makeUserDetailRequest();
+        new AsyncTaskWS().execute();
       //  initCollapsingToolbar();
 
 
@@ -191,7 +197,7 @@ public class DrawerActivity extends AppCompatActivity {
      * Making json object request
      */
     private void makeUserDetailRequest() {
-        new GeneralFunction().showProgressDialog(this);
+        //new GeneralFunction().showProgressDialog(this);
         String res = null;
         String responseCode = null;
         String returnResponse = null;
@@ -239,11 +245,11 @@ public class DrawerActivity extends AppCompatActivity {
             else {
                 Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
                         .show();
-                new GeneralFunction().hideProgressDialog();
+                //new GeneralFunction().hideProgressDialog();
             }
 
         } catch (Exception e) {
-            new GeneralFunction().hideProgressDialog();
+            //new GeneralFunction().hideProgressDialog();
             Toast.makeText(getApplicationContext(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
@@ -272,5 +278,55 @@ public class DrawerActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
+    }
+
+
+    //******************webservice********
+    private ProgressDialog progressDialog2 = null;
+    String username;
+    ArrayList<Merchant> setget = new ArrayList<>();
+    String fname, lname, strGender;
+
+    // To use the AsyncTask, it must be subclassed
+    private class AsyncTaskWS extends AsyncTask<Void, Integer, Void> {
+        // Before running code in separate thread
+        @Override
+        protected void onPreExecute() {
+            // Create a new progress dialog
+            progressDialog2 = new ProgressDialog(DrawerActivity.this);
+            progressDialog2.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+            progressDialog2.getWindow().setGravity(Gravity.CENTER);
+            // Set the progress dialog to display a horizontal progress bar
+            progressDialog2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            // Set the dialog title to 'Loading...'
+            // Set the dialog message to 'Loading application View, please
+            // wait...'
+            progressDialog2.setMessage("Pleaes Wait...");
+            // This dialog can't be canceled by pressing the back key
+            progressDialog2.setCancelable(false);
+            // This dialog isn't indeterminate
+            progressDialog2.setIndeterminate(false);
+            // Display the progress dialog
+            progressDialog2.show();
+        }
+
+        // The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                makeUserDetailRequest();
+            } catch (Exception e) {
+                progressDialog2.dismiss();
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        // after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialog2.dismiss();
+
+        }
     }
 }

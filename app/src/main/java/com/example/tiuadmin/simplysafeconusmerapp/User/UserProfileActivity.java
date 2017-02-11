@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.CompressImage;
@@ -80,13 +81,14 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     String address;//=ed_Address.getText().toString();
     PrefManager prefManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         initViews();
         setListeners();
-        makeUserDetailRequest();
+        new AsyncTaskWS().execute();
     }
 
     // Initiate Views
@@ -246,7 +248,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
      * Making json object request
      */
     private void makeUserDetailRequest() {
-        new GeneralFunction().showProgressDialog(this);
+        //new GeneralFunction().showProgressDialog(this);
         String res = null;
         String responseCode = null;
         String returnResponse = null;
@@ -272,18 +274,9 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     Const.USER_NAME=json.getString("name");
                     Const.USER_MOBILENUMBER=json.getString("phone");
                     Const.USER_EMAIL=json.getString("email");
-                    String address=json.getString("address");
+                     address=json.getString("address");
 
-                    ed_FullName.setText(Const.USER_NAME);
-                    ed_Email.setText(Const.USER_EMAIL);
-                    ed_MobilNumber.setText(Const.USER_MOBILENUMBER);
-                    ed_Address.setText(address);
-                    Picasso
-                            .with(this)
-                            .load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID)
-                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                            .networkPolicy(NetworkPolicy.NO_CACHE)
-                            .into(img_profilepic);
+
 
                  //   Picasso.memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE),
                     //        with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(img_profilepic);
@@ -299,17 +292,17 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     startActivity(new Intent(DrawerActivity.this, DrawerActivity.class));
 
                    finish();*/
-                    new GeneralFunction().hideProgressDialog();
+                   // new GeneralFunction().hideProgressDialog();
                 }
             }
             else {
                 Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
                         .show();
-                new GeneralFunction().hideProgressDialog();
+               // new GeneralFunction().hideProgressDialog();
             }
 
         } catch (Exception e) {
-            new GeneralFunction().hideProgressDialog();
+            //new GeneralFunction().hideProgressDialog();
             Toast.makeText(getApplicationContext(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
@@ -477,9 +470,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     //******************webservice********
     private ProgressDialog progressDialog2 = null;
-    String username;
-    ArrayList<Merchant> setget = new ArrayList<>();
-    String fname, lname, strGender;
+
 
     // To use the AsyncTask, it must be subclassed
     private class AsyncTaskUpdateProfile extends AsyncTask<Void, Integer, Void> {
@@ -648,7 +639,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                         if (Status_ProfileUPdate.equalsIgnoreCase("true")) {
 
 
-                            Toast.makeText(UserProfileActivity.this, message, Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserProfileActivity.this, messageProfileUPdate, Toast.LENGTH_LONG).show();
                             progressDialog2.dismiss();
                         }
 
@@ -664,6 +655,63 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             Toast.makeText(getApplicationContext(), "Unable to Update User Information.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
+        }
+    }
+
+
+    //******************webservice********
+    private ProgressDialog progressDialog3 = null;
+
+
+    // To use the AsyncTask, it must be subclassed
+    private class AsyncTaskWS extends AsyncTask<Void, Integer, Void> {
+        // Before running code in separate thread
+        @Override
+        protected void onPreExecute() {
+            // Create a new progress dialog
+            progressDialog3 = new ProgressDialog(UserProfileActivity.this);
+            progressDialog3.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+            progressDialog3.getWindow().setGravity(Gravity.CENTER);
+            // Set the progress dialog to display a horizontal progress bar
+            progressDialog3.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            // Set the dialog title to 'Loading...'
+            // Set the dialog message to 'Loading application View, please
+            // wait...'
+            progressDialog3.setMessage("Pleaes Wait...");
+            // This dialog can't be canceled by pressing the back key
+            progressDialog3.setCancelable(false);
+            // This dialog isn't indeterminate
+            progressDialog3.setIndeterminate(false);
+            // Display the progress dialog
+            progressDialog3.show();
+        }
+
+        // The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                makeUserDetailRequest();
+            } catch (Exception e) {
+                progressDialog3.dismiss();
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        // after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialog3.dismiss();
+            ed_FullName.setText(Const.USER_NAME);
+            ed_Email.setText(Const.USER_EMAIL);
+            ed_MobilNumber.setText(Const.USER_MOBILENUMBER);
+            ed_Address.setText(address);
+            Picasso
+                    .with(UserProfileActivity.this)
+                    .load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
+                    .into(img_profilepic);
         }
     }
 }

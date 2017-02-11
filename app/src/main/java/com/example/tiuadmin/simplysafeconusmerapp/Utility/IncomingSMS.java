@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.VerifyOTPForgetPassword;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.VerifyOTP_Fragment;
@@ -61,6 +62,8 @@ import com.example.tiuadmin.simplysafeconusmerapp.Fragments.VerifyOTP_Fragment;
             } catch (Exception e)
             {
 
+
+                Toast.makeText(context,"Error:"+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         }
 

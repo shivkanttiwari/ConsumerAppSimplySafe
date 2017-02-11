@@ -59,7 +59,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         //Calling method to generate notification
-        if(Is_PushNotification_Enabled) {
+        if(Is_PushNotification_Enabled)
+        {
 
             String ttile=remoteMessage.getData().get("heading");
             String message=remoteMessage.getData().get("text");
