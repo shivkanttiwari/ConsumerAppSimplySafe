@@ -1,0 +1,36 @@
+com.frozendevs.periodictable.BuildConfig
+com.frozendevs.periodictable.PeriodicTableApplication:
+    private android.support.v4.app.SharedElementCallback mSharedElementCallback
+    private android.view.View$OnAttachStateChangeListener mOnAttachStateChangeListener
+    12:12:public android.support.v4.app.SharedElementCallback getSharedElementCallback()
+    16:17:public void setSharedElementCallback(android.support.v4.app.SharedElementCallback)
+    20:20:public android.view.View$OnAttachStateChangeListener getOnAttachStateChangeListener()
+    24:25:public void setOnAttachStateChangeListener(android.view.View$OnAttachStateChangeListener)
+com.frozendevs.periodictable.activity.PropertiesActivity:
+    public static final java.lang.String EXTRA_ATOMIC_NUMBER
+    public static final java.lang.String ARGUMENT_PROPERTIES
+    private static final java.lang.String STATE_ELEMENT_PROPERTIES
+com.frozendevs.periodictable.activity.SettingsActivity:
+    private static final java.lang.String ACTION_SETTINGS_ABOUT
+    75:75:public android.support.v7.app.ActionBar getSupportActionBar()
+    79:80:public void setSupportActionBar(android.support.v7.widget.Toolbar)
+com.frozendevs.periodictable.content.Database:
+    14:14:public Database()
+com.frozendevs.periodictable.fragment.ElementsFragment:
+    private static final java.lang.String STATE_LIST_ITEMS
+    private static final java.lang.String STATE_SEARCH_QUERY
+com.frozendevs.periodictable.fragment.IsotopesFragment:
+    private static final java.lang.String SAVED_STATE_EXPANDABLE_ITEM_MANAGER
+com.frozendevs.periodictable.fragment.TableFragment:
+    private static final java.lang.String STATE_TABLE_ADAPTER
+    30:30:static synthetic com.frozendevs.periodictable.view.PeriodicTableView access$000(com.frozendevs.periodictable.fragment.TableFragment)
+com.frozendevs.periodictable.fragment.TableFragment$OnAttachStateChangeListener
+com.frozendevs.periodictable.fragment.TableFragment$SharedElementCallback
+com.frozendevs.periodictable.model.adapter.PropertiesAdapter:
+    public static final int VIEW_TYPE_HEADER
+    public static final int VIEW_TYPE_ITEM
+com.frozendevs.periodictable.view.ZoomableScrollView:
+    private static final float DEFAULT_MAX_ZOOM
+    479:479:public boolean isScrolling()
+com.frozendevs.periodictable.widget.Zoomer:
+    81:83:public void abortAnimation()

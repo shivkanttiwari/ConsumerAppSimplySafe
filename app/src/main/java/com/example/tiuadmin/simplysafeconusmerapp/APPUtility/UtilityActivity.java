@@ -82,7 +82,7 @@ public class UtilityActivity extends AppCompatActivity {
                     break;
 
                     case 5: {
-
+                        startActivity(new Intent(UtilityActivity.this, com.frozendevs.periodictable.activity.MainActivity.class));
                     }
                     break;
                     case 6: {
