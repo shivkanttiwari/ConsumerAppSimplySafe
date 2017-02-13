@@ -32,6 +32,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
     boolean Is_PushNotification_Enabled=true;
     Bitmap remote_picture = null;
+    String message;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Displaying data in log
@@ -54,7 +55,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
+     //   if (remoteMessage.getNotification().getBody() != null)
+        {
+
+             message=remoteMessage.getNotification().getBody();
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
@@ -63,7 +67,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         {
 
             String ttile=remoteMessage.getData().get("heading");
-            String message=remoteMessage.getData().get("text");
+          //  String message=remoteMessage.getData().get("text");
             String image=remoteMessage.getData().get("imageUrl");
             String id=remoteMessage.getData().get("id");
             sendNotification(ttile,message,image,id);
@@ -127,7 +131,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        notiStyle.bigPicture(remote_picture);
+        if(image.length()>0) {
+            notiStyle.bigPicture(remote_picture);
+        }
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("title", id);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
