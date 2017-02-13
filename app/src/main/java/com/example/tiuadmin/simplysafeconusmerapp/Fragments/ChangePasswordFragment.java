@@ -255,4 +255,5 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
 
         }
     }
+
 }

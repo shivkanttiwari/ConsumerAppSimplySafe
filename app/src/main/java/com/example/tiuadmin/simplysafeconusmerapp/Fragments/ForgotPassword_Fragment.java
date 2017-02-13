@@ -37,6 +37,8 @@ public class ForgotPassword_Fragment extends Fragment implements
 	private static EditText mobilenumber;
 	private static TextView submit, back;
 	String getMobileNumber;
+	String status ="";//= json.getString("status");
+	String message="";// = json.getString("message");;
 PrefManager prefManager;
 
 	public ForgotPassword_Fragment() {
@@ -149,8 +151,8 @@ PrefManager prefManager;
 				JSONObject json = new JSONObject(res);
 				if (json != null) {
 					Const.ForgetPassword_TOKEN="";
-					String status = json.getString("status");
-					String message = json.getString("message");
+					 status = json.getString("status");
+					 message = json.getString("message");
 					if (status.equalsIgnoreCase("true"))
 					{
 
@@ -164,7 +166,7 @@ PrefManager prefManager;
 					}
 
 
-					Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
 
 
 
@@ -223,10 +225,14 @@ PrefManager prefManager;
 		protected void onPostExecute(Void result) {
 			progressDialog2.dismiss();
 
-			if(Const.ForgetPassword_TOKEN.length()>0)
+			if(Const.ForgetPassword_TOKEN.length()>0 && status.equalsIgnoreCase("true"))
 			{
 				Const.OTP_VERIFICATION_MOUDLE_ID_FOR_SMS=1;
 				new MainActivity().replaceForgetPasswordOTPVerificaitonFragment();
+				Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+			}
+			else {
+				Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
 			}
 
 		}

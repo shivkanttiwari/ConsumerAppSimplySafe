@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +21,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantViewAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.JSON.JSONPARSER;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
@@ -50,8 +49,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-
-import static com.example.tiuadmin.simplysafeconusmerapp.R.id.edMerchantMobilenumber;
 
 
 public class MerchantActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
@@ -87,10 +84,12 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
          mRecyclerView = (ListView) findViewById(R.id.list);
 
+
+
        // mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
        // mRecyclerView.setHasFixedSize(false);
        // mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        makeGetMerchantConsumerDatabaseRequest();
+
 //
         //mAdapter = new MerchantViewAdapter(list,this);
        // mRecyclerView.setAdapter(mAdapter);
@@ -130,7 +129,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         }
         mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
-
+        makeGetMerchantConsumerDatabaseRequest();
       //  mAdapter.setOnItemClickListener(onItemClickListener);
 
         isListView = true;
@@ -284,8 +283,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
     //******************webservice********
     private ProgressDialog progressDialog2 = null;
-    String username;
-    ArrayList<Merchant> setget = new ArrayList<>();
+
 
 
     // To use the AsyncTask, it must be subclassed
@@ -595,7 +593,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
 
 
 
-                        new GeneralFunction().hideProgressDialog();
+                      //  new GeneralFunction().hideProgressDialog();
 
 
                     }
@@ -626,7 +624,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     @Override
     protected void onResume() {
         super.onResume();
-
+       // new AsyncTaskWS().execute();
 
     }
 
@@ -704,4 +702,54 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         ((TextView) llProgress.findViewById(R.id.tvMessage)).setText("");
         llProgress.setVisibility(View.GONE);
     }*/
+
+
+    //******************webservice********
+    private ProgressDialog progressDialog3 = null;
+    String username;
+    ArrayList<Merchant> setget = new ArrayList<>();
+    String fname, lname, strGender;
+
+    // To use the AsyncTask, it must be subclassed
+    private class AsyncTaskWS extends AsyncTask<Void, Integer, Void> {
+        // Before running code in separate thread
+        @Override
+        protected void onPreExecute() {
+            // Create a new progress dialog
+            progressDialog3 = new ProgressDialog(MerchantActivity.this);
+            progressDialog3.getWindow().setBackgroundDrawableResource(R.color.colorPrimaryDark);
+            progressDialog3.getWindow().setGravity(Gravity.CENTER);
+            // Set the progress dialog to display a horizontal progress bar
+            progressDialog3.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            // Set the dialog title to 'Loading...'
+            // Set the dialog message to 'Loading application View, please
+            // wait...'
+            progressDialog3.setMessage("Pleaes Wait...");
+            // This dialog can't be canceled by pressing the back key
+            progressDialog3.setCancelable(false);
+            // This dialog isn't indeterminate
+            progressDialog3.setIndeterminate(false);
+            // Display the progress dialog
+            progressDialog3.show();
+        }
+
+        // The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                makeGetMerchantConsumerDatabaseRequest();
+            } catch (Exception e) {
+                progressDialog3.dismiss();
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        // after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result) {
+            progressDialog3.dismiss();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
 }

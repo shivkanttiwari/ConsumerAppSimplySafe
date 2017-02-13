@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -31,8 +32,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
-import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.CompressImage;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
@@ -50,10 +49,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-
-import static android.R.id.message;
-import static com.example.tiuadmin.simplysafeconusmerapp.R.drawable.phone;
 
 public class UserProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -620,7 +615,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 JSONObject jsonrequest = new JSONObject();
                 jsonrequest.put("name", fullname);
                 jsonrequest.put("email", email);
-                jsonrequest.put("phone", phone);
+                jsonrequest.put("phone", mobile);
                 jsonrequest.put("address", address);
                 jsonrequest.put("city", "Bhopal");
                 jsonrequest.put("gender", "Male");
@@ -712,6 +707,23 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                     .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .networkPolicy(NetworkPolicy.NO_CACHE)
                     .into(img_profilepic);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+                Log.i("DATA", "Hit Actionbar Back Button");
+
+
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

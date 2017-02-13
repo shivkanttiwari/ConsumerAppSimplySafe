@@ -30,7 +30,6 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.User.ChangePasswordActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.User.UserProfileActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
 import com.squareup.picasso.MemoryPolicy;
@@ -57,13 +56,14 @@ public class DrawerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_main);
         prefManager=new PrefManager(this);
-       // StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-        //StrictMode.setThreadPolicy(policy);
+        StrictMode.setThreadPolicy(policy);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initNavigationDrawer();
-        new AsyncTaskWS().execute();
+        makeUserDetailRequest();
+       // new AsyncTaskWS().execute();
       //  initCollapsingToolbar();
 
 
@@ -239,7 +239,7 @@ public class DrawerActivity extends AppCompatActivity {
                    // Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(navigationDrawerImageview);
 
                     Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);
-                    new GeneralFunction().hideProgressDialog();
+                    //new GeneralFunction().hideProgressDialog();
                 }
             }
             else {
@@ -250,8 +250,8 @@ public class DrawerActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             //new GeneralFunction().hideProgressDialog();
-            Toast.makeText(getApplicationContext(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
-                    .show();
+           // Toast.makeText(getApplicationContext(), "Please provide valid mobile number  and password.", Toast.LENGTH_SHORT)
+             //       .show();
             e.printStackTrace();
         }
     }

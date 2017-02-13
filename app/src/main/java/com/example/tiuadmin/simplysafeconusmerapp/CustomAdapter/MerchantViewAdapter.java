@@ -92,7 +92,7 @@ PrefManager prefManager;
             holder.merchantName  = (TextView) convertView.findViewById(R.id.placeName);
             holder.MerchantIMage  = (ImageView) convertView.findViewById(R.id.placeImage);
             holder.txtstatusmerchant  = (TextView) convertView.findViewById(R.id.txtstatusmerchant);
-holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchant);
+            holder.deleteMerchant=(ImageView) convertView.findViewById(R.id.imgdeleteMerchant);
 
             int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
             int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
