@@ -58,7 +58,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':weather1')
     compile project(':simpleDraw')
-
-
+    compile project(':PeriodicTable')
 }
 apply plugin: 'com.google.gms.google-services'

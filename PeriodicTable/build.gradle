@@ -1,0 +1,70 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'org.ajoberstar:gradle-git:1.4.2'
+    }
+}
+apply plugin: 'com.android.library'
+
+repositories {
+    jcenter()
+}
+
+//ext {
+//    git = Grgit.open()
+//    gitVersionCode = git.tag.list().size() + 2
+//    gitVersionName = "${git.describe()}"
+//}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
+
+    defaultConfig {
+//        applicationId "com.frozendevs.periodictable"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode = 1
+        versionName = "1.0.1"
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        ignore 'GoogleAppIndexingWarning', 'UnusedAttribute'
+        textOutput 'stdout'
+        textReport true
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:appcompat-v7:23.3.0@aar'
+    compile 'com.android.support:design:23.3.0@aar'
+    compile 'com.android.support:recyclerview-v7:23.3.0@aar'
+    compile 'com.android.support:support-vector-drawable:23.3.0@aar'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.8.7@aar'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+}
+
+if (project.hasProperty("PeriodicTable.signing") &&
+        file(project.property("PeriodicTable.signing") + ".gradle").exists()) {
+    apply from: project.property("PeriodicTable.signing") + ".gradle";
+}
