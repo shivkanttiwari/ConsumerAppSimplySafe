@@ -1,0 +1,45 @@
+[
+    {
+        "outputFile": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw720dp-v13\\values-sw720dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 57,
+                    "endOffset": 108
+                },
+                "from": {
+                    "file": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\values-sw720dp\\dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 56,
+                        "endColumn": 57,
+                        "endOffset": 109
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 113,
+                    "endColumn": 54,
+                    "endOffset": 163
+                },
+                "from": {
+                    "file": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\values-sw720dp\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 114,
+                        "endColumn": 54,
+                        "endOffset": 164
+                    }
+                }
+            }
+        ]
+    }
+]

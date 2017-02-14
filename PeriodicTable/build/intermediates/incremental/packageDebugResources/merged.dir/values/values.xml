@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="zoomableScrollViewStyle" type="reference"/>
+    <color name="accent">#ff80cbc4</color>
+    <color name="category_actinides_bg">#ff99cc</color>
+    <color name="category_alkali_metals_bg">#ff6666</color>
+    <color name="category_alkaline_earth_metals_bg">#ffdead</color>
+    <color name="category_diatomic_nonmetals_bg">#e7ff8f</color>
+    <color name="category_lanthanides_bg">#ffbfff</color>
+    <color name="category_metalloids_bg">#cccc99</color>
+    <color name="category_noble_gases_bg">#c0ffff</color>
+    <color name="category_other_metals_bg">#cccccc</color>
+    <color name="category_polyatomic_nonmetals_bg">#a1ffc3</color>
+    <color name="category_transition_metals_bg">#ffc0c0</color>
+    <color name="category_unknown_bg">#e8e8e8</color>
+    <color name="primary">#ff212121</color>
+    <color name="primary_dark">@android:color/black</color>
+    <color name="properties_status_bar">#40000000</color>
+    <color name="ripple_dark">#33ffffff</color>
+    <color name="ripple_light">#1f000000</color>
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+    <dimen name="backdrop_height">176dp</dimen>
+    <dimen name="listPreferredItemPaddingBottom">8dp</dimen>
+    <dimen name="listPreferredItemPaddingTop">8dp</dimen>
+    <dimen name="properties_summary_side_padding">20dp</dimen>
+    <dimen name="table_item_size">95dp</dimen>
+    <dimen name="view_pager_tabs_side_padding">8dp</dimen>
+    <item name="active_view_position" type="id"/>
+    <item name="elements_list_loader" type="id"/>
+    <item name="table_loader" type="id"/>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_wikipedia_article">Wikipedia article</string>
+    <string name="app_name">Periodic Table</string>
+    <string name="author_name" translatable="false">Frozen Developers</string>
+    <string name="authors_url" translatable="false">https://github.com/Frozen-Developers</string>
+    <string name="category_actinides">Actinides</string>
+    <string name="category_alkali_metals">Alkali metals</string>
+    <string name="category_alkaline_earth_metals">Alkaline earth metals</string>
+    <string name="category_diatomic_nonmetals">Diatomic nonmetals</string>
+    <string name="category_lanthanides">Lanthanides</string>
+    <string name="category_metalloids">Metalloids</string>
+    <string name="category_noble_gases">Noble gases</string>
+    <string name="category_other_metals">Post-transition metals</string>
+    <string name="category_polyatomic_nonmetals">Polyatomic nonmetals</string>
+    <string name="category_transition_metals">Transition metals</string>
+    <string name="category_unknown">Unknown chemical properties</string>
+    <string name="context_copy">Copy</string>
+    <string name="context_title_options">Options</string>
+    <string name="empty_view_no_such_element">No such element.</string>
+    <string name="fragment_title_elements">Elements</string>
+    <string name="fragment_title_isotopes">ISOTOPES</string>
+    <string name="fragment_title_properties">PROPERTIES</string>
+    <string name="fragment_title_table">Table</string>
+    <string name="preference_about_app">About Periodic Table</string>
+    <string name="preference_author">Author</string>
+    <string name="preference_open_source_licences">Open source licences</string>
+    <string name="preference_samuels_graphics" translatable="false">Samuel\'s Graphics</string>
+    <string name="preference_samuels_graphics_desc">Icon and Play Store banner design</string>
+    <string name="preference_version_number">Version number</string>
+    <string name="preference_version_number_unknown">Unknown</string>
+    <string name="preferences_category_about">About</string>
+    <string name="preferences_category_special_thanks">Special thanks</string>
+    <string name="preferences_download_wifi_only">Download images via Wi-Fi only</string>
+    <string name="preferences_download_wifi_only_key" translatable="false">download_wifi_only</string>
+    <string name="preferences_download_wifi_only_summary">To reduce carrier data charges, do not download images over mobile networks</string>
+    <string name="preferences_main_preferences">Main preferences</string>
+    <string name="preferences_settings">Settings</string>
+    <string name="progressbar_loading">Loading…</string>
+    <string name="properties_header_atomic">Atomic properties</string>
+    <string name="properties_header_general">General properties</string>
+    <string name="properties_header_miscellanea">Miscellanea</string>
+    <string name="properties_header_physical">Physical properties</string>
+    <string name="property_abundance">Natural abundance</string>
+    <string name="property_appearance">Appearance</string>
+    <string name="property_atom_symbol">X</string>
+    <string name="property_atomic_number">Atomic number</string>
+    <string name="property_atomic_number_symbol">Z</string>
+    <string name="property_atomic_radius">Atomic radius</string>
+    <string name="property_band_gap">Band gap</string>
+    <string name="property_block">Block</string>
+    <string name="property_boiling_point">Boiling point</string>
+    <string name="property_brinell_hardness">Brinell hardness</string>
+    <string name="property_bulk_modulus">Bulk modulus</string>
+    <string name="property_cas_number">CAS Number</string>
+    <string name="property_category">Category</string>
+    <string name="property_covalent_radius">Covalent radius</string>
+    <string name="property_critical_point">Critical point</string>
+    <string name="property_crystal_structure">Crystal structure</string>
+    <string name="property_curie_point">Curie point</string>
+    <string name="property_decay_modes">Decay modes</string>
+    <string name="property_density">Density</string>
+    <string name="property_electrical_resistivity">Electrical resistivity</string>
+    <string name="property_electron_configuration">Electron configuration</string>
+    <string name="property_electronegativity">Electronegativity</string>
+    <string name="property_electrons_per_shell">Electrons per shell</string>
+    <string name="property_group">Group</string>
+    <string name="property_half_life">Half-life</string>
+    <string name="property_heat_of_fusion">Heat of fusion</string>
+    <string name="property_heat_of_vaporization">Heat of vaporization</string>
+    <string name="property_liquid_density_at_bp">Liquid density at boiling point</string>
+    <string name="property_liquid_density_at_mp">Liquid density at melting point</string>
+    <string name="property_magnetic_ordering">Magnetic ordering</string>
+    <string name="property_melting_point">Melting point</string>
+    <string name="property_mohs_hardness">Mohs hardness</string>
+    <string name="property_molar_heat_capacity">Molar heat capacity</string>
+    <string name="property_molar_ionization_energies">Molar ionization energies</string>
+    <string name="property_name">Name</string>
+    <string name="property_oxidation_states">Oxidation states</string>
+    <string name="property_period">Period</string>
+    <string name="property_phase">Phase</string>
+    <string name="property_poisson_ratio">Poisson ratio</string>
+    <string name="property_relative_atomic_mass_symbol">Aᵣ</string>
+    <string name="property_shear_modulus">Shear modulus</string>
+    <string name="property_speed_of_sound">Speed of sound</string>
+    <string name="property_spin">Spin</string>
+    <string name="property_sublimation_point">Sublimation point</string>
+    <string name="property_symbol">Symbol</string>
+    <string name="property_tensile_strength">Tensile strength</string>
+    <string name="property_thermal_conductivity">Thermal conductivity</string>
+    <string name="property_thermal_diffusivity">Thermal diffusivity</string>
+    <string name="property_thermal_expansion">Thermal expansion</string>
+    <string name="property_triple_point">Triple point</string>
+    <string name="property_value_none">None</string>
+    <string name="property_value_stable">Stable</string>
+    <string name="property_value_trace">Trace</string>
+    <string name="property_value_unknown">Unknown</string>
+    <string name="property_van_der_waals_radius">Van der Waals radius</string>
+    <string name="property_vickers_hardness">Vickers hardness</string>
+    <string name="property_weight">Standard atomic weight</string>
+    <string name="property_youngs_modulus">Young\'s modulus</string>
+    <string name="samuels_graphics_url" translatable="false">https://www.facebook.com/samuelsgraphics</string>
+    <string name="search_query_hint">Name, symbol or Z</string>
+    <string name="transition_table_item" translatable="false">table_item</string>
+    <style name="TextAppearance.CollapsingToolbarExpanded" parent="@style/TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textSize">0sp</item>
+    </style>
+    <style name="Theme.Application" parent="Theme.Application.Base"/>
+    <style name="Theme.Application.Base" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+    <style name="Theme.Properties" parent="Theme.Properties.Base"/>
+    <style name="Theme.Properties.Base" parent="Theme.Application"/>
+    <style name="Theme.Settings" parent="Theme.Settings.Base"/>
+    <style name="Theme.Settings.Base" parent="Theme.Application">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+    <style name="Widget.Toolbar" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/primary</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="navigationIcon">?attr/homeAsUpIndicator</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+</resources>
