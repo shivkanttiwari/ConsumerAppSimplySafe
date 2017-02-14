@@ -69,6 +69,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
     private String selectedImagePath = "";
     String status;//=json.getString("status");;;
     String Status_ProfileUPdate;//=json.getString("status");;;
+    String messageProfileUPdate;
 
     String fullname;//=ed_FullName.getText().toString();
     String email;//=ed_Email.getText().toString();
@@ -155,9 +156,10 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
                 final int REQUEST_EXTERNAL_STORAGE = 1;
                 String[] PERMISSIONS_STORAGE = {
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA
                 };
-                int permission = ActivityCompat.checkSelfPermission(UserProfileActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                int permission = ActivityCompat.checkSelfPermission(UserProfileActivity.this, Manifest.permission.CAMERA);
 
                 if (permission != PackageManager.PERMISSION_GRANTED) {
                     // We don't have permission so prompt the user
@@ -507,6 +509,13 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         protected void onPostExecute(Void result) {
 
             progressDialog2.dismiss();
+
+            if (Status_ProfileUPdate.equalsIgnoreCase("true")) {
+
+
+                Toast.makeText(UserProfileActivity.this, messageProfileUPdate, Toast.LENGTH_LONG).show();
+                progressDialog2.dismiss();
+            }
         }
     }
 
@@ -630,13 +639,8 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
 
                         Status_ProfileUPdate = jsonProfileUpdate.getString("status");
-                        String messageProfileUPdate = jsonProfileUpdate.getString("message");
-                        if (Status_ProfileUPdate.equalsIgnoreCase("true")) {
+                         messageProfileUPdate = jsonProfileUpdate.getString("message");
 
-
-                            Toast.makeText(UserProfileActivity.this, messageProfileUPdate, Toast.LENGTH_LONG).show();
-                            progressDialog2.dismiss();
-                        }
 
                     }
                 }
@@ -646,7 +650,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
 
         } catch (Exception e) {
-            new GeneralFunction().hideProgressDialog();
+            //new GeneralFunction().hideProgressDialog();
             Toast.makeText(getApplicationContext(), "Unable to Update User Information.", Toast.LENGTH_SHORT)
                     .show();
             e.printStackTrace();
