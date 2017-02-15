@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.Callback;
-import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.MyAsynckTask;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.AnimatedExpandableListView;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.SlidingImage_Adapter;
@@ -38,15 +38,7 @@ public class RewardsActivity extends AppCompatActivity {
 
         listView = (AnimatedExpandableListView) findViewById(R.id.listView1);
 
-        MyAsynckTask obj=new MyAsynckTask(new Callback() {
-            @Override
-            public void onResult(String result) {
 
-                String res=result;
-
-            }
-        },url, RewardsActivity.this);
-        obj.execute();
         // In order to show animations, we need to use a custom click handler
         // for our ExpandableListView.
         listView.setOnGroupClickListener(new AnimatedExpandableListView.OnGroupClickListener() {
@@ -368,6 +360,24 @@ public class RewardsActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+                Log.i("DATA", "Hit Actionbar Back Button");
+
+
+                finish();
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     //*****************exp list end***************
 
 }

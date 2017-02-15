@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.ConsumerTransactionHistoryModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
 import java.util.ArrayList;
@@ -26,13 +27,8 @@ public class TransactionHistoryRedemptionFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_transaction_history_redemption, container, false);
         lv = (ListView) v.findViewById(R.id.listView1);
 
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("");
-        arrayList.add("");
-        arrayList.add("");
-        arrayList.add("");
-        arrayList.add("");
-        arrayList.add("");
+        ArrayList<ConsumerTransactionHistoryModel> arrayList = new ArrayList<>();
+
 
         AdapterTransactionHistory adapter = new AdapterTransactionHistory(getActivity(), arrayList);
         lv.setAdapter(adapter);
