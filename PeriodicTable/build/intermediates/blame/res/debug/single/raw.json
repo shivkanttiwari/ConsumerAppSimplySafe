@@ -1,6 +1,10 @@
 [
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\raw\\database.json",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\raw\\database.json"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/debug/raw/database.json",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/raw/database.json"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\raw\\database.json",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\raw\\database.json"
     }
 ]

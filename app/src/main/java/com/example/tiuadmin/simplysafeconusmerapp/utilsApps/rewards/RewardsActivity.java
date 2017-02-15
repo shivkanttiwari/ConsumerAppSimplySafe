@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.Callback;
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.MyAsynckTask;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.AnimatedExpandableListView;
 import com.example.tiuadmin.simplysafeconusmerapp.utilsApps.other.SlidingImage_Adapter;
@@ -28,12 +30,23 @@ public class RewardsActivity extends AppCompatActivity {
     private AnimatedExpandableListView listView;
     private ExampleAdapter adapter;
 
+    String url="http://52.66.101.233/Customer-Backend/public/api/v1/customer/tranactions";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewars);
 
         listView = (AnimatedExpandableListView) findViewById(R.id.listView1);
+
+        MyAsynckTask obj=new MyAsynckTask(new Callback() {
+            @Override
+            public void onResult(String result) {
+
+                String res=result;
+
+            }
+        },url, RewardsActivity.this);
+        obj.execute();
         // In order to show animations, we need to use a custom click handler
         // for our ExpandableListView.
         listView.setOnGroupClickListener(new AnimatedExpandableListView.OnGroupClickListener() {

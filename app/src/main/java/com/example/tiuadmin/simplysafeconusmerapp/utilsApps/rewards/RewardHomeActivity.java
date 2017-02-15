@@ -7,12 +7,18 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.Callback;
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.MyAsynckTask;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 
 public class RewardHomeActivity extends AppCompatActivity {
 
     Button btn_redeem;
+    TextView txttotalRewards;
+
+    private String url="http://52.66.101.233/Customer-Backend/public/api/v1/customer/info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +32,24 @@ public class RewardHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(RewardHomeActivity.this, RewardsActivity.class));
             }
         });
+
+
+        MyAsynckTask obj=new MyAsynckTask(new Callback() {
+            @Override
+            public void onResult(String result) {
+
+                String res=result;
+
+            }
+        },url, RewardHomeActivity.this);
+        obj.execute();
     }
 
+    public void init()
+    {
+        txttotalRewards=(TextView)findViewById(R.id.txttotalRewards);
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -44,4 +66,6 @@ public class RewardHomeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

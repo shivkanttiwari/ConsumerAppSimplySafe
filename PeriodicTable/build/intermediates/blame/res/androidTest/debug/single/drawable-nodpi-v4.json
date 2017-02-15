@@ -1,6 +1,10 @@
 [
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-nodpi-v4\\backdrop.png",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\bundles\\debug\\res\\drawable-nodpi-v4\\backdrop.png"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/androidTest/debug/drawable-nodpi-v4/backdrop.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/bundles/debug/res/drawable-nodpi-v4/backdrop.png"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-nodpi-v4\\backdrop.png",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\bundles\\debug\\res\\drawable-nodpi-v4\\backdrop.png"
     }
 ]

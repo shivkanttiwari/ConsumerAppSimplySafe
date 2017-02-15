@@ -1,18 +1,34 @@
 [
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\elements_menu.xml",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\elements_menu.xml"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\elements_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\elements_menu.xml"
     },
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\properties_context_menu.xml",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\properties_context_menu.xml"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/debug/menu/main_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/menu/main_menu.xml"
     },
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\main_menu.xml",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\main_menu.xml"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/debug/menu/properties_context_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/menu/properties_context_menu.xml"
     },
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\properties_action_menu.xml",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\properties_action_menu.xml"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\properties_context_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\properties_context_menu.xml"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\main_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\main_menu.xml"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/debug/menu/elements_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/menu/elements_menu.xml"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/debug/menu/properties_action_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/menu/properties_action_menu.xml"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\menu\\properties_action_menu.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\menu\\properties_action_menu.xml"
     }
 ]
