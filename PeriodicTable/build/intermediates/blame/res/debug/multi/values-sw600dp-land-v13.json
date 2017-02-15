@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-land-v13\\values-sw600dp-land-v13.xml",
+        "outputFile": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-land-v13/values-sw600dp-land-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 98
                 },
                 "from": {
-                    "file": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\src\\main\\res\\values-sw600dp-land\\dimens.xml",
+                    "file": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/values-sw600dp-land/dimens.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,

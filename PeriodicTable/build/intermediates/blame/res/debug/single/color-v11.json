@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
     },
     {
-        "merged": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "D:\\AStudio\\CUST\\PRO\\1\\consumerandroidapp\\PeriodicTable\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     }
 ]
