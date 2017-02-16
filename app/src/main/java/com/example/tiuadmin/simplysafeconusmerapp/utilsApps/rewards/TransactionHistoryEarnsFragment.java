@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class TransactionHistoryEarnsFragment extends Fragment {
 
     ListView lv;
-    String url="http://52.66.101.233/Customer-Backend/public/api/v1/customer/tranactions";
+    String url="http://simplypos.co.in/api/v1/customer/tranactions";
     String status,message;
     ArrayList<ConsumerTransactionHistoryModel> ConsumerTransactionLIst;
     AdapterTransactionHistory adapter;

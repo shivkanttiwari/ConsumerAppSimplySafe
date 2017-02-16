@@ -6,7 +6,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantDetailMessageMo
 import java.util.ArrayList;
 
 public class Const {
-	public static final String URL_JSON_OBJECT = "http://52.66.101.233/Customer-Backend/public/api/user/signup";
+	public static final String URL_JSON_OBJECT = "http://simplypos.co.in/api/user/signup";
 	public static final String URL_JSON_ARRAY = "http://api.androidhive.info/volley/person_array.json";
 	public static final String URL_STRING_REQ = "http://api.androidhive.info/volley/string_response.html";
 	public static final String URL_IMAGE = "http://api.androidhive.info/volley/volley-image.jpg";
@@ -34,7 +34,7 @@ public class Const {
 
 	public static int OTP_VERIFICATION_MOUDLE_ID_FOR_SMS = 0;
 
-	public static String MAIN_URL = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/";
+	public static String MAIN_URL = "http://simplypos.co.in/api/v1/customer/merchant/";
 
 	public static String MERCHANT_DELETE_API = MAIN_URL+"delete";
 	public static String REGISTER_DEVICE_FCM = MAIN_URL+"device/register";

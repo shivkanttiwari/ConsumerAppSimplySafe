@@ -5,7 +5,6 @@ import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -201,7 +200,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 		String returnResponse = null;
 		try {
 
-			String url = "http://52.66.101.233/Customer-Backend/public/api/user/signup";
+			String url = "http://simplypos.co.in/api/user/signup";
 			JSONObject signUpJsonRequestObject = new JSONObject();
 			signUpJsonRequestObject.put("name", name);
 			signUpJsonRequestObject.put("email", email);

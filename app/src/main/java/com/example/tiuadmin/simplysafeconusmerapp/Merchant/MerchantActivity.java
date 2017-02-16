@@ -30,13 +30,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.tiuadmin.simplysafeconusmerapp.Activity.DrawerActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.Callback;
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.MyAsynckTask;
 import com.example.tiuadmin.simplysafeconusmerapp.CustomAdapter.MerchantViewAdapter;
 import com.example.tiuadmin.simplysafeconusmerapp.JSON.JSONPARSER;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
-import com.example.tiuadmin.simplysafeconusmerapp.Utility.GeneralFunction;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.PrefManager;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
 import com.example.tiuadmin.simplysafeconusmerapp.Webservices.WebService;
@@ -74,6 +74,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     PrefManager prefManager;
     String message="";
     String merchantMobileNumber;
+    String url = "http://simplypos.co.in/api/v1/customer/merchant/list";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +130,94 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         }
         mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
-        makeGetMerchantConsumerDatabaseRequest();
+
+        MyAsynckTask obj=new MyAsynckTask(new Callback() {
+            @Override
+            public void onResult(String result) {
+
+                String res=result;
+
+                try {
+
+
+
+
+                    if (res != null && res.length()>0) {
+                        JSONObject json = new JSONObject(res);
+                        if (json != null) {
+
+                            String status=json.getString("status");
+                            String message=json.getString("message");
+                            if(status.equalsIgnoreCase("true"))
+                            {
+                                JSONArray merchantJsonArrayData=json.getJSONArray("data");
+
+                                Const.MERCHANT_DATA.clear();
+                                for(int i=0;i<merchantJsonArrayData.length();i++)
+                                {
+
+                                    JSONObject merchantJsonData = merchantJsonArrayData.getJSONObject(i);
+
+                                    String recordID=merchantJsonData.getString("id");
+                                    String customer_id=merchantJsonData.getString("customer_id");
+                                    String merchant_id=merchantJsonData.getString("merchant_id");
+                                    String merchant_name=merchantJsonData.getString("merchant_name");
+                                    String merchant_email=merchantJsonData.getString("merchant_email");
+                                    String merchant_phone=merchantJsonData.getString("merchant_phone");
+                                    String merchant_address=merchantJsonData.getString("merchant_address");
+                                    String merchant_type=merchantJsonData.getString("merchant_type");
+                                    String merchant_pos_name=merchantJsonData.getString("merchant_pos_name");
+                                    String merchant_message=merchantJsonData.getString("merchant_message");
+                                    String merchant_pos_url=merchantJsonData.getString("merchant_pos_url");
+                                    String merchant_pos_create_at=merchantJsonData.getString("merchant_pos_create_at");
+                                    String merchant_pos_demo_expiry_at=merchantJsonData.getString("merchant_pos_demo_expiry_at");
+                                    String merchant_payment_status=merchantJsonData.getString("merchant_payment_status");
+                                    String merchant_status=merchantJsonData.getString("merchant_status");
+
+                                    Const.MERCHANT_DATA.add(new Merchant(recordID,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merchant_status
+                                            ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
+
+
+                                }
+
+
+
+                                mAdapter.notifyDataSetChanged();
+
+
+                                //  new GeneralFunction().hideProgressDialog();
+
+
+                            }
+                            // Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+
+
+
+
+
+
+                        }
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                                .show();
+
+                    }
+
+                } catch (Exception e) {
+
+                    Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                            .show();
+                    e.printStackTrace();
+                }
+
+            }
+        },url, MerchantActivity.this);
+        obj.execute();
+
+       // makeGetMerchantConsumerDatabaseRequest();
+
+
       //  mAdapter.setOnItemClickListener(onItemClickListener);
 
         isListView = true;
@@ -440,7 +528,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant";
+            String url = "http://simplypos.co.in/api/v1/customer/merchant";
            JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("status", merchantDetail.getStatus());
 
@@ -541,7 +629,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/list";
+            String url = "http://simplypos.co.in/api/v1/customer/merchant/list";
 
             //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
 

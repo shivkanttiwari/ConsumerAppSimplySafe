@@ -20,6 +20,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.Callback;
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.MyAsynckTask;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MerchantOffersFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MerchantProfileFragment;
 import com.example.tiuadmin.simplysafeconusmerapp.Fragments.MerchantTransactionMessage;
@@ -46,7 +48,8 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
     private ViewPager viewPager;
     private String merchant_id;
     PrefManager prefManager;
-
+    String url = "http://simplypos.co.in/api/v1/customer/merchant/"+Const.MerchantID_Selected_For_Detial;
+    String message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +79,133 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
             merchant_id= (String) savedInstanceState.getSerializable("merchant_id");
         }
 
-        new AsyncTaskAddMerchant().execute();
+
+        MyAsynckTask obj=new MyAsynckTask(new Callback() {
+            @Override
+            public void onResult(String result) {
+
+                String res=result;
+
+                try {
+
+
+
+
+                    if (res != null && res.length() > 0) {
+                        JSONObject json = new JSONObject(res);
+                        if (json != null) {
+
+
+
+
+
+                                    String merhantStatus=json.getString("status");
+                                    JSONObject jsonuserdata=new JSONObject();
+
+                                    jsonuserdata=json.getJSONObject("data");
+
+                                    String id=jsonuserdata.getString("id");
+                                    String customer_id=jsonuserdata.getString("customer_id");
+
+                                    String merchant_id=jsonuserdata.getString("merchant_id");
+                                    String merchant_name=jsonuserdata.getString("merchant_name");
+                                    String merchant_email=jsonuserdata.getString("merchant_email");
+                                    String merchant_phone=jsonuserdata.getString("merchant_phone");
+                                    String merchant_address=jsonuserdata.getString("merchant_address");
+                                    String merchant_type=jsonuserdata.getString("merchant_type");
+                                    String merchant_pos_name=jsonuserdata.getString("merchant_pos_name");
+                                    String merchant_message=jsonuserdata.getString("merchant_message");
+                                    String merchant_pos_url=jsonuserdata.getString("merchant_pos_url");
+                                    String merchant_pos_create_at=jsonuserdata.getString("merchant_pos_create_at");
+                                    String merchant_pos_demo_expiry_at=jsonuserdata.getString("merchant_pos_demo_expiry_at");
+                                    String merchant_payment_status=jsonuserdata.getString("merchant_payment_status");
+                                    String merchant_status=jsonuserdata.getString("merchant_status");
+                                    String merchant_password=jsonuserdata.getString("merchant_password");
+                                    String created_at=jsonuserdata.getString("created_at");
+                                    String updated_at=jsonuserdata.getString("updated_at");
+
+
+
+
+                                    Merchant MerchantProfile=new Merchant(id,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merhantStatus
+                                            ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status);
+
+                                    JSONArray merchantPromotionalMessage = jsonuserdata.getJSONArray("messages");
+
+                                    ArrayList<MerchantMessageModel> merhantMessageModelArray=new ArrayList<>();
+
+                                    ArrayList<MerchantTransactionModel>merchantTransactionModelArray=new ArrayList<>();
+                                    for (int i=0; i<merchantPromotionalMessage.length(); i++) {
+                                        JSONObject messageObject = merchantPromotionalMessage.getJSONObject(i);
+                                        String messageID = messageObject.getString("id");
+                                        String merchant_login_id = messageObject.getString("merchantId");
+                                        String heading = messageObject.getString("heading");
+                                        String message = messageObject.getString("message");
+                                        String imageUrl = messageObject.getString("imageUrl");
+                                        String type = messageObject.getString("type");
+
+
+                                        MerchantMessageModel merchantMessageModel;
+                                        MerchantTransactionModel merhantTransactionModel;
+                                        if(type.equalsIgnoreCase("promotional"))
+                                        {
+                                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl);
+                                            merhantMessageModelArray.add(merchantMessageModel);
+                                        }
+                                        else {
+                                            merhantTransactionModel=new MerchantTransactionModel(messageID,merchant_login_id,heading,message,url);
+                                            merchantTransactionModelArray.add(merhantTransactionModel);
+                                        }
+
+                                    }
+
+                                    if(Const.merchantDetailMessageModels.size()>0)
+                                        Const.merchantDetailMessageModels.clear();
+                                    Const.merchantDetailMessageModels.add(new MerchantDetailMessageModel(MerchantProfile,merhantMessageModelArray,merchantTransactionModelArray));
+
+
+
+
+                            setupViewPager(viewPager);
+
+                                    //   Collections.reverse(Const.MERCHANT_DATA);
+
+
+
+                   /* String logintoken = json.getString("access_token");
+
+                    Const.LOGIN_TOKEN=logintoken;
+                    Const.TOKEN_WITH_BEARER+=Const.LOGIN_TOKEN;
+                    Log.d("token",Const.TOKEN_WITH_BEARER);
+                    startActivity(new Intent(DrawerActivity.this, DrawerActivity.class));
+
+                   finish();*/
+
+                                }
+                            }
+                            else {
+                        message= "Unable to get user information.";
+                        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+
+
+                            }
+
+                        } catch (Exception e) {
+
+                    message="Unable to get user information";
+                    Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+
+
+                            // new GeneralFunction().hideProgressDialog();
+
+
+
+            }
+        },url, MerchantDetialVIewActivtiy.this);
+        obj.execute();
+       // new AsyncTaskAddMerchant().execute();
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -205,7 +334,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/"+Const.MerchantID_Selected_For_Detial;
+
           /*  JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);
@@ -273,7 +402,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
                         MerchantTransactionModel merhantTransactionModel;
                         if(type.equalsIgnoreCase("promotional"))
                         {
-                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,url);
+                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl);
                             merhantMessageModelArray.add(merchantMessageModel);
                         }
                         else {

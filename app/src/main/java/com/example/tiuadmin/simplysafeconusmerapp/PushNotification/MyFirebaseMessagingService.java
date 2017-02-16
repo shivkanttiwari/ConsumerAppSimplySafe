@@ -62,6 +62,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
+        Is_PushNotification_Enabled=true;
         //Calling method to generate notification
         if(Is_PushNotification_Enabled)
         {

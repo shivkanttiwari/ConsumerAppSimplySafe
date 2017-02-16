@@ -277,7 +277,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/user";
+            String url = "http://simplypos.co.in/api/user";
           /*  JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);
@@ -302,7 +302,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
 
                  //   Picasso.memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE),
-                    //        with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(img_profilepic);
+                    //        with(this).load("http://simplypos.co.in/api/v1/customer/image/200/200/"+Const.USER_ID).into(img_profilepic);
 
                     Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);
 
@@ -556,7 +556,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/user/image";
+            String url = "http://simplypos.co.in/api/v1/user/image";
           /*  JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);
@@ -642,7 +642,7 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
 
     public  void UpdateOnlyProfile() {
         try {
-            String UpdateUserProfileUrl = "http://52.66.101.233/Customer-Backend/public/api/v1/user/profile/edit";
+            String UpdateUserProfileUrl = "http://simplypos.co.in/api/v1/user/profile/edit";
 
             boolean value = validation();
 
@@ -731,12 +731,23 @@ public class UserProfileActivity extends AppCompatActivity implements View.OnCli
             ed_Email.setText(Const.USER_EMAIL);
             ed_MobilNumber.setText(Const.USER_MOBILENUMBER);
             ed_Address.setText(address);
-            Picasso
+
+            try {
+                Picasso.with(UserProfileActivity.this)
+
+                        .load("http://simplypos.co.in/api/v1/customer/image/200/200/"+Const.USER_ID).placeholder(R.drawable.user)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                        .networkPolicy(NetworkPolicy.NO_CACHE)
+                        .into(img_profilepic);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+           /* Picasso
                     .with(UserProfileActivity.this)
-                    .load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID)
+                    .load("http://simplypos.co.in/api/v1/customer/image/200/200/"+Const.USER_ID)
                     .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                     .networkPolicy(NetworkPolicy.NO_CACHE)
-                    .into(img_profilepic);
+                        .into(img_profilepic);*/
         }
     }
 
