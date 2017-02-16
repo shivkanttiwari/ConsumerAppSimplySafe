@@ -401,7 +401,7 @@ PrefManager prefManager;
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/"+Merchant_ID;
+            String url = "http://simplypos.co.in/api/v1/customer/merchant/"+Merchant_ID;
           /*  JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);

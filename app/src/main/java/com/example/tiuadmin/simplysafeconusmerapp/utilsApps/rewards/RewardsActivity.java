@@ -30,7 +30,7 @@ public class RewardsActivity extends AppCompatActivity {
     private AnimatedExpandableListView listView;
     private ExampleAdapter adapter;
 
-    String url="http://52.66.101.233/Customer-Backend/public/api/v1/customer/tranactions";
+    String url="http://simplypos.co.in/api/v1/customer/tranactions";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

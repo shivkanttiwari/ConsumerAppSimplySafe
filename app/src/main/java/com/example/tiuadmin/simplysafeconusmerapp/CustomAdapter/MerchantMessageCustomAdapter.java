@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantMessageModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,16 @@ public class MerchantMessageCustomAdapter extends BaseAdapter {
 
         TextView txt_MerchantMessage = (TextView) rowView.findViewById(R.id.merchantmessage);
         txt_MerchantMessage.setText(MerchantMessageList.get(i).getMerchantMessage());
+
+
+        ImageView img_PromotionImage = (ImageView) rowView.findViewById(R.id.imageView5);
+        // UserSearchID="";
+        try {
+            Picasso.with(activityContext)
+                    .load(MerchantMessageList.get(i).getMerchantMessageImage()).placeholder(R.drawable.user).into(img_PromotionImage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return rowView;
     }

@@ -135,7 +135,7 @@ PrefManager prefManager;
 		String returnResponse = null;
 		try {
 
-			String url = "http://52.66.101.233/Customer-Backend/public/api/user/forgotpassword";
+			String url = "http://simplypos.co.in/api/user/forgotpassword";
 			JSONObject jsonrequest = new JSONObject();
 			jsonrequest.put("phone", phone);
 

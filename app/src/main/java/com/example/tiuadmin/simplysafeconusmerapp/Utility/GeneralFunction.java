@@ -110,7 +110,7 @@ PrefManager prefManager;
         String returnResponse = null;
         try {
 
-            String url ="http://52.66.101.233/Customer-Backend/public/api/v1/customer/device/register";
+            String url ="http://simplypos.co.in/api/v1/customer/device/register";
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("device_token", token);
             jsonrequest.put("device_type_id", "");

@@ -155,7 +155,7 @@ public class VerifyOTP_Fragment extends Fragment implements View.OnClickListener
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/user/otp/verify";
+            String url = "http://simplypos.co.in/api/user/otp/verify";
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("otp", otp);
             jsonrequest.put("phone", phone);

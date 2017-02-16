@@ -205,7 +205,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
         String returnResponse = null;
         try {
 
-            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/"+Const.MerchantID_Selected_For_Detial;
+            String url = "http://simplypos.co.in/api/v1/customer/merchant/"+Const.MerchantID_Selected_For_Detial;
           /*  JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);
@@ -273,7 +273,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
                         MerchantTransactionModel merhantTransactionModel;
                         if(type.equalsIgnoreCase("promotional"))
                         {
-                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,url);
+                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl);
                             merhantMessageModelArray.add(merchantMessageModel);
                         }
                         else {
