@@ -2,8 +2,10 @@ package com.example.tiuadmin.simplysafeconusmerapp.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.Snackbar;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,12 +16,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.ConnectivityReceiver;
 import com.example.tiuadmin.simplysafeconusmerapp.Utility.Utils;
+import com.example.tiuadmin.simplysafeconusmerapp.app.AppController;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
 	private static FragmentManager fragmentManager;
 
 	@Override
@@ -114,6 +119,14 @@ public class MainActivity extends AppCompatActivity {
 						Utils.VerifyOTPForgetPassword ).commit();
 	}
 	@Override
+	protected void onResume() {
+		super.onResume();
+
+		// register connection status listener
+		AppController.getInstance().setConnectivityListener(this);
+	}
+
+	@Override
 	public void onBackPressed() {
 
 		// Find the tag of signup and forgot password fragment
@@ -146,5 +159,35 @@ public class MainActivity extends AppCompatActivity {
 				((InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow((this.getWindow().getDecorView().getApplicationWindowToken()), 0);
 		}
 		return super.dispatchTouchEvent(ev);
+	}
+	public boolean checkConnection() {
+		boolean isConnected = ConnectivityReceiver.isConnected();
+		showSnack(isConnected);
+
+		return isConnected;
+	}
+
+	public void showSnack(boolean isConnected) {
+		String message;
+		int color;
+		if (isConnected) {
+			message = "Good! Connected to Internet";
+			color = Color.WHITE;
+		} else {
+			message = "Sorry! Not connected to internet";
+			color = Color.RED;
+		}
+
+		Snackbar snackbar = Snackbar
+				.make(findViewById(R.id.fab), message, Snackbar.LENGTH_LONG);
+
+		View sbView = snackbar.getView();
+		TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+		textView.setTextColor(color);
+		snackbar.show();
+	}
+	@Override
+	public void onNetworkConnectionChanged(boolean isConnected) {
+		showSnack(isConnected);
 	}
 }

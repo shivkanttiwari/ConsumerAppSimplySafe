@@ -246,6 +246,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
             // Else do login and do your stuff
         else {
             //makeLoginRequest(getMobilenumber, getPassword);
+
+
             new AsyncTaskWS().execute();
         }
 

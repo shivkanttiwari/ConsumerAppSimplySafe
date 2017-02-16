@@ -155,6 +155,13 @@ PrefManager prefManager;
     }
 
 
+    public boolean checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+
+
+        return isConnected;
+    }
+
 }
 
 
