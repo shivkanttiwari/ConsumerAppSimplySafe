@@ -1,5 +1,6 @@
 package com.example.tiuadmin.simplysafeconusmerapp.Utility;
 
+import com.example.tiuadmin.simplysafeconusmerapp.Models.ConsumerTransactionHistoryModel;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.MerchantDetailMessageModel;
 
@@ -23,6 +24,7 @@ public class Const {
 	public static String USER_EMAIL = "";
 
 	public static ArrayList<Merchant> MERCHANT_DATA = new ArrayList<>();
+	public static ArrayList<ConsumerTransactionHistoryModel> MERCHANT_REWARDS_TRANSACTION = new ArrayList<>();
 
 
 	public static String IS_MAIN_DASHBOARD_VIEW = "1";

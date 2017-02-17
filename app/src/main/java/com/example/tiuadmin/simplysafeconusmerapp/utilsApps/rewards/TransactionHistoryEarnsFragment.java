@@ -12,6 +12,7 @@ import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.Callback;
 import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.MyAsynckTask;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.ConsumerTransactionHistoryModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -77,13 +78,19 @@ public class TransactionHistoryEarnsFragment extends Fragment {
                                     String merchantName=TransactionRecordJson.getString("merchantName");
                                     String points=TransactionRecordJson.getString("points");
                                     String merchantOrderId=TransactionRecordJson.getString("merchantOrderId");
-                                    String type=TransactionRecordJson.getString("type");
+                                    String type=TransactionRecordJson.getString("transactionType");
                                     String rewardOrderId=TransactionRecordJson.getString("rewardOrderId");
                                     String remark=TransactionRecordJson.getString("remark");
 
 
-                                    ConsumerTransactionLIst.add(new ConsumerTransactionHistoryModel(id,customerId,merchantId,
-                                            merchantName,points,merchantOrderId,type,rewardOrderId,remark));
+
+
+                                    Const.MERCHANT_REWARDS_TRANSACTION.add(new ConsumerTransactionHistoryModel(id, customerId, merchantId,
+                                            merchantName, points, merchantOrderId, type, rewardOrderId, remark));
+                                    if(type.equalsIgnoreCase("CREDIT")) {
+                                        ConsumerTransactionLIst.add(new ConsumerTransactionHistoryModel(id, customerId, merchantId,
+                                                merchantName, points, merchantOrderId, type, rewardOrderId, remark));
+                                    }
                                 }
 
 

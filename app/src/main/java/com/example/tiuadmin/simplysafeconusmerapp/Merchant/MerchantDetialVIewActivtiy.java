@@ -144,16 +144,16 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
                                         String imageUrl = messageObject.getString("imageUrl");
                                         String type = messageObject.getString("type");
 
-
+                                        String datetime = messageObject.getString("sendAt");
                                         MerchantMessageModel merchantMessageModel;
                                         MerchantTransactionModel merhantTransactionModel;
                                         if(type.equalsIgnoreCase("promotional"))
                                         {
-                                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl);
+                                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl,datetime);
                                             merhantMessageModelArray.add(merchantMessageModel);
                                         }
                                         else {
-                                            merhantTransactionModel=new MerchantTransactionModel(messageID,merchant_login_id,heading,message,url);
+                                            merhantTransactionModel=new MerchantTransactionModel(messageID,merchant_login_id,heading,message,imageUrl,datetime);
                                             merchantTransactionModelArray.add(merhantTransactionModel);
                                         }
 
@@ -396,17 +396,18 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
                         String message = messageObject.getString("message");
                         String imageUrl = messageObject.getString("imageUrl");
                         String type = messageObject.getString("type");
+                        String datetime = messageObject.getString("sendAt");
 
 
                         MerchantMessageModel merchantMessageModel;
                         MerchantTransactionModel merhantTransactionModel;
                         if(type.equalsIgnoreCase("promotional"))
                         {
-                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl);
+                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl,datetime);
                             merhantMessageModelArray.add(merchantMessageModel);
                         }
                         else {
-                            merhantTransactionModel=new MerchantTransactionModel(messageID,merchant_login_id,heading,message,url);
+                            merhantTransactionModel=new MerchantTransactionModel(messageID,merchant_login_id,heading,message,imageUrl,datetime);
                             merchantTransactionModelArray.add(merhantTransactionModel);
                         }
 

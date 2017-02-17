@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
         "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/drawable-xhdpi-v4/ic_launcher_periodic_table.png",
         "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/src/main/res/drawable-xhdpi/ic_launcher_periodic_table.png"
+    },
+    {
+        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png",
+        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-xhdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
     },
     {
         "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/drawable-xhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png",

@@ -8,16 +8,25 @@
     <TextView
         android:text="@string/hello_world"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:id="@+id/txt_merchant_Transaction_Message" />
+        android:id="@+id/txt_merchant_Transaction_Message_heading" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:id="@+id/textView4" />
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
-        android:visibility="gone"
+
         android:layout_height="wrap_content">
 
 
@@ -39,6 +48,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:textSize="15dp"
+            android:visibility="gone"
             android:text="12:04 PM"/>
     </LinearLayout>
 </LinearLayout>

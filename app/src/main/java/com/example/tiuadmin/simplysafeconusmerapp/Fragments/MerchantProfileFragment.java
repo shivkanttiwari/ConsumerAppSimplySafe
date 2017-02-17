@@ -208,17 +208,18 @@ public class MerchantProfileFragment extends Fragment {
                         String message = messageObject.getString("message");
                         String imageUrl = messageObject.getString("imageUrl");
                         String type = messageObject.getString("type");
+                        String datetime = messageObject.getString("sendAt");
 
 
                         MerchantMessageModel merchantMessageModel;
                         MerchantTransactionModel merhantTransactionModel;
                         if(type.equalsIgnoreCase("promotional"))
                         {
-                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,url);
+                            merchantMessageModel=new MerchantMessageModel(messageID,merchant_login_id,heading,message,imageUrl,datetime);
                             merhantMessageModelArray.add(merchantMessageModel);
                         }
                         else {
-                            merhantTransactionModel=new MerchantTransactionModel(messageID,merchant_login_id,heading,message,url);
+                            merhantTransactionModel=new MerchantTransactionModel(messageID,merchant_login_id,heading,message,imageUrl,datetime);
                             merchantTransactionModelArray.add(merhantTransactionModel);
                         }
 

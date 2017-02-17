@@ -28,12 +28,12 @@
         "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_ratingbar_small_material.xml"
     },
     {
-        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/release/drawable/abc_btn_check_material.xml",
-        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_btn_check_material.xml"
-    },
-    {
         "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/release/drawable/abc_tab_indicator_material.xml",
         "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/release/drawable/abc_btn_check_material.xml",
+        "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable/abc_btn_check_material.xml"
     },
     {
         "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/drawable/abc_dialog_material_background_dark.xml",

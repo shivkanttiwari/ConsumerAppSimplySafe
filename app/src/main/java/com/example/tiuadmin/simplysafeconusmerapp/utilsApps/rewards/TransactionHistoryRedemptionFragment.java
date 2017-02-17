@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Models.ConsumerTransactionHistoryModel;
 import com.example.tiuadmin.simplysafeconusmerapp.R;
+import com.example.tiuadmin.simplysafeconusmerapp.Utility.Const;
 
 import java.util.ArrayList;
 
@@ -19,18 +20,27 @@ import java.util.ArrayList;
 public class TransactionHistoryRedemptionFragment extends Fragment {
 
     ListView lv;
-
+ArrayList<ConsumerTransactionHistoryModel>TransactionHistoyDEBITARRAY;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_transaction_history_redemption, container, false);
         lv = (ListView) v.findViewById(R.id.listView1);
+        TransactionHistoyDEBITARRAY=new ArrayList<>();
 
-        ArrayList<ConsumerTransactionHistoryModel> arrayList = new ArrayList<>();
 
 
-        AdapterTransactionHistory adapter = new AdapterTransactionHistory(getActivity(), arrayList);
+        for(int i=0;i<Const.MERCHANT_REWARDS_TRANSACTION.size();i++)
+        {
+            if(Const.MERCHANT_REWARDS_TRANSACTION.get(i).getType().equalsIgnoreCase("DEBIT"))
+            {
+                TransactionHistoyDEBITARRAY.add(Const.MERCHANT_REWARDS_TRANSACTION.get(i));
+            }
+
+        }
+
+        AdapterTransactionHistory adapter = new AdapterTransactionHistory(getActivity(), TransactionHistoyDEBITARRAY);
         lv.setAdapter(adapter);
 
         return v;

@@ -32,6 +32,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static android.R.id.message;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -56,6 +58,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
     String getotp ;//= otp.getText().toString().trim();
     String getnewpassword;// = newpassword.getText().toString().trim();
     String status ;//= json.getString("status");;
+    String message;
     PrefManager prefManager;
     public ChangePasswordFragment() {
 
@@ -187,9 +190,9 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
                 if (json != null) {
 
                      status = json.getString("status");
-                    String message = json.getString("message");
+                     message = json.getString("message");
 
-                    Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
 
 
 
@@ -249,8 +252,11 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
             progressDialog2.dismiss();
             if (status.equalsIgnoreCase("true"))
             {
-
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                 new MainActivity().replaceLoginFragment();
+            }
+            else {
+                Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
             }
 
         }

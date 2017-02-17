@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -75,6 +76,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     String message="";
     String merchantMobileNumber;
     String url = "http://simplypos.co.in/api/v1/customer/merchant/list";
+    public SwipeRefreshLayout swipeContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,90 +133,25 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         mAdapter = new MerchantViewAdapter(MerchantActivity.this,Const.MERCHANT_DATA);
         mRecyclerView.setAdapter(mAdapter);
 
-        MyAsynckTask obj=new MyAsynckTask(new Callback() {
+
+        swipeContainer = (SwipeRefreshLayout)findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onResult(String result) {
-
-                String res=result;
-
-                try {
-
-
-
-
-                    if (res != null && res.length()>0) {
-                        JSONObject json = new JSONObject(res);
-                        if (json != null) {
-
-                            String status=json.getString("status");
-                            String message=json.getString("message");
-                            if(status.equalsIgnoreCase("true"))
-                            {
-                                JSONArray merchantJsonArrayData=json.getJSONArray("data");
-
-                                Const.MERCHANT_DATA.clear();
-                                for(int i=0;i<merchantJsonArrayData.length();i++)
-                                {
-
-                                    JSONObject merchantJsonData = merchantJsonArrayData.getJSONObject(i);
-
-                                    String recordID=merchantJsonData.getString("id");
-                                    String customer_id=merchantJsonData.getString("customer_id");
-                                    String merchant_id=merchantJsonData.getString("merchant_id");
-                                    String merchant_name=merchantJsonData.getString("merchant_name");
-                                    String merchant_email=merchantJsonData.getString("merchant_email");
-                                    String merchant_phone=merchantJsonData.getString("merchant_phone");
-                                    String merchant_address=merchantJsonData.getString("merchant_address");
-                                    String merchant_type=merchantJsonData.getString("merchant_type");
-                                    String merchant_pos_name=merchantJsonData.getString("merchant_pos_name");
-                                    String merchant_message=merchantJsonData.getString("merchant_message");
-                                    String merchant_pos_url=merchantJsonData.getString("merchant_pos_url");
-                                    String merchant_pos_create_at=merchantJsonData.getString("merchant_pos_create_at");
-                                    String merchant_pos_demo_expiry_at=merchantJsonData.getString("merchant_pos_demo_expiry_at");
-                                    String merchant_payment_status=merchantJsonData.getString("merchant_payment_status");
-                                    String merchant_status=merchantJsonData.getString("merchant_status");
-
-                                    Const.MERCHANT_DATA.add(new Merchant(recordID,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merchant_status
-                                            ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
-
-
-                                }
-
-
-
-                                mAdapter.notifyDataSetChanged();
-
-
-                                //  new GeneralFunction().hideProgressDialog();
-
-
-                            }
-                            // Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-
-
-
-
-
-
-                        }
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
-                                .show();
-
-                    }
-
-                } catch (Exception e) {
-
-                    Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
-                            .show();
-                    e.printStackTrace();
-                }
-
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                getMerchantRecords();
             }
-        },url, MerchantActivity.this);
-        obj.execute();
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
+        getMerchantRecords();
        // makeGetMerchantConsumerDatabaseRequest();
 
 
@@ -839,5 +776,92 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
             progressDialog3.dismiss();
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void getMerchantRecords()
+    {
+        MyAsynckTask obj=new MyAsynckTask(new Callback() {
+            @Override
+            public void onResult(String result) {
+
+                String res=result;
+
+                try {
+
+
+
+
+                    if (res != null && res.length()>0) {
+                        JSONObject json = new JSONObject(res);
+                        if (json != null) {
+
+                            String status=json.getString("status");
+                            String message=json.getString("message");
+                            if(status.equalsIgnoreCase("true"))
+                            {
+                                JSONArray merchantJsonArrayData=json.getJSONArray("data");
+
+                                Const.MERCHANT_DATA.clear();
+                                for(int i=0;i<merchantJsonArrayData.length();i++)
+                                {
+
+                                    JSONObject merchantJsonData = merchantJsonArrayData.getJSONObject(i);
+
+                                    String recordID=merchantJsonData.getString("id");
+                                    String customer_id=merchantJsonData.getString("customer_id");
+                                    String merchant_id=merchantJsonData.getString("merchant_id");
+                                    String merchant_name=merchantJsonData.getString("merchant_name");
+                                    String merchant_email=merchantJsonData.getString("merchant_email");
+                                    String merchant_phone=merchantJsonData.getString("merchant_phone");
+                                    String merchant_address=merchantJsonData.getString("merchant_address");
+                                    String merchant_type=merchantJsonData.getString("merchant_type");
+                                    String merchant_pos_name=merchantJsonData.getString("merchant_pos_name");
+                                    String merchant_message=merchantJsonData.getString("merchant_message");
+                                    String merchant_pos_url=merchantJsonData.getString("merchant_pos_url");
+                                    String merchant_pos_create_at=merchantJsonData.getString("merchant_pos_create_at");
+                                    String merchant_pos_demo_expiry_at=merchantJsonData.getString("merchant_pos_demo_expiry_at");
+                                    String merchant_payment_status=merchantJsonData.getString("merchant_payment_status");
+                                    String merchant_status=merchantJsonData.getString("merchant_status");
+
+                                    Const.MERCHANT_DATA.add(new Merchant(recordID,customer_id,merchant_id,merchant_name,merchant_phone,merchant_pos_url,merchant_type,merchant_status
+                                            ,merchant_email,merchant_address,merchant_pos_name,merchant_message,merchant_pos_create_at,merchant_pos_demo_expiry_at,merchant_payment_status));
+
+
+                                }
+
+
+
+                                mAdapter.notifyDataSetChanged();
+
+                                swipeContainer.setRefreshing(false);
+                                //  new GeneralFunction().hideProgressDialog();
+
+
+                            }
+                            // Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+
+
+
+
+
+
+                        }
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                                .show();
+
+                    }
+
+                } catch (Exception e) {
+
+                    Toast.makeText(getApplicationContext(), "Unable to get user information.", Toast.LENGTH_SHORT)
+                            .show();
+                    e.printStackTrace();
+                }
+
+            }
+        },url, MerchantActivity.this);
+        obj.execute();
     }
 }

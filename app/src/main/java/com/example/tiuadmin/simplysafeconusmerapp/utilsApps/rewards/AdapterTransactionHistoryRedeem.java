@@ -13,12 +13,16 @@ import com.example.tiuadmin.simplysafeconusmerapp.R;
 
 import java.util.ArrayList;
 
-public class AdapterTransactionHistory extends ArrayAdapter<ConsumerTransactionHistoryModel> {
+/**
+ * Created by tiuadmin on 17/02/17.
+ */
+
+public class AdapterTransactionHistoryRedeem extends ArrayAdapter<ConsumerTransactionHistoryModel> {
 
     private Activity context;
     ArrayList<ConsumerTransactionHistoryModel> transactionList;
 
-    public AdapterTransactionHistory(Activity context, ArrayList<ConsumerTransactionHistoryModel> str) {
+    public AdapterTransactionHistoryRedeem(Activity context, ArrayList<ConsumerTransactionHistoryModel> str) {
         super(context, R.layout.custom_list_transaction_earns, str);
 
         // TODO Auto-generated constructor stub

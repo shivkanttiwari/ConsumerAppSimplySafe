@@ -46,15 +46,15 @@ public class MerchantTransactionMessageCustomAdapter extends BaseAdapter {
         LayoutInflater inflater=activityContext.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.merchant_transaction_message_custom_row, null,true);
 
-        TextView txt_merchant_Transaction_Message = (TextView) rowView.findViewById(R.id.txt_merchant_Transaction_Message);
+        TextView txt_merchant_Transaction_Message_heading = (TextView) rowView.findViewById(R.id.txt_merchant_Transaction_Message_heading);
         TextView txt_merchant_Transaction_date = (TextView) rowView.findViewById(R.id.txt_merchant_Transaction_date);
-        TextView txt_merchant_Transaction_time = (TextView) rowView.findViewById(R.id.txt_merchant_Transaction_time);
+        TextView txt_message = (TextView) rowView.findViewById(R.id.textView4);
 
 
-       // txt_merchant_Transaction_Message.setText(MerchantTransactionMessageList.get(i).getTransactionMessage());
-        //txt_merchant_Transaction_date.setText(MerchantTransactionMessageList.get(i).getTransacitonDate());
-       // txt_merchant_Transaction_time.setText(MerchantTransactionMessageList.get(i).getTransactionTIme()+" PM");
+        txt_merchant_Transaction_Message_heading.setText(MerchantTransactionMessageList.get(i).getMerchantMessageHeading());
+        txt_merchant_Transaction_date.setText(MerchantTransactionMessageList.get(i).getDateTime());
 
+        txt_message.setText(MerchantTransactionMessageList.get(i).getMerchantMessage());
 
         // txt_MerchantMessage.setText(MerchantMessageList.get(i).getMerchantMessage());
 

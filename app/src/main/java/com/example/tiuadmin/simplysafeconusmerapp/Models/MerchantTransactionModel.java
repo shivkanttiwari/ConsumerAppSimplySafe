@@ -5,12 +5,13 @@ package com.example.tiuadmin.simplysafeconusmerapp.Models;
  */
 
 public class MerchantTransactionModel {
-    public MerchantTransactionModel(String messageID, String merchantMessageID, String merchantMessageHeading, String merchantMessage, String merchantMessageImage) {
+    public MerchantTransactionModel(String messageID, String merchantMessageID, String merchantMessageHeading, String merchantMessage, String merchantMessageImage,String DateTime) {
         MessageID = messageID;
         MerchantMessageID = merchantMessageID;
         MerchantMessageHeading = merchantMessageHeading;
         MerchantMessage = merchantMessage;
         MerchantMessageImage = merchantMessageImage;
+        this.DateTime=DateTime;
     }
 
     public String getMessageID() {
@@ -59,4 +60,13 @@ public class MerchantTransactionModel {
     String MerchantMessage;
     String MerchantMessageImage;
 
+    public String getDateTime() {
+        return DateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        DateTime = dateTime;
+    }
+
+    String DateTime;
 }

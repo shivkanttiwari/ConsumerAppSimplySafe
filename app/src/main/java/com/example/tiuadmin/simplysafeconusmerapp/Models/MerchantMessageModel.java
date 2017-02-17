@@ -9,12 +9,13 @@ public class MerchantMessageModel  {
 
 
 
-    public MerchantMessageModel(String messageID, String merchantMessageID, String merchantMessageHeading, String merchantMessage, String merchantMessageImage) {
+    public MerchantMessageModel(String messageID, String merchantMessageID, String merchantMessageHeading, String merchantMessage, String merchantMessageImage,String DateTime) {
         MessageID = messageID;
         MerchantMessageID = merchantMessageID;
         MerchantMessageHeading = merchantMessageHeading;
         MerchantMessage = merchantMessage;
         MerchantMessageImage = merchantMessageImage;
+        this.DateTime=DateTime;
     }
 
     public String getMessageID() {
@@ -62,6 +63,16 @@ public class MerchantMessageModel  {
     String MerchantMessageHeading;
     String MerchantMessage;
     String MerchantMessageImage;
+
+    public String getDateTime() {
+        return DateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        DateTime = dateTime;
+    }
+
+    String DateTime;
 
 
 
