@@ -266,7 +266,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/token";
+            String url = "http://52.66.101.233/Customer-Backend/public/api/token";
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);
@@ -394,7 +394,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/v1/customer/device/register";
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/device/register";
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("device_token", "afkhlsdfkjhldsfjlhkaslhjk");
             jsonrequest.put("device_type_id", "");

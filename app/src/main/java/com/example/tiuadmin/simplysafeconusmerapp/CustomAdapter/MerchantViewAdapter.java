@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiuadmin.simplysafeconusmerapp.Activity.MerchanteWebviewActivity;
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.Callback;
+import com.example.tiuadmin.simplysafeconusmerapp.Callbacks.MyAsynckTask;
 import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantActivity;
 import com.example.tiuadmin.simplysafeconusmerapp.Merchant.MerchantDetialVIewActivtiy;
 import com.example.tiuadmin.simplysafeconusmerapp.Models.Merchant;
@@ -56,6 +58,8 @@ PrefManager prefManager;
     String Merchant_ID="";
     String MerchantStatus="";
     String MerchantDeleteStatus="";
+
+    String merchant_status="",merchant_pos_url="",merchant_password="";
     public MerchantViewAdapter(Activity context, ArrayList<Merchant> merchantArrray) {
         super(context, R.layout.row_places, merchantArrray);
         prefManager=new PrefManager(context);
@@ -247,11 +251,11 @@ PrefManager prefManager;
             public void onClick(View v) {
              //   Toast.makeText(mContext,"Main Holder clicked",Toast.LENGTH_SHORT).show();
 
-                Intent i=new Intent(mContext, MerchantDetialVIewActivtiy.class);
+                Merchant_ID=merchantArray.get(position).getMerchant_id();
+                GetStatusConsumer(position,1);
 
-                Const.MerchantID_Selected_For_Detial=merchantArray.get(position).getMerchant_id();
-                i.putExtra("merchant_id",merchantArray.get(position).getMerchant_id());
-                mContext.startActivity(i);
+
+
             }
         });
 
@@ -262,16 +266,14 @@ PrefManager prefManager;
 
                // Merchant_ID=merchantArray.get(position).getMerchant_id();
                 //new AsyncTaskUpdateProfile().execute();
-                if(merchantArray.get(position).getStatus().equalsIgnoreCase("false"))
-                {
-                    Toast.makeText(mContext, "Account not verified.Please contact respected merchant to activiate.", Toast.LENGTH_SHORT).show();
-                }
-                else {
+
 
 
                      Merchant_ID=merchantArray.get(position).getMerchant_id();
-                    new AsyncTaskUpdateProfile().execute();
-                }
+
+                GetStatusConsumer(position,2);
+
+
 
 
 
@@ -332,7 +334,113 @@ PrefManager prefManager;
 
 
 
+public  void GetStatusConsumer(final int poistion,final int requestType )
+{
+    Merchant_ID=merchantArray.get(poistion).getMerchant_id();
+    String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/"+Merchant_ID;
 
+    MyAsynckTask obj=new MyAsynckTask(new Callback() {
+        @Override
+        public void onResult(String result) {
+
+            String res=result;
+
+            try {
+
+
+
+                if (res != null && res.length() > 0) {
+                    JSONObject json = new JSONObject(res);
+                    if (json != null) {
+
+
+                        MerchantStatus = json.getString("status");
+                        String message = json.getString("message");
+                        if (MerchantStatus.equalsIgnoreCase("true")) {
+
+                            JSONObject MerchantStatusJSON=new JSONObject();
+                            MerchantStatusJSON=json.getJSONObject("data");
+
+                            String id=MerchantStatusJSON.getString("id");
+                            String customer_id=MerchantStatusJSON.getString("customer_id");
+
+                            String merchant_id=MerchantStatusJSON.getString("merchant_id");
+                            String merchant_name=MerchantStatusJSON.getString("merchant_name");
+                            String merchant_email=MerchantStatusJSON.getString("merchant_email");
+                            String merchant_phone=MerchantStatusJSON.getString("merchant_phone");
+                            String merchant_address=MerchantStatusJSON.getString("merchant_address");
+                            String merchant_type=MerchantStatusJSON.getString("merchant_type");
+                            String merchant_pos_name=MerchantStatusJSON.getString("merchant_pos_name");
+                            String merchant_message=MerchantStatusJSON.getString("merchant_message");
+                             merchant_pos_url=MerchantStatusJSON.getString("merchant_pos_url");
+                            String merchant_pos_create_at=MerchantStatusJSON.getString("merchant_pos_create_at");
+                            String merchant_pos_demo_expiry_at=MerchantStatusJSON.getString("merchant_pos_demo_expiry_at");
+                            String merchant_payment_status=MerchantStatusJSON.getString("merchant_payment_status");
+                             merchant_status=MerchantStatusJSON.getString("merchant_status");
+                             merchant_password=MerchantStatusJSON.getString("merchant_password");
+                            String created_at=MerchantStatusJSON.getString("created_at");
+                            String updated_at=MerchantStatusJSON.getString("updated_at");
+
+
+
+                            if(requestType==1)
+                            {
+                                if(merchant_status.equalsIgnoreCase("1"))
+                                {
+
+                                    Intent i=new Intent(mContext, MerchantDetialVIewActivtiy.class);
+
+                                    Const.MerchantID_Selected_For_Detial=merchantArray.get(poistion).getMerchant_id();
+                                    i.putExtra("merchant_id",merchantArray.get(poistion).getMerchant_id());
+                                    mContext.startActivity(i);
+                                }
+                                else {
+                                    Toast.makeText(mContext, "Account not verified.Please contact respected merchant to activiate.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else
+                            {
+                                if(merchant_status.equalsIgnoreCase("1"))
+                                {
+
+                                    Intent merchantShopIntent=new Intent(mContext, MerchanteWebviewActivity.class);
+
+                                    merchantShopIntent.putExtra("MerchantURL",merchant_pos_url);
+                                    merchantShopIntent.putExtra("Passkey",merchant_password);
+                                    mContext.startActivity(merchantShopIntent);
+                                }
+                                else {
+                                    Toast.makeText(mContext, "Account not verified.Please contact respected merchant to activiate.", Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            }
+
+
+
+                        }
+
+
+
+                    }
+                }
+                else {
+                    Toast.makeText(mContext, "Unable to get user information.", Toast.LENGTH_SHORT)
+                            .show();
+
+                }
+
+            } catch (Exception e) {
+
+                Toast.makeText(mContext, "Unable to get user information.", Toast.LENGTH_SHORT)
+                        .show();
+                e.printStackTrace();
+            }
+
+        }
+    },url, mContext);
+    obj.execute();
+}
     //******************webservice********
     private ProgressDialog progressDialog2 = null;
     String username;
@@ -401,7 +509,7 @@ PrefManager prefManager;
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/v1/customer/merchant/"+Merchant_ID;
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/"+Merchant_ID;
           /*  JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);

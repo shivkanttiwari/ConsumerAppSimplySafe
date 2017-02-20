@@ -48,7 +48,7 @@ public class MerchantDetialVIewActivtiy extends AppCompatActivity {
     private ViewPager viewPager;
     private String merchant_id;
     PrefManager prefManager;
-    String url = "http://simplypos.co.in/api/v1/customer/merchant/"+Const.MerchantID_Selected_For_Detial;
+    String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/"+Const.MerchantID_Selected_For_Detial;
     String message;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

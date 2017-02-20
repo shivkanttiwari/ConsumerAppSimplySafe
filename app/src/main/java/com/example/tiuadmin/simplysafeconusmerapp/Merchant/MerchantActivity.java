@@ -75,7 +75,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
     PrefManager prefManager;
     String message="";
     String merchantMobileNumber;
-    String url = "http://simplypos.co.in/api/v1/customer/merchant/list";
+    String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/list";
     public SwipeRefreshLayout swipeContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -465,7 +465,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/v1/customer/merchant";
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant";
            JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("status", merchantDetail.getStatus());
 
@@ -566,7 +566,7 @@ public class MerchantActivity extends AppCompatActivity implements ZXingScannerV
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/v1/customer/merchant/list";
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/customer/merchant/list";
 
             //Const.MERCHANT_DATA.add(0,new Merchant("1","shivknat","9096572182","www.goole.com","3","pending"));
 

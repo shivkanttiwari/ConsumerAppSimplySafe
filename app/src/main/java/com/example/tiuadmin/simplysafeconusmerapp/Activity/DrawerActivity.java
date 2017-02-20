@@ -203,7 +203,7 @@ public class DrawerActivity extends AppCompatActivity {
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/user";
+            String url = "http://52.66.101.233/Customer-Backend/public/api/user";
           /*  JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("phone", phone);
             jsonrequest.put("sspin", password);
@@ -231,7 +231,7 @@ public class DrawerActivity extends AppCompatActivity {
                     try {
                         Picasso.with(DrawerActivity.this)
 
-                                .load("http://simplypos.co.in/api/v1/customer/image/200/200/"+Const.USER_ID).placeholder(R.drawable.user)
+                                .load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).placeholder(R.drawable.user)
                                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                                 .networkPolicy(NetworkPolicy.NO_CACHE)
                                 .into(navigationDrawerImageview);
@@ -240,14 +240,14 @@ public class DrawerActivity extends AppCompatActivity {
                     }
                   /*  Picasso
                             .with(this)
-                            .load("http://simplypos.co.in/api/v1/customer/image/200/200/"+Const.USER_ID)
+                            .load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID)
                             .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
                             .networkPolicy(NetworkPolicy.NO_CACHE)
                             .into(navigationDrawerImageview);*/
 
 
                     tv_email.setText(Const.USER_EMAIL);
-                   // Picasso.with(this).load("http://simplypos.co.in/api/v1/customer/image/200/200/"+Const.USER_ID).into(navigationDrawerImageview);
+                   // Picasso.with(this).load("http://52.66.101.233/Customer-Backend/public/api/v1/customer/image/200/200/"+Const.USER_ID).into(navigationDrawerImageview);
 
                     Bitmap photo = BitmapFactory.decodeResource(this.getResources(), R.drawable.pendingimage);
                     //new GeneralFunction().hideProgressDialog();

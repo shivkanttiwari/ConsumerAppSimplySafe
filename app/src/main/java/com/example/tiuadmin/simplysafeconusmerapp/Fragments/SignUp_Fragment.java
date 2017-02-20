@@ -200,7 +200,7 @@ public  static String phoneNumberCommonforUserRegistraiotn="";
 		String returnResponse = null;
 		try {
 
-			String url = "http://simplypos.co.in/api/user/signup";
+			String url = "http://52.66.101.233/Customer-Backend/public/api/user/signup";
 			JSONObject signUpJsonRequestObject = new JSONObject();
 			signUpJsonRequestObject.put("name", name);
 			signUpJsonRequestObject.put("email", email);

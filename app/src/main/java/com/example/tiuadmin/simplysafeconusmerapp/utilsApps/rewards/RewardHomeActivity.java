@@ -25,7 +25,7 @@ public class RewardHomeActivity extends AppCompatActivity {
     String message;
     String rewardPoints;
 
-    private String url="http://simplypos.co.in/api/v1/customer/info";
+    private String url="http://52.66.101.233/Customer-Backend/public/api/v1/customer/info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

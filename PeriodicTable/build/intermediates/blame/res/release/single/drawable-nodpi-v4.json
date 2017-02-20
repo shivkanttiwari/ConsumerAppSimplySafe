@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/drawable-nodpi-v4/backdrop.png",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/src/main/res/drawable-nodpi/backdrop.png"
-    },
-    {
         "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/release/drawable-nodpi-v4/backdrop.png",
         "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/drawable-nodpi/backdrop.png"
     }

@@ -172,7 +172,7 @@ public class ChangePasswordFragment extends Fragment implements View.OnClickList
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/user/newpassword";
+            String url = "http://52.66.101.233/Customer-Backend/public/api/user/newpassword";
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("otp", otp);
             jsonrequest.put("phone", phone);

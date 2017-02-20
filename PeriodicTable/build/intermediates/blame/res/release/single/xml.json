@@ -4,14 +4,6 @@
         "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/xml/settings_about.xml"
     },
     {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/xml/settings_about.xml",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/src/main/res/xml/settings_about.xml"
-    },
-    {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/xml/settings.xml",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/src/main/res/xml/settings.xml"
-    },
-    {
         "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/release/xml/settings.xml",
         "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/src/main/res/xml/settings.xml"
     }

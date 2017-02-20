@@ -148,7 +148,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         String returnResponse = null;
         try {
 
-            String url = "http://simplypos.co.in/api/v1/user/password";
+            String url = "http://52.66.101.233/Customer-Backend/public/api/v1/user/password";
             JSONObject jsonrequest = new JSONObject();
             jsonrequest.put("oldPassword", oldpasword);
             jsonrequest.put("newPassword", newpassowrd);

@@ -2,9 +2,5 @@
     {
         "merged": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/res/merged/release/drawable-v23/abc_control_background_material.xml",
         "source": "/Users/tiuadmin/Desktop/shivkant/Android/SimplySafeConusmerApp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v23/abc_control_background_material.xml"
-    },
-    {
-        "merged": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/res/merged/release/drawable-v23/abc_control_background_material.xml",
-        "source": "/Users/shivkanttiwari/Desktop/Android/ConsumerApp/consumerandroidapp/PeriodicTable/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/res/drawable-v23/abc_control_background_material.xml"
     }
 ]
